@@ -1,23 +1,33 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Mail, Check, Shield } from 'lucide-react';
+import { Mail, Check, Shield, Loader2 } from 'lucide-react';
+import { sendEmail } from '@/utils/emailService';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || isSubmitting) return;
     setIsSubmitting(true);
-    // Simulate async subscription (replace with real service like Resend/Formspree)
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setSubscribed(true);
-    setEmail('');
+    setError('');
+
+    const result = await sendEmail('subscribe', { email });
+
     setIsSubmitting(false);
-    setTimeout(() => setSubscribed(false), 4000);
+
+    if (result.ok) {
+      setSubscribed(true);
+      setSuccessMessage(result.message);
+      setEmail('');
+    } else {
+      setError(result.message);
+    }
   };
 
   const footerLinks = {
@@ -58,45 +68,57 @@ const Footer: React.FC = () => {
           <p className="text-slate-600 mb-6">
             Subscribe to receive our free Financial Planning Checklist and weekly insights.
           </p>
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full pl-10 pr-4 py-3 min-h-[48px] rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
-                required
-              />
+
+          {subscribed ? (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 flex items-center justify-center gap-3">
+              <div className="w-9 h-9 bg-[#2563eb] rounded-full flex items-center justify-center flex-shrink-0">
+                <Check className="w-5 h-5 text-white" />
+              </div>
+              <p className="text-sm font-medium text-[#2563eb]">{successMessage}</p>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`px-6 py-3 min-h-[48px] rounded-lg font-bold transition-colors flex items-center justify-center gap-2 ${
-                subscribed
-                  ? 'bg-green-600 text-white'
-                  : isSubmitting
-                    ? 'bg-blue-400 text-white cursor-wait'
-                    : 'bg-[#2563eb] text-white hover:bg-blue-700'
-              }`}
-            >
-              {subscribed ? (
-                <>
-                  <Check size={18} />
-                  Subscribed!
-                </>
-              ) : isSubmitting ? (
-                'Sending...'
-              ) : (
-                'Subscribe'
+          ) : (
+            <>
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+                <div className="relative flex-1">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full pl-10 pr-4 py-3 min-h-[48px] rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`px-6 py-3 min-h-[48px] rounded-lg font-bold transition-colors flex items-center justify-center gap-2 ${
+                    isSubmitting
+                      ? 'bg-blue-400 text-white cursor-wait'
+                      : 'bg-[#2563eb] text-white hover:bg-blue-700'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Subscribe'
+                  )}
+                </button>
+              </form>
+              {error && (
+                <p className="text-xs text-red-600 mt-2 text-center">{error}</p>
               )}
-            </button>
-          </form>
-          <p className="text-xs text-slate-500 mt-3 flex items-center justify-center gap-1">
-            <Shield size={12} />
-            We respect your privacy. Unsubscribe anytime.
-          </p>
+              <p className="text-xs text-slate-500 mt-3 flex items-center justify-center gap-1">
+                <Shield size={12} />
+                We respect your privacy. Unsubscribe anytime.
+              </p>
+            </>
+          )}
         </div>
       </div>
 

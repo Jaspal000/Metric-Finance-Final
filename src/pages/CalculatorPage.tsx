@@ -161,7 +161,7 @@ const CalculatorPage: React.FC = () => {
                   {calculator.category}
                 </span>
               </div>
-              <h1 className="text-2xl md:text-4xl font-bold text-slate-900 mb-2">
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
                 {calculator.name}
               </h1>
               <p className="text-base md:text-lg text-slate-600 leading-relaxed">
