@@ -198,7 +198,20 @@ const StampDutyCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="UK Stamp Duty Calculator"
+        resultsData={result ? [
+          `Property Price: £${input.propertyPrice.toLocaleString()}`,
+          `First-Time Buyer: ${input.isFirstTimeBuyer ? 'Yes' : 'No'}`,
+          `Additional Property: ${input.isAdditionalProperty ? 'Yes' : 'No'}`,
+          `---`,
+          `Stamp Duty: £${result.stampDuty.toLocaleString()}`,
+          `Effective Rate: ${result.effectiveRate}%`,
+          `Total Cost: £${(input.propertyPrice + result.stampDuty).toLocaleString()}`,
+        ].join('\n') : undefined}
+      />
       <AffiliateCTA calculatorType="stamp-duty" />
     </div>
   );

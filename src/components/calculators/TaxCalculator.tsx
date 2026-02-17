@@ -220,7 +220,24 @@ const TaxCalculator: React.FC = () => {
       </div>
 
       {/* Email Capture */}
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="Federal Tax Calculator"
+        resultsData={result ? [
+          `Filing Status: ${input.filingStatus}`,
+          `Annual Income: ${formatCurrency(input.income)}`,
+          `Dependents: ${input.dependents}`,
+          `---`,
+          `Federal Tax: ${formatCurrency(result.federalTax)}`,
+          `State Tax: ${formatCurrency(result.stateTax)}`,
+          `FICA Tax: ${formatCurrency(result.ficaTax)}`,
+          `Total Tax: ${formatCurrency(result.totalTax)}`,
+          `Take-Home Pay: ${formatCurrency(result.takeHome)}`,
+          `Effective Rate: ${formatPercent(result.effectiveRate)}`,
+          `Marginal Rate: ${formatPercent(result.marginalRate)}`,
+        ].join('\n') : undefined}
+      />
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="tax" />

@@ -276,7 +276,24 @@ const FourOhOneKCalculator: React.FC = () => {
       </div>
 
       {/* Email Capture */}
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="401(k) Calculator"
+        resultsData={result ? [
+          `Current Age: ${input.currentAge}`,
+          `Retirement Age: ${input.retirementAge}`,
+          `Current Salary: ${formatCurrency(input.currentSalary)}`,
+          `Contribution: ${input.contributionPercent}%`,
+          `Current Balance: ${formatCurrency(input.currentBalance)}`,
+          `---`,
+          `Final Balance: ${formatCurrency(result.finalBalance)}`,
+          `Your Contributions: ${formatCurrency(result.totalContributions)}`,
+          `Employer Contributions: ${formatCurrency(result.employerContributions)}`,
+          `Investment Growth: ${formatCurrency(result.totalInterest)}`,
+          `Monthly Income (est.): ${formatCurrency(result.monthlyIncome)}`,
+        ].join('\n') : undefined}
+      />
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="401k" />

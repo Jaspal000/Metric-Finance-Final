@@ -280,7 +280,24 @@ const USMortgageCalculator: React.FC = () => {
       </div>
 
       {/* Email Capture */}
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="US Mortgage Calculator"
+        resultsData={result ? [
+          `Home Price: ${formatCurrency(input.homePrice)}`,
+          `Down Payment: ${formatCurrency(input.downPayment)} (${input.downPaymentPercent}%)`,
+          `Loan Amount: ${formatCurrency(input.loanAmount)}`,
+          `Interest Rate: ${input.interestRate}%`,
+          `Loan Term: ${input.loanTerm} years`,
+          `---`,
+          `Monthly Payment: ${formatCurrency(result.totalMonthlyPayment)}`,
+          `Principal & Interest: ${formatCurrency(result.monthlyPrincipalInterest)}`,
+          `Total Interest: ${formatCurrency(result.totalInterestPaid)}`,
+          `Total Cost: ${formatCurrency(result.totalCost)}`,
+          `Payoff Date: ${result.payoffDate}`,
+        ].join('\n') : undefined}
+      />
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="mortgage" />
