@@ -5,15 +5,17 @@
 // Supported services: Formspree, Resend, SendGrid, Mailchimp, or any REST API.
 // =============================================================================
 
+const FORMSPREE_URL = 'https://formspree.io/f/xykdjove';
+
 const ENDPOINTS = {
   // "Save Results" — sends calculator results to the user's email
-  saveResults: 'https://formspree.io/f/YOUR_SAVE_RESULTS_ID',
+  saveResults: FORMSPREE_URL,
 
   // "Subscribe" — newsletter / updates signup
-  subscribe: 'https://formspree.io/f/YOUR_SUBSCRIBE_ID',
+  subscribe: FORMSPREE_URL,
 
   // "Contact" — contact form submissions
-  contact: 'https://formspree.io/f/YOUR_CONTACT_ID',
+  contact: FORMSPREE_URL,
 } as const;
 
 export type EmailType = keyof typeof ENDPOINTS;
@@ -43,8 +45,8 @@ export async function sendEmail(
   try {
     const res = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _formType: type, ...payload }),
     });
 
     if (res.ok) {
