@@ -46,7 +46,7 @@ export async function sendEmail(
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ _formType: type, ...payload }),
+      body: JSON.stringify({ ...payload, _formType: type }),
     });
 
     if (res.ok) {
@@ -68,9 +68,9 @@ export async function sendEmail(
 function getSuccessMessage(type: EmailType): string {
   switch (type) {
     case 'saveResults':
-      return 'Results sent to your inbox!';
+      return 'Calculation sent! Check your inbox for your records.';
     case 'subscribe':
-      return "You're on the list! Welcome to Metric Finance.";
+      return 'Welcome to Metric Finance! You\'ve been added to our list.';
     case 'contact':
       return 'Message sent! We will get back to you shortly.';
   }

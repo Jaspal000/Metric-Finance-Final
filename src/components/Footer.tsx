@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
     setIsSubmitting(true);
     setError('');
 
-    const result = await sendEmail('subscribe', { email });
+    const result = await sendEmail('subscribe', { email, _subject: 'New Metric Finance Subscriber' });
 
     setIsSubmitting(false);
 

@@ -202,7 +202,22 @@ const CompoundInterestCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="Compound Interest Calculator"
+        resultsData={result ? [
+          `Initial Investment: ${formatCurrency(input.principal)}`,
+          `Monthly Contribution: ${formatCurrency(input.monthlyContribution)}`,
+          `Annual Rate: ${input.annualRate}%`,
+          `Time Period: ${input.years} years`,
+          `Compound Frequency: ${input.compoundFrequency}`,
+          `---`,
+          `Final Balance: ${formatCurrency(result.finalAmount)}`,
+          `Total Contributions: ${formatCurrency(result.totalContributions)}`,
+          `Interest Earned: ${formatCurrency(result.totalInterest)}`,
+        ].join('\n') : undefined}
+      />
       <AffiliateCTA calculatorType="general" />
     </div>
   );

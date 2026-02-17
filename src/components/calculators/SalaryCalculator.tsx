@@ -149,7 +149,23 @@ const SalaryCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="Salary Calculator"
+        resultsData={result ? [
+          `Annual Salary: ${formatCurrency(input.annualSalary)}`,
+          `Pay Frequency: ${frequencyLabels[input.payFrequency]}`,
+          `Filing Status: ${input.filingStatus}`,
+          `---`,
+          `Gross Pay: ${formatCurrency(result.grossPay)}`,
+          `Federal Tax: -${formatCurrency(result.federalTax)}`,
+          `State Tax: -${formatCurrency(result.stateTax)}`,
+          `FICA Tax: -${formatCurrency(result.ficaTax)}`,
+          `Net Pay: ${formatCurrency(result.netPay)}`,
+          `Annual Net: ${formatCurrency(result.annualNet)}`,
+        ].join('\n') : undefined}
+      />
       <AffiliateCTA calculatorType="general" />
     </div>
   );

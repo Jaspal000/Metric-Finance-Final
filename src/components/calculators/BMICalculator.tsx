@@ -212,7 +212,19 @@ const BMICalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture variant="inline" context="calculator" />
+      <EmailCapture
+        variant="inline"
+        context="calculator"
+        calculatorName="BMI Calculator"
+        resultsData={result ? [
+          `Height: ${input.heightFt}ft ${input.heightIn}in`,
+          `Weight: ${input.weight} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
+          `---`,
+          `BMI: ${result.bmi}`,
+          `Category: ${result.category}`,
+          `Healthy Range: ${result.healthyWeightLow} - ${result.healthyWeightHigh} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
+        ].join('\n') : undefined}
+      />
       <AffiliateCTA calculatorType="general" />
     </div>
   );

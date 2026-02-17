@@ -6,6 +6,8 @@ import type { EmailType, EmailPayload } from '@/utils/emailService';
 interface EmailCaptureProps {
   variant?: 'inline' | 'card' | 'minimal';
   context?: 'calculator' | 'general' | 'lead-magnet';
+  /** Name of the calculator, used in the email subject line */
+  calculatorName?: string;
   /** Optional pre-formatted results string to include in the email body */
   resultsData?: string;
   className?: string;
@@ -20,6 +22,7 @@ const CONTEXT_TO_EMAIL_TYPE: Record<string, EmailType> = {
 export const EmailCapture: React.FC<EmailCaptureProps> = ({
   variant = 'inline',
   context = 'general',
+  calculatorName,
   resultsData,
   className = '',
 }) => {
@@ -38,7 +41,13 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
 
     const emailType = CONTEXT_TO_EMAIL_TYPE[context] ?? 'subscribe';
     const payload: EmailPayload = { email };
-    if (resultsData) payload.results = resultsData;
+
+    if (emailType === 'saveResults') {
+      payload._subject = `Your Metric Finance Calculation: ${calculatorName ?? 'Calculator'}`;
+      if (resultsData) payload.dataSummary = resultsData;
+    } else {
+      payload._subject = 'New Metric Finance Subscriber';
+    }
 
     const result = await sendEmail(emailType, payload);
 
