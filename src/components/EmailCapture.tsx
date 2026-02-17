@@ -15,13 +15,18 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setSubmitted(true);
-      setEmail('');
-      setTimeout(() => setSubmitted(false), 5000);
-    }
+    if (!email || isSubmitting) return;
+    setIsSubmitting(true);
+    // Simulate async email submission (replace with real service like Resend/Formspree)
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    setSubmitted(true);
+    setEmail('');
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   const content = {
@@ -49,18 +54,18 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
 
   if (variant === 'minimal') {
     return (
-      <form onSubmit={handleSubmit} className={`flex gap-2 ${className}`}>
+      <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 overflow-visible ${className}`}>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your email"
-          className="flex-1 px-3 py-2 text-sm rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 min-w-0 px-3 py-2.5 min-h-[44px] text-sm rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
         <button
           type="submit"
-          className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1 ${
+          className={`px-5 py-2.5 min-h-[44px] text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
             submitted
               ? 'bg-green-600 text-white'
               : 'bg-slate-900 text-white hover:bg-slate-800'
@@ -132,8 +137,8 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
 
   // Inline variant
   return (
-    <div className={`bg-slate-50 rounded-lg p-4 ${className}`}>
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+    <div className={`bg-slate-50 rounded-lg p-4 overflow-visible ${className}`}>
+      <div className="flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
             <Mail className="w-5 h-5 text-blue-600" />
@@ -143,18 +148,18 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
             <p className="text-sm text-slate-600">{currentContent.description}</p>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="flex gap-2 sm:ml-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
-            className="flex-1 sm:w-48 px-4 py-2 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 min-w-0 px-4 py-2.5 min-h-[44px] rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
           />
           <button
             type="submit"
-            className={`px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 whitespace-nowrap ${
+            className={`px-5 py-2.5 min-h-[44px] rounded-lg font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap flex-shrink-0 ${
               submitted
                 ? 'bg-green-600 text-white'
                 : 'bg-slate-900 text-white hover:bg-slate-800'
