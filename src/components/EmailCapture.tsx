@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, Check, Download, Shield, Loader2 } from 'lucide-react';
 import { sendEmail } from '@/utils/emailService';
-import type { EmailType } from '@/utils/emailService';
+import type { EmailType, EmailPayload } from '@/utils/emailService';
 
 interface EmailCaptureProps {
   variant?: 'inline' | 'card' | 'minimal';
@@ -37,7 +37,7 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
     setError('');
 
     const emailType = CONTEXT_TO_EMAIL_TYPE[context] ?? 'subscribe';
-    const payload: Record<string, unknown> = { email };
+    const payload: EmailPayload = { email };
     if (resultsData) payload.results = resultsData;
 
     const result = await sendEmail(emailType, payload);
