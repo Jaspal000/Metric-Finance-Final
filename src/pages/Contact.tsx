@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { SEO } from '@/components/SEO';
-import { Mail, MessageSquare, Send, Check } from 'lucide-react';
+import { Mail, MessageSquare, Send, Check, Loader2 } from 'lucide-react';
 import { defaultSEO } from '@/utils/seo';
+import { sendEmail } from '@/utils/emailService';
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,13 +16,28 @@ const Contact: React.FC = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setError('');
+
+    const result = await sendEmail('contact', {
+      email: formData.email,
+      name: formData.name,
+      subject: formData.subject,
+      message: formData.message,
+    });
+
+    setIsSubmitting(false);
+
+    if (result.ok) {
+      setSubmitted(true);
+      setSuccessMessage(result.message);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    } else {
+      setError(result.message);
+    }
   };
 
   const seo = {
@@ -115,18 +134,30 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   
+                  {error && (
+                    <p className="text-sm text-red-600">{error}</p>
+                  )}
+
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className={`w-full py-4 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
                       submitted
-                        ? 'bg-green-600 text-white'
-                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                        ? 'bg-[#2563eb] text-white'
+                        : isSubmitting
+                          ? 'bg-blue-400 text-white cursor-wait'
+                          : 'bg-blue-600 text-white hover:bg-blue-700'
                     }`}
                   >
                     {submitted ? (
                       <>
                         <Check className="w-5 h-5" />
-                        Message Sent!
+                        {successMessage}
+                      </>
+                    ) : isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
                       </>
                     ) : (
                       <>

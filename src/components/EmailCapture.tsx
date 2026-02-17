@@ -1,32 +1,56 @@
 import React, { useState } from 'react';
-import { Mail, Send, Check, Download, Shield } from 'lucide-react';
+import { Mail, Send, Check, Download, Shield, Loader2 } from 'lucide-react';
+import { sendEmail } from '@/utils/emailService';
+import type { EmailType } from '@/utils/emailService';
 
 interface EmailCaptureProps {
   variant?: 'inline' | 'card' | 'minimal';
   context?: 'calculator' | 'general' | 'lead-magnet';
+  /** Optional pre-formatted results string to include in the email body */
+  resultsData?: string;
   className?: string;
 }
 
-export const EmailCapture: React.FC<EmailCaptureProps> = ({ 
+const CONTEXT_TO_EMAIL_TYPE: Record<string, EmailType> = {
+  calculator: 'saveResults',
+  'lead-magnet': 'subscribe',
+  general: 'subscribe',
+};
+
+export const EmailCapture: React.FC<EmailCaptureProps> = ({
   variant = 'inline',
   context = 'general',
-  className = '' 
+  resultsData,
+  className = '',
 }) => {
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || isSubmitting) return;
+
     setIsSubmitting(true);
-    // Simulate async email submission (replace with real service like Resend/Formspree)
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setSubmitted(true);
-    setEmail('');
+    setError('');
+
+    const emailType = CONTEXT_TO_EMAIL_TYPE[context] ?? 'subscribe';
+    const payload: Record<string, unknown> = { email };
+    if (resultsData) payload.results = resultsData;
+
+    const result = await sendEmail(emailType, payload);
+
     setIsSubmitting(false);
-    setTimeout(() => setSubmitted(false), 4000);
+
+    if (result.ok) {
+      setSubmitted(true);
+      setSuccessMessage(result.message);
+      setEmail('');
+    } else {
+      setError(result.message);
+    }
   };
 
   const content = {
@@ -34,50 +58,75 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
       title: 'Save Your Results',
       description: 'Email this calculation to yourself for future reference.',
       buttonText: 'Send Results',
-      successText: 'Results sent!',
     },
     'lead-magnet': {
       title: 'Free Financial Planning Checklist',
       description: 'Get our comprehensive PDF checklist to organize your finances.',
       buttonText: 'Get Free Checklist',
-      successText: 'Checklist sent!',
     },
     general: {
       title: 'Stay Updated',
       description: 'Get notified when we add new calculators and features.',
       buttonText: 'Subscribe',
-      successText: 'Subscribed!',
     },
   };
 
   const currentContent = content[context];
 
-  if (variant === 'minimal') {
+  // --- Success state (replaces entire form) ----------------------------------
+  if (submitted) {
     return (
-      <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 overflow-visible ${className}`}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email"
-          className="flex-1 min-w-0 px-3 py-2.5 min-h-[44px] text-sm rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-        <button
-          type="submit"
-          className={`px-5 py-2.5 min-h-[44px] text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
-            submitted
-              ? 'bg-green-600 text-white'
-              : 'bg-slate-900 text-white hover:bg-slate-800'
-          }`}
-        >
-          {submitted ? <Check size={14} /> : <Send size={14} />}
-          {submitted ? 'Sent' : 'Send'}
-        </button>
-      </form>
+      <div className={`bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center gap-3 ${className}`}>
+        <div className="w-9 h-9 bg-[#2563eb] rounded-full flex items-center justify-center flex-shrink-0">
+          <Check className="w-5 h-5 text-white" />
+        </div>
+        <p className="text-sm font-medium text-[#2563eb]">{successMessage}</p>
+      </div>
     );
   }
 
+  // --- Error message fragment -------------------------------------------------
+  const errorEl = error ? (
+    <p className="text-xs text-red-600 mt-1.5">{error}</p>
+  ) : null;
+
+  // --- Minimal variant --------------------------------------------------------
+  if (variant === 'minimal') {
+    return (
+      <div className={className}>
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 overflow-visible">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email"
+            className="flex-1 min-w-0 px-3 py-2.5 min-h-[44px] text-sm rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+            disabled={isSubmitting}
+          />
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`px-5 py-2.5 min-h-[44px] text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap flex-shrink-0 ${
+              isSubmitting
+                ? 'bg-slate-400 text-white cursor-wait'
+                : 'bg-slate-900 text-white hover:bg-slate-800'
+            }`}
+          >
+            {isSubmitting ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <Send size={14} />
+            )}
+            {isSubmitting ? 'Sending...' : 'Send'}
+          </button>
+        </form>
+        {errorEl}
+      </div>
+    );
+  }
+
+  // --- Card variant -----------------------------------------------------------
   if (variant === 'card') {
     return (
       <div className={`bg-white rounded-xl border border-slate-200 p-6 shadow-sm ${className}`}>
@@ -104,20 +153,22 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
               placeholder="Enter your email address"
               className="w-full pl-10 pr-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               required
+              disabled={isSubmitting}
             />
           </div>
           <button
             type="submit"
+            disabled={isSubmitting}
             className={`w-full py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
-              submitted
-                ? 'bg-green-600 text-white'
+              isSubmitting
+                ? 'bg-blue-400 text-white cursor-wait'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
           >
-            {submitted ? (
+            {isSubmitting ? (
               <>
-                <Check size={18} />
-                {currentContent.successText}
+                <Loader2 size={18} className="animate-spin" />
+                Sending...
               </>
             ) : (
               <>
@@ -126,6 +177,7 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
               </>
             )}
           </button>
+          {errorEl}
         </form>
         <p className="text-xs text-slate-500 mt-3 flex items-center gap-1">
           <Shield size={12} />
@@ -135,7 +187,7 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
     );
   }
 
-  // Inline variant
+  // --- Inline variant (default) -----------------------------------------------
   return (
     <div className={`bg-slate-50 rounded-lg p-4 overflow-visible ${className}`}>
       <div className="flex flex-col gap-4">
@@ -156,19 +208,26 @@ export const EmailCapture: React.FC<EmailCaptureProps> = ({
             placeholder="Your email"
             className="flex-1 min-w-0 px-4 py-2.5 min-h-[44px] rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             required
+            disabled={isSubmitting}
           />
           <button
             type="submit"
+            disabled={isSubmitting}
             className={`px-5 py-2.5 min-h-[44px] rounded-lg font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap flex-shrink-0 ${
-              submitted
-                ? 'bg-green-600 text-white'
+              isSubmitting
+                ? 'bg-slate-400 text-white cursor-wait'
                 : 'bg-slate-900 text-white hover:bg-slate-800'
             }`}
           >
-            {submitted ? <Check size={16} /> : <Send size={16} />}
-            {submitted ? 'Sent!' : currentContent.buttonText}
+            {isSubmitting ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <Send size={16} />
+            )}
+            {isSubmitting ? 'Sending...' : currentContent.buttonText}
           </button>
         </form>
+        {errorEl}
       </div>
     </div>
   );
