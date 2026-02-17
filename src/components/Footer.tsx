@@ -6,14 +6,18 @@ import { Mail, Check, Shield } from 'lucide-react';
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 3000);
-    }
+    if (!email || isSubmitting) return;
+    setIsSubmitting(true);
+    // Simulate async subscription (replace with real service like Resend/Formspree)
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    setSubscribed(true);
+    setEmail('');
+    setIsSubmitting(false);
+    setTimeout(() => setSubscribed(false), 4000);
   };
 
   const footerLinks = {
@@ -68,10 +72,13 @@ const Footer: React.FC = () => {
             </div>
             <button
               type="submit"
+              disabled={isSubmitting}
               className={`px-6 py-3 min-h-[48px] rounded-lg font-bold transition-colors flex items-center justify-center gap-2 ${
                 subscribed
                   ? 'bg-green-600 text-white'
-                  : 'bg-[#2563eb] text-white hover:bg-blue-700'
+                  : isSubmitting
+                    ? 'bg-blue-400 text-white cursor-wait'
+                    : 'bg-[#2563eb] text-white hover:bg-blue-700'
               }`}
             >
               {subscribed ? (
@@ -79,6 +86,8 @@ const Footer: React.FC = () => {
                   <Check size={18} />
                   Subscribed!
                 </>
+              ) : isSubmitting ? (
+                'Sending...'
               ) : (
                 'Subscribe'
               )}
