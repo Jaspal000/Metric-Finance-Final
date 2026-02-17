@@ -66,6 +66,7 @@ const FeaturedCalculators: React.FC = () => {
           className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-transition ${isFading ? 'opacity-0' : 'opacity-100'}`}
           role="tabpanel"
           id={`region-panel-${activeRegion}`}
+          style={{ contentVisibility: 'auto' }}
         >
           {filteredCalculators.map((calculator) => (
             <CalculatorCard 
