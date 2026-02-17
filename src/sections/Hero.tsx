@@ -5,7 +5,7 @@ const Hero: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-white">
       {/* Mathematical SVG Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute right-0 top-0 w-full h-full"
           viewBox="0 0 800 600"
@@ -78,8 +78,8 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="metric-container relative z-10">
-        <div className="py-16 md:py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="py-10 md:py-16 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center -translate-y-2 md:-translate-y-4">
             {/* Left Column - Content */}
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
