@@ -3,7 +3,7 @@ import { ArrowRight, Check, Calculator, TrendingUp, Shield, Clock } from 'lucide
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white -mt-2 md:-mt-4 lg:-mt-6">
       {/* Mathematical SVG Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
@@ -78,8 +78,8 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="metric-container relative z-10">
-        <div className="py-10 md:py-16 lg:py-20">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center -translate-y-2 md:-translate-y-4">
+        <div className="py-6 md:py-8 lg:py-12">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center -translate-y-1 md:-translate-y-2 lg:-translate-y-3">
             {/* Left Column - Content */}
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
