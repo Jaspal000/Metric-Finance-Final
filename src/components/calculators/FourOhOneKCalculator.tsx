@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { PiggyBank, DollarSign, Percent, TrendingUp, Calendar, Info } from 'lucide-react';
 import type { FourOhOneKInput, FourOhOneKResult } from '@/types';
 import { calculate401k, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const FourOhOneKCalculator: React.FC = () => {
@@ -275,25 +275,26 @@ const FourOhOneKCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Email Capture */}
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="401(k) Calculator"
-        resultsData={result ? [
-          `Current Age: ${input.currentAge}`,
-          `Retirement Age: ${input.retirementAge}`,
-          `Current Salary: ${formatCurrency(input.currentSalary)}`,
-          `Contribution: ${input.contributionPercent}%`,
-          `Current Balance: ${formatCurrency(input.currentBalance)}`,
-          `---`,
-          `Final Balance: ${formatCurrency(result.finalBalance)}`,
-          `Your Contributions: ${formatCurrency(result.totalContributions)}`,
-          `Employer Contributions: ${formatCurrency(result.employerContributions)}`,
-          `Investment Growth: ${formatCurrency(result.totalInterest)}`,
-          `Monthly Income (est.): ${formatCurrency(result.monthlyIncome)}`,
-        ].join('\n') : undefined}
-      />
+      {/* PDF Generation */}
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="401(k) Calculator"
+          resultsData={[
+            `Current Age: ${input.currentAge}`,
+            `Retirement Age: ${input.retirementAge}`,
+            `Current Salary: ${formatCurrency(input.currentSalary)}`,
+            `Contribution: ${input.contributionPercent}%`,
+            `Current Balance: ${formatCurrency(input.currentBalance)}`,
+            `---`,
+            `Final Balance: ${formatCurrency(result.finalBalance)}`,
+            `Your Contributions: ${formatCurrency(result.totalContributions)}`,
+            `Employer Contributions: ${formatCurrency(result.employerContributions)}`,
+            `Investment Growth: ${formatCurrency(result.totalInterest)}`,
+            `Monthly Income (est.): ${formatCurrency(result.monthlyIncome)}`,
+          ].join('\n')}
+        />
+      )}
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="401k" />

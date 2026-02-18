@@ -22,7 +22,7 @@ function App() {
   return (
     <Router>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-[#f8fafc]">
+        <div className="min-h-screen flex flex-col bg-[#f8fafc] overflow-x-hidden">
           <Navigation />
           <div className="flex-1">
             <Routes>

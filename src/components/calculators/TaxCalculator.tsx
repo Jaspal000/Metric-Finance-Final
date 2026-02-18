@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FileText, DollarSign, Info } from 'lucide-react';
 import type { TaxInput, TaxResult } from '@/types';
 import { calculateFederalTax, formatCurrency, formatPercent } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const TaxCalculator: React.FC = () => {
@@ -219,25 +219,26 @@ const TaxCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Email Capture */}
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Federal Tax Calculator"
-        resultsData={result ? [
-          `Filing Status: ${input.filingStatus}`,
-          `Annual Income: ${formatCurrency(input.income)}`,
-          `Dependents: ${input.dependents}`,
-          `---`,
-          `Federal Tax: ${formatCurrency(result.federalTax)}`,
-          `State Tax: ${formatCurrency(result.stateTax)}`,
-          `FICA Tax: ${formatCurrency(result.ficaTax)}`,
-          `Total Tax: ${formatCurrency(result.totalTax)}`,
-          `Take-Home Pay: ${formatCurrency(result.takeHome)}`,
-          `Effective Rate: ${formatPercent(result.effectiveRate)}`,
-          `Marginal Rate: ${formatPercent(result.marginalRate)}`,
-        ].join('\n') : undefined}
-      />
+      {/* PDF Generation */}
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Federal Tax Calculator"
+          resultsData={[
+            `Filing Status: ${input.filingStatus}`,
+            `Annual Income: ${formatCurrency(input.income)}`,
+            `Dependents: ${input.dependents}`,
+            `---`,
+            `Federal Tax: ${formatCurrency(result.federalTax)}`,
+            `State Tax: ${formatCurrency(result.stateTax)}`,
+            `FICA Tax: ${formatCurrency(result.ficaTax)}`,
+            `Total Tax: ${formatCurrency(result.totalTax)}`,
+            `Take-Home Pay: ${formatCurrency(result.takeHome)}`,
+            `Effective Rate: ${formatPercent(result.effectiveRate)}`,
+            `Marginal Rate: ${formatPercent(result.marginalRate)}`,
+          ].join('\n')}
+        />
+      )}
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="tax" />

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Percent, Calendar, Info, Wallet } from 'lucide-react';
 import type { AustraliaHomeLoanInput, AustraliaHomeLoanResult } from '@/types';
 import { calculateAustraliaHomeLoan } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const AustraliaHomeLoanCalculator: React.FC = () => {
@@ -248,23 +248,24 @@ const AustraliaHomeLoanCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Australia Home Loan Calculator"
-        resultsData={result ? [
-          `Loan Amount: A$${input.loanAmount.toLocaleString()}`,
-          `Interest Rate: ${input.interestRate}% p.a.`,
-          `Loan Term: ${input.loanTerm} years`,
-          `Repayment: ${frequencyLabels[input.repaymentFrequency]}`,
-          input.hasOffset ? `Offset Balance: A$${input.offsetBalance.toLocaleString()}` : null,
-          `---`,
-          `Repayment: A$${result.repayment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
-          `Total Interest: A$${result.totalInterest.toLocaleString()}`,
-          `Total Cost: A$${result.totalCost.toLocaleString()}`,
-          result.interestSaved > 0 ? `Interest Saved (Offset): A$${result.interestSaved.toLocaleString()}` : null,
-        ].filter(Boolean).join('\n') : undefined}
-      />
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Australia Home Loan Calculator"
+          resultsData={[
+            `Loan Amount: A$${input.loanAmount.toLocaleString()}`,
+            `Interest Rate: ${input.interestRate}% p.a.`,
+            `Loan Term: ${input.loanTerm} years`,
+            `Repayment: ${frequencyLabels[input.repaymentFrequency]}`,
+            input.hasOffset ? `Offset Balance: A$${input.offsetBalance.toLocaleString()}` : null,
+            `---`,
+            `Repayment: A$${result.repayment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
+            `Total Interest: A$${result.totalInterest.toLocaleString()}`,
+            `Total Cost: A$${result.totalCost.toLocaleString()}`,
+            result.interestSaved > 0 ? `Interest Saved (Offset): A$${result.interestSaved.toLocaleString()}` : null,
+          ].filter(Boolean).join('\n')}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );

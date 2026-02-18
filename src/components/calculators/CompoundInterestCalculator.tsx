@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Percent, Clock, Info } from 'lucide-react';
 import type { CompoundInterestInput, CompoundInterestResult } from '@/types';
 import { calculateCompoundInterest, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const CompoundInterestCalculator: React.FC = () => {
@@ -202,22 +202,23 @@ const CompoundInterestCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Compound Interest Calculator"
-        resultsData={result ? [
-          `Initial Investment: ${formatCurrency(input.principal)}`,
-          `Monthly Contribution: ${formatCurrency(input.monthlyContribution)}`,
-          `Annual Rate: ${input.annualRate}%`,
-          `Time Period: ${input.years} years`,
-          `Compound Frequency: ${input.compoundFrequency}`,
-          `---`,
-          `Final Balance: ${formatCurrency(result.finalAmount)}`,
-          `Total Contributions: ${formatCurrency(result.totalContributions)}`,
-          `Interest Earned: ${formatCurrency(result.totalInterest)}`,
-        ].join('\n') : undefined}
-      />
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Compound Interest Calculator"
+          resultsData={[
+            `Initial Investment: ${formatCurrency(input.principal)}`,
+            `Monthly Contribution: ${formatCurrency(input.monthlyContribution)}`,
+            `Annual Rate: ${input.annualRate}%`,
+            `Time Period: ${input.years} years`,
+            `Compound Frequency: ${input.compoundFrequency}`,
+            `---`,
+            `Final Balance: ${formatCurrency(result.finalAmount)}`,
+            `Total Contributions: ${formatCurrency(result.totalContributions)}`,
+            `Interest Earned: ${formatCurrency(result.totalInterest)}`,
+          ].join('\n')}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );

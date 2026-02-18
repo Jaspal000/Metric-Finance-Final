@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DollarSign, TrendingDown } from 'lucide-react';
 import type { SalaryInput, SalaryResult } from '@/types';
 import { calculateSalary, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const SalaryCalculator: React.FC = () => {
@@ -149,23 +149,24 @@ const SalaryCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Salary Calculator"
-        resultsData={result ? [
-          `Annual Salary: ${formatCurrency(input.annualSalary)}`,
-          `Pay Frequency: ${frequencyLabels[input.payFrequency]}`,
-          `Filing Status: ${input.filingStatus}`,
-          `---`,
-          `Gross Pay: ${formatCurrency(result.grossPay)}`,
-          `Federal Tax: -${formatCurrency(result.federalTax)}`,
-          `State Tax: -${formatCurrency(result.stateTax)}`,
-          `FICA Tax: -${formatCurrency(result.ficaTax)}`,
-          `Net Pay: ${formatCurrency(result.netPay)}`,
-          `Annual Net: ${formatCurrency(result.annualNet)}`,
-        ].join('\n') : undefined}
-      />
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Salary Calculator"
+          resultsData={[
+            `Annual Salary: ${formatCurrency(input.annualSalary)}`,
+            `Pay Frequency: ${frequencyLabels[input.payFrequency]}`,
+            `Filing Status: ${input.filingStatus}`,
+            `---`,
+            `Gross Pay: ${formatCurrency(result.grossPay)}`,
+            `Federal Tax: -${formatCurrency(result.federalTax)}`,
+            `State Tax: -${formatCurrency(result.stateTax)}`,
+            `FICA Tax: -${formatCurrency(result.ficaTax)}`,
+            `Net Pay: ${formatCurrency(result.netPay)}`,
+            `Annual Net: ${formatCurrency(result.annualNet)}`,
+          ].join('\n')}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );
