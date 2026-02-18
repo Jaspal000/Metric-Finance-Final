@@ -55,13 +55,13 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
 
   return (
     <div className="w-full">
-      {/* Mobile: Fixed 5-Column Grid - Full Width, Zero Horizontal Scroll */}
+      {/* Mobile: Fixed 5-Column Grid - Full Bleed Edge-to-Edge */}
       <div 
-        className="md:hidden w-full px-0 overflow-visible"
+        className="md:hidden w-auto -mx-4 sm:-mx-6 px-0 overflow-visible"
         role="tablist"
         aria-label="Select region"
       >
-        <div className="grid grid-cols-5 w-full justify-items-center gap-0">
+        <div className="grid grid-cols-5 w-full justify-items-center gap-0 overflow-visible">
           {regions.map((region) => {
             const isActive = activeRegion === region.id;
             const Flag = region.Flag;
@@ -79,11 +79,11 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
                   ${isActive ? 'bg-blue-50 border-2 border-blue-600' : 'border-2 border-transparent'}
                 `}
               >
-                {/* Flag Icon - 20% larger than base */}
+                {/* Flag Icon - 20% larger */}
                 <div className="flex items-center justify-center flex-shrink-0 overflow-visible">
                   <Flag 
-                    width={54} 
-                    height={36} 
+                    width={65} 
+                    height={43} 
                     className="block"
                   />
                 </div>
@@ -133,8 +133,8 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
                 `}
               >
                 <Flag 
-                  width={58} 
-                  height={38} 
+                  width={70} 
+                  height={46} 
                   className="block"
                 />
               </div>

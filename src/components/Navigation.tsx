@@ -125,7 +125,12 @@ const Navigation: React.FC = () => {
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0">
-              <Logo variant="full" size="md" />
+              <span className="md:hidden">
+                <Logo variant="full" size="md" />
+              </span>
+              <span className="hidden md:block">
+                <Logo variant="full" size="lg" />
+              </span>
             </Link>
 
             {/* Desktop Navigation with Hover Dropdowns */}

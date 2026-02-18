@@ -7,7 +7,7 @@ interface FlagProps {
 }
 
 // United States Flag - Official 10:19 ratio with accurate canton, stripes, and star grid
-export const USFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
+export const USFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
   <svg
     width={width}
     height={height}
@@ -51,7 +51,7 @@ export const USFlag: React.FC<FlagProps> = ({ className = '', width = 52, height
 );
 
 // United Kingdom Flag - Accurate Union Jack with proper diagonal offsets (1:2 ratio)
-export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
+export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
   <svg
     width={width}
     height={height}
@@ -88,8 +88,8 @@ export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 52, height
   </svg>
 );
 
-// Canada Flag - Official 1:2 ratio with accurate 11-point maple leaf
-export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
+// Canada Flag - Official 1:2 ratio with Government of Canada maple leaf
+export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
   <svg
     width={width}
     height={height}
@@ -103,16 +103,20 @@ export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 52, he
     {/* Red side bars (each 1/4 of the flag width) */}
     <rect width="300" height="600" fill="#FF0000" />
     <rect x="900" width="300" height="600" fill="#FF0000" />
-    {/* 11-Point Maple Leaf - accurate proportions */}
-    <g transform="translate(600, 300)">
-      {/* Outer points */}
-      <path d="M0,-120 L25,-75 L70,-90 L40,-50 L65,-10 L30,0 L60,50 L25,35 L40,90 L0,60 L-40,90 L-25,35 L-60,50 L-30,0 L-65,-10 L-40,-50 L-70,-90 Z" fill="#FF0000" />
+    {/* Official 11-point maple leaf */}
+    <g transform="translate(600, 300) scale(1.8)">
+      <path
+        d="M0,-75 L4,-67 L30,-73 L18,-47 L30,-38 L18,-27 L30,-5 L14,-6 L15,8 L0,2 L-15,8 L-14,-6 L-30,-5 L-18,-27 L-30,-38 L-18,-47 L-30,-73 L-4,-67 Z"
+        fill="#FF0000"
+      />
+      {/* Stem */}
+      <rect x="-4" y="2" width="8" height="20" fill="#FF0000" />
     </g>
   </svg>
 );
 
 // Australia Flag - Official 1:2 ratio with Union Jack canton, Commonwealth Star, and Southern Cross
-export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
+export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
   <svg
     width={width}
     height={height}
@@ -163,7 +167,7 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 52,
 );
 
 // Earth Globe - Vibrant Green-and-Blue Planet with natural continents
-export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => {
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => {
   const uniqueId = Math.random().toString(36).substr(2, 9);
   return (
   <svg
