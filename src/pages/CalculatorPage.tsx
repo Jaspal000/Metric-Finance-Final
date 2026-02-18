@@ -152,7 +152,7 @@ const CalculatorPage: React.FC = () => {
         </div>
 
         {/* Hero */}
-        <section className="bg-white py-6 md:py-8">
+        <section className="bg-white py-3 md:py-4">
           <div className="metric-container">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full mb-3">
