@@ -31,7 +31,9 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
         resultsData,
       });
       setGenerated(true);
+      setIsGenerating(false);
     } catch (err) {
+      console.error('[v0] GeneratePDF error:', err);
       setError(err instanceof Error ? err.message : 'Failed to generate PDF');
       setIsGenerating(false);
     }
