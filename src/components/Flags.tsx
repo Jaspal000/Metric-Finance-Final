@@ -7,13 +7,14 @@ interface FlagProps {
 }
 
 // United States Flag - Official 10:19 ratio with accurate canton, stripes, and star grid
-export const USFlag: React.FC<FlagProps> = ({ className = '', width = 40, height = 26 }) => (
+export const USFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 1235 650"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    preserveAspectRatio="xMidYMid slice"
   >
     {/* White background for white stripes */}
     <rect width="1235" height="650" fill="#FFF" />
@@ -50,18 +51,19 @@ export const USFlag: React.FC<FlagProps> = ({ className = '', width = 40, height
 );
 
 // United Kingdom Flag - Accurate Union Jack with proper diagonal offsets (1:2 ratio)
-export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 40, height = 26 }) => (
+export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 1200 600"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    preserveAspectRatio="xMidYMid slice"
   >
     {/* Blue background */}
     <rect width="1200" height="600" fill="#012169" />
     {/* White saltire (diagonal cross) */}
-    <path d="M0,0 L1200,600 M1200,0 L0,600" stroke="#FFF" strokeWidth="120" />
+    <path d="M0,0 L1200,600 M1200,0 L0,600" stroke="#FFF" strokeWidth="120" strokeLinecap="round" strokeLinejoin="round" />
     {/* Red saltire with proper offset (counterchanged) */}
     <clipPath id="uk-tl">
       <path d="M600,300 L0,0 L0,300 Z" />
@@ -87,49 +89,44 @@ export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 40, height
 );
 
 // Canada Flag - Official 1:2 ratio with accurate 11-point maple leaf
-export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 40, height = 26 }) => (
+export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 1200 600"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    preserveAspectRatio="xMidYMid slice"
   >
     {/* White centre band */}
     <rect width="1200" height="600" fill="#FFF" />
     {/* Red side bars (each 1/4 of the flag width) */}
     <rect width="300" height="600" fill="#FF0000" />
     <rect x="900" width="300" height="600" fill="#FF0000" />
-    {/* Maple Leaf - official proportions */}
-    <path
-      d="M600,100 L613,170 L680,170 L630,210 L660,290 L600,250 L540,290 L570,210 L520,170 L587,170 Z"
-      fill="#FF0000"
-    />
-    {/* Stem */}
-    <rect x="593" y="280" width="14" height="70" fill="#FF0000" rx="2" />
-    {/* Additional leaf detail points */}
-    <path
-      d="M600,120 L608,155 L660,155 L620,185 L640,245 L600,215 L560,245 L580,185 L540,155 L592,155 Z"
-      fill="#FF0000"
-    />
+    {/* 11-Point Maple Leaf - accurate proportions */}
+    <g transform="translate(600, 300)">
+      {/* Outer points */}
+      <path d="M0,-120 L25,-75 L70,-90 L40,-50 L65,-10 L30,0 L60,50 L25,35 L40,90 L0,60 L-40,90 L-25,35 L-60,50 L-30,0 L-65,-10 L-40,-50 L-70,-90 Z" fill="#FF0000" />
+    </g>
   </svg>
 );
 
 // Australia Flag - Official 1:2 ratio with Union Jack canton, Commonwealth Star, and Southern Cross
-export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 40, height = 26 }) => (
+export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 1200 600"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    preserveAspectRatio="xMidYMid slice"
   >
     {/* Blue background */}
     <rect width="1200" height="600" fill="#00008B" />
     {/* Union Jack canton */}
     <g>
       <rect width="600" height="300" fill="#012169" />
-      <path d="M0,0 L600,300 M600,0 L0,300" stroke="#FFF" strokeWidth="60" />
+      <path d="M0,0 L600,300 M600,0 L0,300" stroke="#FFF" strokeWidth="60" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M0,0 L600,300" stroke="#C8102E" strokeWidth="20" />
       <path d="M600,0 L0,300" stroke="#C8102E" strokeWidth="20" />
       <path d="M300,0 V300 M0,150 H600" stroke="#FFF" strokeWidth="100" />
@@ -166,27 +163,39 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 40,
 );
 
 // Global/World Icon - High-fidelity globe with meridians and parallels
-export const GlobalFlag: React.FC<FlagProps> = ({ className = '', width = 40, height = 26 }) => (
+export const GlobalFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 40 26"
+    viewBox="0 0 1200 750"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
+    preserveAspectRatio="xMidYMid slice"
   >
-    {/* Globe outline */}
-    <circle cx="20" cy="13" r="11" stroke="#2563eb" strokeWidth="1.5" fill="none" />
-    {/* Central meridian */}
-    <ellipse cx="20" cy="13" rx="5" ry="11" stroke="#2563eb" strokeWidth="1" fill="none" />
+    {/* Globe background sphere */}
+    <circle cx="600" cy="375" r="330" stroke="#2563eb" strokeWidth="8" fill="none" opacity="0.8" />
+    
+    {/* Central meridian (vertical) */}
+    <ellipse cx="600" cy="375" rx="150" ry="330" stroke="#2563eb" strokeWidth="6" fill="none" opacity="0.6" />
+    
     {/* Secondary meridian */}
-    <ellipse cx="20" cy="13" rx="9" ry="11" stroke="#2563eb" strokeWidth="0.75" fill="none" />
-    {/* Equator */}
-    <line x1="9" y1="13" x2="31" y2="13" stroke="#2563eb" strokeWidth="1" />
+    <ellipse cx="600" cy="375" rx="270" ry="330" stroke="#2563eb" strokeWidth="5" fill="none" opacity="0.4" />
+    
+    {/* Equator (horizontal) */}
+    <line x1="270" y1="375" x2="930" y2="375" stroke="#2563eb" strokeWidth="6" opacity="0.6" />
+    
     {/* Tropic of Cancer */}
-    <path d="M10.5 8C14 9.5 26 9.5 29.5 8" stroke="#2563eb" strokeWidth="0.75" fill="none" />
+    <path d="M315 285 Q600 240 885 285" stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" />
+    
     {/* Tropic of Capricorn */}
-    <path d="M10.5 18C14 16.5 26 16.5 29.5 18" stroke="#2563eb" strokeWidth="0.75" fill="none" />
+    <path d="M315 465 Q600 510 885 465" stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" />
+    
+    {/* Decorative northern arc */}
+    <path d="M400 150 Q600 80 800 150" stroke="#2563eb" strokeWidth="3" fill="none" opacity="0.3" />
+    
+    {/* Decorative southern arc */}
+    <path d="M400 600 Q600 670 800 600" stroke="#2563eb" strokeWidth="3" fill="none" opacity="0.3" />
   </svg>
 );
 

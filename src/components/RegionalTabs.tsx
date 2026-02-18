@@ -48,10 +48,11 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
 
   return (
     <div className="w-full">
-      {/* Tab Bar - App-like horizontal scrolling with snap */}
-      <div className="relative">
+      {/* Tab Bar - Desktop & Mobile Optimized */}
+      <div className="relative overflow-visible">
+        {/* Mobile: Horizontal scrolling with snap */}
         <div 
-          className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x"
+          className="flex gap-2 lg:gap-8 overflow-x-auto scrollbar-hide pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory lg:overflow-visible lg:justify-center"
           role="tablist"
           aria-label="Select region"
         >
@@ -66,25 +67,34 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`region-panel-${region.id}`}
-                className={`
-                  region-tab touch-target
-                  ${isActive ? 'active' : ''}
-                `}
+                className="flex flex-col items-center gap-2 snap-center flex-shrink-0"
               >
-                <div className={`
-                  relative overflow-hidden rounded shadow-sm transition-transform duration-200
-                  ${isActive ? 'scale-105' : 'hover:scale-105'}
-                `}>
-                  <Flag 
-                    width={44} 
-                    height={30} 
-                    className="sm:w-12 sm:h-8"
-                  />
+                {/* Flag Container with Zero-Clipping Fix */}
+                <div 
+                  className={`
+                    relative overflow-visible p-2 rounded-lg transition-all duration-200
+                    ${isActive 
+                      ? 'bg-blue-50/50 border-2 border-blue-500 shadow-sm' 
+                      : 'border-2 border-transparent hover:border-blue-200'
+                    }
+                  `}
+                >
+                  <div className="overflow-visible">
+                    <Flag 
+                      width={32} 
+                      height={20} 
+                      className="block"
+                    />
+                  </div>
                 </div>
-                <span className={`
-                  text-xs sm:text-sm font-bold transition-colors duration-200 whitespace-nowrap
-                  ${isActive ? 'text-[#2563eb]' : 'text-slate-600'}
-                `}>
+
+                {/* Country Label */}
+                <span 
+                  className={`
+                    text-xs font-semibold transition-colors duration-200 whitespace-nowrap
+                    ${isActive ? 'text-blue-600' : 'text-slate-600'}
+                  `}
+                >
                   {region.name}
                 </span>
               </button>
@@ -93,14 +103,14 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
         </div>
 
         {/* Fade indicators for scroll (mobile only) */}
-        <div className="sm:hidden absolute left-0 top-0 bottom-2 w-8 bg-gradient-to-r from-[#f8fafc] to-transparent pointer-events-none" />
-        <div className="sm:hidden absolute right-0 top-0 bottom-2 w-8 bg-gradient-to-l from-[#f8fafc] to-transparent pointer-events-none" />
+        <div className="lg:hidden absolute left-0 top-0 bottom-10 w-8 bg-gradient-to-r from-[#f8fafc] to-transparent pointer-events-none" />
+        <div className="lg:hidden absolute right-0 top-0 bottom-10 w-8 bg-gradient-to-l from-[#f8fafc] to-transparent pointer-events-none" />
       </div>
 
       {/* Transition indicator */}
       {isTransitioning && (
         <div className="flex justify-center py-4">
-          <div className="w-6 h-6 border-2 border-[#2563eb] border-t-transparent rounded-full animate-spin" />
+          <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
     </div>

@@ -115,16 +115,15 @@ body {
   
   /* Regional tab styles */
   .region-tab {
-    @apply flex flex-col items-center gap-2 px-3 sm:px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer snap-start;
-    min-width: 80px;
+    @apply flex flex-col items-center gap-2 cursor-pointer snap-center flex-shrink-0 transition-all duration-200;
   }
   
   .region-tab:hover {
-    @apply bg-slate-100;
+    @apply scale-105;
   }
   
   .region-tab.active {
-    @apply bg-blue-50 ring-2 ring-[#2563eb] ring-offset-2;
+    @apply bg-blue-50 border-2 border-blue-500;
   }
   
   /* Scrollbar hide */
