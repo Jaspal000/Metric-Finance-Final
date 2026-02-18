@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Percent, Calendar, Info } from 'lucide-react';
 import type { CanadaMortgageInput, CanadaMortgageResult } from '@/types';
 import { calculateCanadaMortgage } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const CanadaMortgageCalculator: React.FC = () => {
@@ -232,24 +232,25 @@ const CanadaMortgageCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Canada Mortgage Calculator"
-        resultsData={result ? [
-          `Home Price: C$${input.homePrice.toLocaleString()}`,
-          `Down Payment: C$${input.downPayment.toLocaleString()} (${downPaymentPercent.toFixed(1)}%)`,
-          `Interest Rate: ${input.interestRate}%`,
-          `Amortization: ${input.amortization} years`,
-          `Payment Frequency: ${frequencyLabels[input.paymentFrequency]}`,
-          `---`,
-          `Payment: C$${result.payment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
-          `Total Mortgage: C$${result.loanAmount.toLocaleString()}`,
-          result.cmhcPremium > 0 ? `CMHC Premium: C$${result.cmhcPremium.toLocaleString()}` : null,
-          `Total Interest: C$${result.totalInterest.toLocaleString()}`,
-          `Total Cost: C$${result.totalCost.toLocaleString()}`,
-        ].filter(Boolean).join('\n') : undefined}
-      />
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Canada Mortgage Calculator"
+          resultsData={[
+            `Home Price: C$${input.homePrice.toLocaleString()}`,
+            `Down Payment: C$${input.downPayment.toLocaleString()} (${downPaymentPercent.toFixed(1)}%)`,
+            `Interest Rate: ${input.interestRate}%`,
+            `Amortization: ${input.amortization} years`,
+            `Payment Frequency: ${frequencyLabels[input.paymentFrequency]}`,
+            `---`,
+            `Payment: C$${result.payment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
+            `Total Mortgage: C$${result.loanAmount.toLocaleString()}`,
+            result.cmhcPremium > 0 ? `CMHC Premium: C$${result.cmhcPremium.toLocaleString()}` : null,
+            `Total Interest: C$${result.totalInterest.toLocaleString()}`,
+            `Total Cost: C$${result.totalCost.toLocaleString()}`,
+          ].filter(Boolean).join('\n')}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );

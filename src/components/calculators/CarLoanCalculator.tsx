@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Car, DollarSign, Percent, Calendar, TrendingDown } from 'lucide-react';
 import type { CarLoanInput, CarLoanResult } from '@/types';
 import { calculateCarLoan, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const CarLoanCalculator: React.FC = () => {
@@ -244,23 +244,24 @@ const CarLoanCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Car Loan Calculator"
-        resultsData={result ? [
-          `Car Price: ${formatCurrency(input.carPrice)}`,
-          `Down Payment: ${formatCurrency(input.downPayment)}`,
-          `Trade-In: ${formatCurrency(input.tradeInValue)}`,
-          `Interest Rate: ${input.interestRate}% APR`,
-          `Loan Term: ${input.loanTerm} months`,
-          `---`,
-          `Monthly Payment: ${formatCurrency(result.monthlyPayment)}`,
-          `Loan Amount: ${formatCurrency(result.loanAmount)}`,
-          `Total Interest: ${formatCurrency(result.totalInterest)}`,
-          `Total Cost: ${formatCurrency(result.totalCost)}`,
-        ].join('\n') : undefined}
-      />
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="Car Loan Calculator"
+          resultsData={[
+            `Car Price: ${formatCurrency(input.carPrice)}`,
+            `Down Payment: ${formatCurrency(input.downPayment)}`,
+            `Trade-In: ${formatCurrency(input.tradeInValue)}`,
+            `Interest Rate: ${input.interestRate}% APR`,
+            `Loan Term: ${input.loanTerm} months`,
+            `---`,
+            `Monthly Payment: ${formatCurrency(result.monthlyPayment)}`,
+            `Loan Amount: ${formatCurrency(result.loanAmount)}`,
+            `Total Interest: ${formatCurrency(result.totalInterest)}`,
+            `Total Cost: ${formatCurrency(result.totalCost)}`,
+          ].join('\n')}
+        />
+      )}
       <AffiliateCTA calculatorType="car" />
     </div>
   );

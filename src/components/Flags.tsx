@@ -7,7 +7,7 @@ interface FlagProps {
 }
 
 // United States Flag - Official 10:19 ratio with accurate canton, stripes, and star grid
-export const USFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
+export const USFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
   <svg
     width={width}
     height={height}
@@ -51,7 +51,7 @@ export const USFlag: React.FC<FlagProps> = ({ className = '', width = 44, height
 );
 
 // United Kingdom Flag - Accurate Union Jack with proper diagonal offsets (1:2 ratio)
-export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
+export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
   <svg
     width={width}
     height={height}
@@ -89,7 +89,7 @@ export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 44, height
 );
 
 // Canada Flag - Official 1:2 ratio with accurate 11-point maple leaf
-export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
+export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
   <svg
     width={width}
     height={height}
@@ -112,7 +112,7 @@ export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 44, he
 );
 
 // Australia Flag - Official 1:2 ratio with Union Jack canton, Commonwealth Star, and Southern Cross
-export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
+export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => (
   <svg
     width={width}
     height={height}
@@ -163,7 +163,7 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 44,
 );
 
 // Earth Globe - Vibrant Green-and-Blue Planet with natural continents
-export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => {
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 52, height = 34 }) => {
   const uniqueId = Math.random().toString(36).substr(2, 9);
   return (
   <svg
@@ -175,58 +175,77 @@ export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, he
     preserveAspectRatio="xMidYMid meet"
   >
     <defs>
-      {/* Radial gradient for ocean depth */}
-      <radialGradient id={`oceanGradient-${uniqueId}`} cx="35%" cy="35%">
-        <stop offset="0%" stopColor="#4BA3FF" />
-        <stop offset="100%" stopColor="#0066CC" />
+      {/* Enhanced radial gradient for ocean depth with multiple stops */}
+      <radialGradient id={`oceanGradient-${uniqueId}`} cx="30%" cy="30%">
+        <stop offset="0%" stopColor="#5DADE2" />
+        <stop offset="50%" stopColor="#2980B9" />
+        <stop offset="100%" stopColor="#1F618D" />
       </radialGradient>
 
-      {/* Radial gradient for land mass */}
+      {/* Enhanced radial gradient for land mass with depth */}
       <radialGradient id={`landGradient-${uniqueId}`} cx="40%" cy="40%">
-        <stop offset="0%" stopColor="#22C55E" />
-        <stop offset="100%" stopColor="#15803D" />
+        <stop offset="0%" stopColor="#27AE60" />
+        <stop offset="60%" stopColor="#1E8449" />
+        <stop offset="100%" stopColor="#0E6251" />
       </radialGradient>
 
-      {/* Shadow mask */}
-      <radialGradient id={`shadowGradient-${uniqueId}`} cx="35%" cy="35%">
-        <stop offset="0%" stopColor="rgba(0,0,0,0)" />
-        <stop offset="100%" stopColor="rgba(0,0,0,0.2)" />
+      {/* Enhanced shadow and atmospheric glow */}
+      <radialGradient id={`atmosphereGradient-${uniqueId}`} cx="35%" cy="35%">
+        <stop offset="0%" stopColor="rgba(93, 173, 226, 0.4)" />
+        <stop offset="100%" stopColor="rgba(0, 0, 0, 0.3)" />
+      </radialGradient>
+
+      {/* Glossy highlight gradient */}
+      <radialGradient id={`glossGradient-${uniqueId}`} cx="30%" cy="30%">
+        <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
+        <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
+        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
       </radialGradient>
     </defs>
 
-    {/* Ocean base */}
+    {/* Ocean base with multiple layers for depth */}
     <circle cx="50" cy="50" r="45" fill={`url(#oceanGradient-${uniqueId})`} />
 
-    {/* Land masses - Stylized continents */}
+    {/* Land masses - Enhanced continents with better detail */}
     {/* North America */}
-    <ellipse cx="25" cy="35" rx="12" ry="14" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
+    <path d="M 22 28 Q 20 30 21 35 Q 22 38 25 40 Q 28 38 28 35 Q 27 30 25 28 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
     
     {/* South America */}
-    <ellipse cx="30" cy="60" rx="8" ry="12" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
+    <path d="M 28 52 Q 26 55 27 62 Q 30 65 33 62 Q 32 58 30 55 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
     
-    {/* Eurasia */}
-    <ellipse cx="60" cy="30" rx="18" ry="12" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
+    {/* Greenland */}
+    <circle cx="35" cy="25" r="3.5" fill={`url(#landGradient-${uniqueId})`} opacity="0.85" />
+    
+    {/* Europe */}
+    <path d="M 48 30 Q 50 28 55 30 Q 56 32 54 34 Q 52 35 50 34 Q 48 33 48 30 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
     
     {/* Africa */}
-    <ellipse cx="62" cy="55" rx="10" ry="14" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
+    <path d="M 55 42 Q 58 40 62 42 Q 65 48 63 58 Q 60 62 58 60 Q 56 54 55 48 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
+    
+    {/* Asia */}
+    <path d="M 60 25 Q 65 23 72 26 Q 75 30 73 35 Q 70 38 65 36 Q 62 33 60 28 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
     
     {/* Australia */}
-    <ellipse cx="75" cy="65" rx="6" ry="7" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
+    <path d="M 72 60 Q 74 58 77 60 Q 78 64 76 67 Q 73 66 72 63 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.85" />
+    
+    {/* New Zealand hint */}
+    <circle cx="82" cy="68" r="2" fill={`url(#landGradient-${uniqueId})`} opacity="0.8" />
 
-    {/* Atmospheric glow */}
-    <circle cx="50" cy="50" r="45" fill={`url(#shadowGradient-${uniqueId})`} />
+    {/* Atmospheric glow for depth */}
+    <circle cx="50" cy="50" r="45" fill={`url(#atmosphereGradient-${uniqueId})`} />
 
-    {/* Highlight for glossy effect */}
-    <ellipse cx="40" cy="40" rx="18" ry="20" fill="rgba(255,255,255,0.15)" />
+    {/* Glossy highlight for three-dimensionality */}
+    <ellipse cx="38" cy="38" rx="20" ry="22" fill={`url(#glossGradient-${uniqueId})`} />
 
-    {/* Equator line - subtle */}
-    <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+    {/* Subtle polar ice caps */}
+    <ellipse cx="50" cy="10" rx="8" ry="6" fill="rgba(255,255,255,0.15)" />
+    <ellipse cx="50" cy="90" rx="8" ry="6" fill="rgba(255,255,255,0.12)" />
 
-    {/* Prime meridian - subtle */}
-    <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+    {/* Atmospheric layer edge */}
+    <circle cx="50" cy="50" r="45.5" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" opacity="0.6" />
 
-    {/* Planet outline */}
-    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
+    {/* Planet outline for definition */}
+    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="1" />
   </svg>
   );
 };

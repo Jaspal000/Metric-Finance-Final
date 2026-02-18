@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, DollarSign, Percent, Calendar } from 'lucide-react';
 import type { MortgageInput, MortgageResult } from '@/types';
 import { calculateMortgage, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { GeneratePDF } from '@/components/GeneratePDF';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const USMortgageCalculator: React.FC = () => {
@@ -279,25 +279,26 @@ const USMortgageCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Email Capture */}
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="US Mortgage Calculator"
-        resultsData={result ? [
-          `Home Price: ${formatCurrency(input.homePrice)}`,
-          `Down Payment: ${formatCurrency(input.downPayment)} (${input.downPaymentPercent}%)`,
-          `Loan Amount: ${formatCurrency(input.loanAmount)}`,
-          `Interest Rate: ${input.interestRate}%`,
-          `Loan Term: ${input.loanTerm} years`,
-          `---`,
-          `Monthly Payment: ${formatCurrency(result.totalMonthlyPayment)}`,
-          `Principal & Interest: ${formatCurrency(result.monthlyPrincipalInterest)}`,
-          `Total Interest: ${formatCurrency(result.totalInterestPaid)}`,
-          `Total Cost: ${formatCurrency(result.totalCost)}`,
-          `Payoff Date: ${result.payoffDate}`,
-        ].join('\n') : undefined}
-      />
+      {/* PDF Generation */}
+      {result && (
+        <GeneratePDF
+          variant="inline"
+          calculatorName="US Mortgage Calculator"
+          resultsData={[
+            `Home Price: ${formatCurrency(input.homePrice)}`,
+            `Down Payment: ${formatCurrency(input.downPayment)} (${input.downPaymentPercent}%)`,
+            `Loan Amount: ${formatCurrency(input.loanAmount)}`,
+            `Interest Rate: ${input.interestRate}%`,
+            `Loan Term: ${input.loanTerm} years`,
+            `---`,
+            `Monthly Payment: ${formatCurrency(result.totalMonthlyPayment)}`,
+            `Principal & Interest: ${formatCurrency(result.monthlyPrincipalInterest)}`,
+            `Total Interest: ${formatCurrency(result.totalInterestPaid)}`,
+            `Total Cost: ${formatCurrency(result.totalCost)}`,
+            `Payoff Date: ${result.payoffDate}`,
+          ].join('\n')}
+        />
+      )}
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="mortgage" />
