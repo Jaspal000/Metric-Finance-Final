@@ -57,7 +57,7 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
     <div className="w-full">
       {/* Mobile: Fixed 5-Column Grid - Full Width, Zero Horizontal Scroll */}
       <div 
-        className="md:hidden w-full px-1 overflow-visible"
+        className="md:hidden w-full px-0 overflow-visible"
         role="tablist"
         aria-label="Select region"
       >
