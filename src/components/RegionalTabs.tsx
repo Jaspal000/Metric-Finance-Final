@@ -5,6 +5,7 @@ import type { Region } from '@/types';
 interface RegionalTabsProps {
   onRegionChange?: (region: Region | 'all') => void;
   activeRegion?: Region | 'all';
+  scrollToTop?: boolean;
 }
 
 interface RegionTab {
@@ -24,7 +25,8 @@ const regions: RegionTab[] = [
 
 const RegionalTabs: React.FC<RegionalTabsProps> = ({ 
   onRegionChange,
-  activeRegion: controlledRegion 
+  activeRegion: controlledRegion,
+  scrollToTop = false
 }) => {
   const [internalRegion, setInternalRegion] = useState<Region | 'all'>('all');
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -40,8 +42,10 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
       setInternalRegion(region);
       onRegionChange?.(region);
       
-      // Scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Smart scroll logic: Only scroll to top if scrollToTop prop is true
+      if (scrollToTop) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       
       setTimeout(() => {
         setIsTransitioning(false);
