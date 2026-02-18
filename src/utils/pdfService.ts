@@ -47,7 +47,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
     const darkGray = [31, 41, 55] as const; // #1f2937
     const mediumGray = [107, 114, 128] as const; // #6b7280
     const lightGray = [248, 250, 252] as const; // #f8fafc
-    const borderGray = [229, 231, 235] as const; // #e5e7eb
+    const white = [255, 255, 255] as const; // White
 
     // --- HEADER WITH LOGO AND DIVIDER ---
     pdf.setFont('helvetica', 'bold');
@@ -111,7 +111,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
       // Input table
       inputs.forEach((line, index) => {
-        const bgColor = index % 2 === 0 ? lightGray : [255, 255, 255];
+        const bgColor = index % 2 === 0 ? lightGray : white;
         
         // Row background
         pdf.setFillColor(...bgColor);
@@ -143,7 +143,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
     // Results table with alternating rows and bold values
     results.forEach((line, index) => {
-      const bgColor = index % 2 === 0 ? lightGray : [255, 255, 255];
+      const bgColor = index % 2 === 0 ? lightGray : white;
       
       // Row background
       pdf.setFillColor(...bgColor);
