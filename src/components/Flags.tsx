@@ -7,7 +7,7 @@ interface FlagProps {
 }
 
 // United States Flag - Official 10:19 ratio with accurate canton, stripes, and star grid
-export const USFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
+export const USFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
   <svg
     width={width}
     height={height}
@@ -51,7 +51,7 @@ export const USFlag: React.FC<FlagProps> = ({ className = '', width = 32, height
 );
 
 // United Kingdom Flag - Accurate Union Jack with proper diagonal offsets (1:2 ratio)
-export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
+export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
   <svg
     width={width}
     height={height}
@@ -89,7 +89,7 @@ export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 32, height
 );
 
 // Canada Flag - Official 1:2 ratio with accurate 11-point maple leaf
-export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
+export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
   <svg
     width={width}
     height={height}
@@ -112,7 +112,7 @@ export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 32, he
 );
 
 // Australia Flag - Official 1:2 ratio with Union Jack canton, Commonwealth Star, and Southern Cross
-export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
+export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
   <svg
     width={width}
     height={height}
@@ -163,7 +163,7 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 32,
 );
 
 // Earth Globe - Vibrant Green-and-Blue Planet with natural continents
-export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 48, height = 30 }) => (
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
   <svg
     width={width}
     height={height}
