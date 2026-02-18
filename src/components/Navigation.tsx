@@ -214,12 +214,12 @@ const Navigation: React.FC = () => {
 
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
-              <Link
-                to="/us/mortgage-calculator"
+              <a
+                href="/#all-calculators"
                 className="inline-flex items-center justify-center px-6 py-3 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors"
               >
                 Get Started
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -331,12 +331,13 @@ const Navigation: React.FC = () => {
 
               {/* CTA */}
               <div className="pt-6 mt-4 border-t border-slate-200">
-                <Link
-                  to="/us/mortgage-calculator"
+                <a
+                  href="/#all-calculators"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center w-full px-6 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors"
                 >
                   Get Started
-                </Link>
+                </a>
               </div>
             </div>
           </div>
