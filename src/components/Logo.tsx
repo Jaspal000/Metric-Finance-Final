@@ -10,9 +10,9 @@ export const Logo: React.FC<LogoProps> = ({
   size = 'md'
 }) => {
   const sizeMap = {
-    sm: { icon: 24, text: 'text-lg' },
-    md: { icon: 32, text: 'text-xl' },
-    lg: { icon: 40, text: 'text-2xl' },
+    sm: { icon: 30, text: 'text-xl' },
+    md: { icon: 40, text: 'text-2xl' },
+    lg: { icon: 50, text: 'text-3xl' },
   };
 
   const { icon: iconSize, text: textSize } = sizeMap[size];
@@ -86,10 +86,10 @@ export const Logo: React.FC<LogoProps> = ({
     <div className={`flex items-center gap-3 text-slate-900 ${className}`}>
       <GridSymbol size={iconSize} />
       <div className="flex flex-col">
-        <span className={`font-semibold tracking-tight leading-none ${textSize}`}>
+        <span className={`font-bold tracking-tight leading-none ${textSize}`}>
           Metric
         </span>
-        <span className={`font-medium text-slate-500 tracking-wide leading-none mt-0.5 text-xs uppercase`}>
+        <span className={`font-medium text-slate-500 tracking-wide leading-none mt-0.5 text-sm uppercase`}>
           Finance
         </span>
       </div>

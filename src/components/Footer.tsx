@@ -127,7 +127,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           {/* Brand Column */}
           <div className="col-span-2">
-            <Logo variant="full" size="md" className="mb-4" />
+            <span className="md:hidden">
+              <Logo variant="full" size="md" className="mb-4" />
+            </span>
+            <span className="hidden md:block">
+              <Logo variant="full" size="lg" className="mb-4" />
+            </span>
             <p className="text-slate-600 text-sm mb-4 max-w-xs">
               Precision-driven financial decision tools. Plan mortgages, taxes, 
               retirement, and investments with accurate, instant calculators.
