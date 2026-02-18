@@ -36,24 +36,34 @@ export async function generatePDF(data: PDFData): Promise<void> {
       month: 'long',
       day: 'numeric',
     });
+    const timeStr = now.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
 
     container.innerHTML = `
-      <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px;">
-        <h1 style="font-size: 32px; font-weight: bold; color: #1f2937; margin: 0 0 10px 0;">Metric Finance</h1>
-        <p style="font-size: 18px; color: #6b7280; margin: 0;">${data.calculatorName}</p>
-        <p style="font-size: 12px; color: #9ca3af; margin: 10px 0 0 0;">Generated on ${dateStr}</p>
+      <!-- Header with Logo and Divider -->
+      <div style="text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 3px solid #2563EB;">
+        <h1 style="font-size: 36px; font-weight: bold; color: #1f2937; margin: 0 0 15px 0; letter-spacing: -0.5px;">Metric Finance</h1>
+        <p style="font-size: 20px; color: #4b5563; margin: 0; font-weight: 500;">${data.calculatorName}</p>
+        <p style="font-size: 13px; color: #9ca3af; margin: 15px 0 0 0;">Generated on ${dateStr} at ${timeStr}</p>
       </div>
 
-      <div style="margin-bottom: 30px;">
-        <h2 style="font-size: 16px; font-weight: 600; color: #1f2937; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px;">Calculation Results</h2>
-        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-size: 14px; line-height: 1.8; color: #374151; white-space: pre-wrap; font-family: 'Courier New', monospace;">
+      <!-- Results Section -->
+      <div style="margin-bottom: 40px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #1f2937; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">Calculation Results</h2>
+        <div style="background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 25px; font-size: 14px; line-height: 2; color: #374151; white-space: pre-wrap; font-family: 'Courier New', monospace; font-weight: 500;">
 ${data.resultsData}
         </div>
       </div>
 
-      <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; text-align: center;">
-        <p style="margin: 0 0 5px 0;">This report was generated using Metric Finance calculators.</p>
-        <p style="margin: 0;">For more information, visit metricfinance.com</p>
+      <!-- Footer Section -->
+      <div style="margin-top: 50px; padding-top: 25px; border-top: 2px solid #e5e7eb; font-size: 13px; color: #6b7280; text-align: center;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #1f2937;">Thank you for using Metric Finance</p>
+        <p style="margin: 0 0 12px 0; font-style: italic;">"Plan smarter, decide better."</p>
+        <div style="height: 1px; background-color: #e5e7eb; margin: 12px 0;"></div>
+        <p style="margin: 12px 0 0 0; font-size: 12px;">© 2024 Metric Finance. All rights reserved. | metricfinance.com</p>
       </div>
     `;
 
