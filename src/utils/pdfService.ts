@@ -111,10 +111,8 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
       // Input table
       inputs.forEach((line, index) => {
-        const bgColor: typeof lightGray | typeof white = index % 2 === 0 ? lightGray : white;
-        
         // Row background
-        pdf.setFillColor(...bgColor);
+        pdf.setFillColor(...(index % 2 === 0 ? lightGray : white) as [number, number, number]);
         pdf.rect(margins, yPosition - 3, contentWidth, 6, 'F');
         
         // Row text
@@ -143,10 +141,8 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
     // Results table with alternating rows and bold values
     results.forEach((line, index) => {
-      const bgColor: typeof lightGray | typeof white = index % 2 === 0 ? lightGray : white;
-      
       // Row background
-      pdf.setFillColor(...bgColor);
+      pdf.setFillColor(...(index % 2 === 0 ? lightGray : white) as [number, number, number]);
       pdf.rect(margins, yPosition - 3, contentWidth, 6, 'F');
       
       // Bold text for result values
