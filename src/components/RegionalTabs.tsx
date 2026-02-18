@@ -61,7 +61,7 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
         role="tablist"
         aria-label="Select region"
       >
-        <div className="grid grid-cols-5 w-full justify-items-center gap-0 overflow-visible">
+        <div className="grid grid-cols-5 w-full justify-items-center gap-x-2 overflow-visible px-2">
           {regions.map((region) => {
             const isActive = activeRegion === region.id;
             const Flag = region.Flag;
