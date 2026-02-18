@@ -51,7 +51,7 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
           <div className="w-9 h-9 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0">
             <Check className="w-5 h-5 text-white" />
           </div>
-          <p className="text-sm font-medium text-green-700">Success! Your PDF is ready to download.</p>
+          <p className="text-sm font-medium text-green-700">Success! You can download your PDF now.</p>
         </div>
         <button
           onClick={resetState}
@@ -78,7 +78,7 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
         <button
           onClick={handleGeneratePDF}
           disabled={isGenerating}
-          className={`px-5 py-2.5 min-h-[44px] text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap ${
+          className={`px-5 py-2.5 min-h-[44px] text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-1.5 whitespace-nowrap md:max-w-[300px] md:mx-auto ${
             isGenerating
               ? 'bg-slate-400 text-white cursor-wait'
               : 'bg-slate-900 text-white hover:bg-slate-800'
@@ -112,7 +112,7 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
         <button
           onClick={handleGeneratePDF}
           disabled={isGenerating}
-          className={`w-full py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
+          className={`w-full md:max-w-[300px] md:mx-auto md:block py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
             isGenerating
               ? 'bg-blue-400 text-white cursor-wait'
               : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -155,7 +155,7 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
         <button
           onClick={handleGeneratePDF}
           disabled={isGenerating}
-          className={`px-5 py-2.5 min-h-[44px] rounded-lg font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap ${
+          className={`px-5 py-2.5 min-h-[44px] rounded-lg font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap md:max-w-[300px] md:mx-auto ${
             isGenerating
               ? 'bg-slate-400 text-white cursor-wait'
               : 'bg-slate-900 text-white hover:bg-slate-800'
