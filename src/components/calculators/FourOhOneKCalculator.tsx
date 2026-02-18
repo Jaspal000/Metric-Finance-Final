@@ -295,8 +295,6 @@ const FourOhOneKCalculator: React.FC = () => {
           ].join('\n')}
         />
       )}
-        ].join('\n') : undefined}
-      />
 
       {/* Affiliate CTA */}
       <AffiliateCTA calculatorType="401k" />
