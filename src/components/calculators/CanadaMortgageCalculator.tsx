@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Percent, Calendar, Info } from 'lucide-react';
 import type { CanadaMortgageInput, CanadaMortgageResult } from '@/types';
 import { calculateCanadaMortgage } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const CanadaMortgageCalculator: React.FC = () => {

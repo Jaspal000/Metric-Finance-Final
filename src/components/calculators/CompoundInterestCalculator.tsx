@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Percent, Clock, Info } from 'lucide-react';
 import type { CompoundInterestInput, CompoundInterestResult } from '@/types';
 import { calculateCompoundInterest, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const CompoundInterestCalculator: React.FC = () => {

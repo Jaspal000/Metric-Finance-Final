@@ -244,23 +244,22 @@ const CarLoanCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Car Loan Calculator"
-        resultsData={result ? [
-          `Car Price: ${formatCurrency(input.carPrice)}`,
-          `Down Payment: ${formatCurrency(input.downPayment)}`,
-          `Trade-In: ${formatCurrency(input.tradeInValue)}`,
-          `Interest Rate: ${input.interestRate}% APR`,
-          `Loan Term: ${input.loanTerm} months`,
-          `---`,
-          `Monthly Payment: ${formatCurrency(result.monthlyPayment)}`,
-          `Loan Amount: ${formatCurrency(result.loanAmount)}`,
-          `Total Interest: ${formatCurrency(result.totalInterest)}`,
-          `Total Cost: ${formatCurrency(result.totalCost)}`,
-        ].join('\n') : undefined}
-      />
+      {result && (
+        <PDFCapture
+          calculatorName="Car Loan Calculator"
+          results={{
+            'Car Price': formatCurrency(input.carPrice),
+            'Down Payment': formatCurrency(input.downPayment),
+            'Trade-In Value': formatCurrency(input.tradeInValue),
+            'Interest Rate': `${input.interestRate}% APR`,
+            'Loan Term': `${input.loanTerm} months`,
+            'Monthly Payment': formatCurrency(result.monthlyPayment),
+            'Loan Amount': formatCurrency(result.loanAmount),
+            'Total Interest': formatCurrency(result.totalInterest),
+            'Total Cost': formatCurrency(result.totalCost),
+          }}
+        />
+      )}
       <AffiliateCTA calculatorType="car" />
     </div>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Building, Info, Home, Building2 } from 'lucide-react';
 import type { StampDutyInput, StampDutyResult } from '@/types';
 import { calculateStampDuty } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const StampDutyCalculator: React.FC = () => {

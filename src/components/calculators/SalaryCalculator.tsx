@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DollarSign, TrendingDown } from 'lucide-react';
 import type { SalaryInput, SalaryResult } from '@/types';
 import { calculateSalary, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const SalaryCalculator: React.FC = () => {
