@@ -162,41 +162,70 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 32,
   </svg>
 );
 
-// Global/World Icon - High-fidelity globe with meridians and parallels
-export const GlobalFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 20 }) => (
+// Earth Globe - Vibrant Green-and-Blue Planet with natural continents
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 48, height = 30 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 1200 750"
-    fill="none"
+    viewBox="0 0 100 100"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* Globe background sphere */}
-    <circle cx="600" cy="375" r="330" stroke="#2563eb" strokeWidth="8" fill="none" opacity="0.8" />
+    <defs>
+      {/* Radial gradient for ocean depth */}
+      <radialGradient id="oceanGradient" cx="35%" cy="35%">
+        <stop offset="0%" stopColor="#4BA3FF" />
+        <stop offset="100%" stopColor="#0066CC" />
+      </radialGradient>
+
+      {/* Radial gradient for land mass */}
+      <radialGradient id="landGradient" cx="40%" cy="40%">
+        <stop offset="0%" stopColor="#22C55E" />
+        <stop offset="100%" stopColor="#15803D" />
+      </radialGradient>
+
+      {/* Shadow mask */}
+      <radialGradient id="shadowGradient" cx="35%" cy="35%">
+        <stop offset="0%" stopColor="rgba(0,0,0,0)" />
+        <stop offset="100%" stopColor="rgba(0,0,0,0.2)" />
+      </radialGradient>
+    </defs>
+
+    {/* Ocean base */}
+    <circle cx="50" cy="50" r="45" fill="url(#oceanGradient)" />
+
+    {/* Land masses - Stylized continents */}
+    {/* North America */}
+    <ellipse cx="25" cy="35" rx="12" ry="14" fill="url(#landGradient)" opacity="0.95" />
     
-    {/* Central meridian (vertical) */}
-    <ellipse cx="600" cy="375" rx="150" ry="330" stroke="#2563eb" strokeWidth="6" fill="none" opacity="0.6" />
+    {/* South America */}
+    <ellipse cx="30" cy="60" rx="8" ry="12" fill="url(#landGradient)" opacity="0.95" />
     
-    {/* Secondary meridian */}
-    <ellipse cx="600" cy="375" rx="270" ry="330" stroke="#2563eb" strokeWidth="5" fill="none" opacity="0.4" />
+    {/* Eurasia */}
+    <ellipse cx="60" cy="30" rx="18" ry="12" fill="url(#landGradient)" opacity="0.95" />
     
-    {/* Equator (horizontal) */}
-    <line x1="270" y1="375" x2="930" y2="375" stroke="#2563eb" strokeWidth="6" opacity="0.6" />
+    {/* Africa */}
+    <ellipse cx="62" cy="55" rx="10" ry="14" fill="url(#landGradient)" opacity="0.95" />
     
-    {/* Tropic of Cancer */}
-    <path d="M315 285 Q600 240 885 285" stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" />
-    
-    {/* Tropic of Capricorn */}
-    <path d="M315 465 Q600 510 885 465" stroke="#2563eb" strokeWidth="4" fill="none" opacity="0.4" />
-    
-    {/* Decorative northern arc */}
-    <path d="M400 150 Q600 80 800 150" stroke="#2563eb" strokeWidth="3" fill="none" opacity="0.3" />
-    
-    {/* Decorative southern arc */}
-    <path d="M400 600 Q600 670 800 600" stroke="#2563eb" strokeWidth="3" fill="none" opacity="0.3" />
+    {/* Australia */}
+    <ellipse cx="75" cy="65" rx="6" ry="7" fill="url(#landGradient)" opacity="0.95" />
+
+    {/* Atmospheric glow */}
+    <circle cx="50" cy="50" r="45" fill="url(#shadowGradient)" />
+
+    {/* Highlight for glossy effect */}
+    <ellipse cx="40" cy="40" rx="18" ry="20" fill="rgba(255,255,255,0.15)" />
+
+    {/* Equator line - subtle */}
+    <line x1="5" y1="50" x2="95" y2="50" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
+
+    {/* Prime meridian - subtle */}
+    <line x1="50" y1="5" x2="50" y2="95" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+
+    {/* Planet outline */}
+    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
   </svg>
 );
 
-export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, GlobalFlag };
+export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe };
