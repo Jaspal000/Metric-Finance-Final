@@ -4,7 +4,7 @@ import FeaturedCalculators from '@/sections/FeaturedCalculators';
 import BlogPreview from '@/sections/BlogPreview';
 import { SEO } from '@/components/SEO';
 import { generateOrganizationSchema, defaultSEO } from '@/utils/seo';
-import { Globe, Shield, Zap, Clock, Lock } from 'lucide-react';
+import { Globe, Shield, Zap, FileDown, Lock } from 'lucide-react';
 
 const Home: React.FC = () => {
   const seo = {
@@ -67,11 +67,11 @@ const Home: React.FC = () => {
               
               <div className="text-center">
                 <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-7 h-7 text-amber-600" />
+                  <FileDown className="w-7 h-7 text-amber-600" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2">Always Available</h3>
+                <h3 className="font-bold text-slate-900 mb-2">Professional PDF Reports</h3>
                 <p className="text-sm text-slate-600">
-                  Access our calculators anytime, anywhere, on any device.
+                  Download your results as a branded, bank-grade PDF for your records.
                 </p>
               </div>
             </div>
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
           {/* Subtle Geometric SVG Pattern Background */}
           <div className="absolute inset-0 bg-white">
             <svg
-              className="absolute inset-0 w-full h-full opacity-3"
+              className="absolute inset-0 w-full h-full opacity-[0.06]"
               viewBox="0 0 1200 600"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="xMidYMid slice"
@@ -130,11 +130,9 @@ const Home: React.FC = () => {
               </Link>
             </div>
 
-            {/* Professional Divider */}
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-slate-200 opacity-60"></div>
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Trust & Accuracy</span>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-slate-200 opacity-60"></div>
+            {/* 1px Separator Line */}
+            <div className="w-full max-w-md mx-auto mb-8">
+              <div className="h-px bg-slate-200"></div>
             </div>
 
             {/* Trust & Accuracy Endorsement Bar */}

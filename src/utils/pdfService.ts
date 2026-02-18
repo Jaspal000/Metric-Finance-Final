@@ -1,7 +1,6 @@
 /**
- * Ultra-Lightweight PDF Generation Service for Metric Finance
- * Uses text-based vector rendering instead of heavy image conversion
- * Target file size: <500KB (vs 10MB with html2canvas)
+ * Institutional PDF Generation Service for Metric Finance
+ * Vector-based text and paths for crisp output under 500KB
  */
 
 export interface PDFData {
@@ -21,53 +20,102 @@ function escapeText(text: string): string {
 }
 
 /**
- * Generate lightweight vector PDF with native fonts
- * No html2canvas dependency - pure text rendering
+ * Draw the Metric Finance SVG logo directly into the PDF using jsPDF vector drawing
+ * Reproduces the grid-based "M" symbol from Logo.tsx
+ */
+function drawLogoSVG(pdf: import('jspdf').jsPDF, x: number, y: number, size: number) {
+  const scale = size / 40; // Logo viewBox is 0 0 40 40
+
+  // Grid lines (light)
+  pdf.setDrawColor(31, 41, 55);
+  pdf.setLineWidth(0.15 * scale);
+
+  // Vertical grid lines
+  [10, 20, 30].forEach((gx) => {
+    pdf.line(x + gx * scale, y + 4 * scale, x + gx * scale, y + 36 * scale);
+  });
+  // Horizontal grid lines
+  [10, 20, 30].forEach((gy) => {
+    pdf.line(x + 4 * scale, y + gy * scale, x + 36 * scale, y + gy * scale);
+  });
+
+  // Geometric M - main structure
+  pdf.setDrawColor(31, 41, 55);
+  pdf.setLineWidth(0.6 * scale);
+
+  // Left vertical
+  pdf.line(x + 8 * scale, y + 32 * scale, x + 8 * scale, y + 12 * scale);
+  // Right vertical
+  pdf.line(x + 32 * scale, y + 32 * scale, x + 32 * scale, y + 12 * scale);
+  // Left diagonal to center
+  pdf.line(x + 8 * scale, y + 12 * scale, x + 20 * scale, y + 22 * scale);
+  // Right diagonal to center
+  pdf.line(x + 32 * scale, y + 12 * scale, x + 20 * scale, y + 22 * scale);
+  // Center vertical extension
+  pdf.line(x + 20 * scale, y + 22 * scale, x + 20 * scale, y + 32 * scale);
+
+  // Precision dots at intersections
+  pdf.setFillColor(31, 41, 55);
+  const dotR = 0.5 * scale;
+  const dots = [
+    [8, 12], [32, 12], [20, 22],
+    [8, 32], [32, 32], [20, 32],
+  ];
+  dots.forEach(([dx, dy]) => {
+    pdf.circle(x + dx * scale, y + dy * scale, dotR, 'F');
+  });
+}
+
+/**
+ * Generate institutional-grade vector PDF
  */
 export async function generatePDF(data: PDFData): Promise<void> {
   try {
-    console.log('[v0] PDF generation started for:', data.calculatorName);
-    
-    // Dynamically import jsPDF only (no html2canvas)
     const { jsPDF } = await import('jspdf');
-    console.log('[v0] jsPDF imported successfully');
 
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
       format: 'a4',
     });
-    console.log('[v0] jsPDF instance created');
 
-    // Constants for layout
     const pageWidth = 210;
     const pageHeight = 297;
-    const margins = 20; // 2cm margins
+    const margins = 20;
     const contentWidth = pageWidth - margins * 2;
     let yPosition = margins;
 
-    // Colors (using 'as const' for proper tuple type inference)
-    const primaryBlue = [37, 99, 235] as const; // #2563EB
-    const darkGray = [31, 41, 55] as const; // #1f2937
-    const mediumGray = [107, 114, 128] as const; // #6b7280
-    const lightGray = [248, 250, 252] as const; // #f8fafc
-    const white = [255, 255, 255] as const; // White
+    // Colors
+    const primaryBlue = [37, 99, 235] as const;
+    const darkGray = [31, 41, 55] as const;
+    const mediumGray = [107, 114, 128] as const;
+    const lightGray = [248, 250, 252] as const;
+    const white = [255, 255, 255] as const;
 
-    // --- HEADER WITH LOGO AND DIVIDER ---
+    // --- HEADER: SVG Logo (left) + Title (right) ---
+    const logoSize = 14;
+    drawLogoSVG(pdf, margins, yPosition - 2, logoSize);
+
+    // "Metric" text next to logo
     pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(28);
+    pdf.setFontSize(18);
     pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    pdf.text('Metric Finance', margins, yPosition);
-    yPosition += 10;
+    pdf.text('Metric', margins + logoSize + 3, yPosition + 5);
 
+    // "FINANCE" subtitle
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(14);
+    pdf.setFontSize(7);
     pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
-    pdf.text(data.calculatorName, margins, yPosition);
-    yPosition += 8;
+    pdf.text('FINANCE', margins + logoSize + 3, yPosition + 9);
 
-    // Timestamp
-    const now = new Date();
+    // Right-aligned title: "OFFICIAL CALCULATION REPORT"
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(10);
+    pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+    pdf.text('OFFICIAL CALCULATION REPORT', pageWidth - margins, yPosition + 5, { align: 'right' });
+
+    // Timestamp below right-aligned title
+    const now = data.timestamp || new Date();
     const dateStr = now.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -77,16 +125,24 @@ export async function generatePDF(data: PDFData): Promise<void> {
       hour: '2-digit',
       minute: '2-digit',
     });
-
-    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(8);
     pdf.setTextColor(150, 150, 150);
-    pdf.text(`Generated on ${dateStr} at ${timeStr}`, margins, yPosition);
-    yPosition += 6;
+    pdf.text(`${dateStr} at ${timeStr}`, pageWidth - margins, yPosition + 10, { align: 'right' });
 
-    // Blue divider line
+    yPosition += logoSize + 4;
+
+    // --- 1.5pt Electric Blue horizontal divider ---
     pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-    pdf.setLineWidth(0.5);
-    pdf.line(margins, yPosition + 2, pageWidth - margins, yPosition + 2);
+    pdf.setLineWidth(1.5 * 0.3528); // 1.5pt in mm
+    pdf.line(margins, yPosition, pageWidth - margins, yPosition);
+    yPosition += 8;
+
+    // --- Calculator name ---
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(14);
+    pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+    pdf.text(data.calculatorName, margins, yPosition);
     yPosition += 10;
 
     // --- PARSE RESULTS DATA ---
@@ -99,97 +155,120 @@ export async function generatePDF(data: PDFData): Promise<void> {
     const inputs = dividerIndex >= 0 ? resultLines.slice(0, dividerIndex) : [];
     const results = dividerIndex >= 0 ? resultLines.slice(dividerIndex + 1) : resultLines;
 
-    console.log('[v0] Parsed results:', { inputs: inputs.length, results: results.length });
+    // --- Helper: Draw a two-column data table ---
+    const drawTable = (
+      title: string,
+      rows: string[],
+      startY: number,
+      isBoldValues: boolean
+    ): number => {
+      let y = startY;
 
-    // --- INPUTS SECTION ---
-    if (inputs.length > 0) {
+      // Section title
       pdf.setFont('helvetica', 'bold');
       pdf.setFontSize(9);
-      pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-      pdf.text('CALCULATION INPUTS', margins, yPosition);
-      yPosition += 4;
+      pdf.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
+      pdf.text(title, margins, y);
+      y += 2;
 
-      // Section divider
+      // Title underline
       pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
       pdf.setLineWidth(0.3);
-      pdf.line(margins, yPosition, pageWidth - margins, yPosition);
-      yPosition += 6;
+      pdf.line(margins, y, pageWidth - margins, y);
+      y += 4;
 
-      // Input table
-      inputs.forEach((line, index) => {
-        // Row background - use direct color values instead of spread
+      const colSplit = margins + contentWidth * 0.5;
+      const rowHeight = 7;
+
+      rows.forEach((line, index) => {
+        // Check for page overflow
+        if (y + rowHeight > pageHeight - 40) {
+          pdf.addPage();
+          y = margins;
+        }
+
+        // Alternating row background
         const bgColor = index % 2 === 0 ? lightGray : white;
         pdf.setFillColor(bgColor[0], bgColor[1], bgColor[2]);
-        pdf.rect(margins, yPosition - 3, contentWidth, 6, 'F');
-        
-        // Row text
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(8);
-        pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
-        pdf.text(escapeText(line), margins + 2, yPosition, { maxWidth: contentWidth - 4 });
-        yPosition += 6;
+        pdf.rect(margins, y - 3.5, contentWidth, rowHeight, 'F');
+
+        // Parse "Label: Value" or just show full line
+        const colonIndex = line.indexOf(':');
+        if (colonIndex > 0) {
+          const label = line.substring(0, colonIndex).trim();
+          const value = line.substring(colonIndex + 1).trim();
+
+          // Label (left column)
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
+          pdf.text(escapeText(label), margins + 3, y);
+
+          // Value (right column)
+          pdf.setFont('helvetica', isBoldValues ? 'bold' : 'normal');
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+          pdf.text(escapeText(value), colSplit + 3, y);
+        } else {
+          // Single-column fallback
+          pdf.setFont('helvetica', isBoldValues ? 'bold' : 'normal');
+          pdf.setFontSize(8.5);
+          pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
+          pdf.text(escapeText(line), margins + 3, y, { maxWidth: contentWidth - 6 });
+        }
+
+        y += rowHeight;
       });
 
-      yPosition += 4;
+      return y + 4;
+    };
+
+    // --- INPUTS TABLE ---
+    if (inputs.length > 0) {
+      yPosition = drawTable('CALCULATION INPUTS', inputs, yPosition, false);
     }
 
-    // --- RESULTS SECTION ---
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(9);
-    pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    pdf.text('CALCULATION RESULTS', margins, yPosition);
-    yPosition += 4;
+    // --- RESULTS TABLE ---
+    yPosition = drawTable('CALCULATION RESULTS', results, yPosition, true);
 
-    // Section divider (blue for results)
-    pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-    pdf.setLineWidth(0.4);
-    pdf.line(margins, yPosition, pageWidth - margins, yPosition);
-    yPosition += 6;
+    // --- NO-CLIP FOOTER: centered with max-w-[90%] equivalent ---
+    const footerY = pageHeight - 28;
+    const maxFooterWidth = contentWidth * 0.9;
+    const footerCenterX = pageWidth / 2;
 
-    // Results table with alternating rows and bold values
-    results.forEach((line, index) => {
-      // Row background - use direct color values instead of spread
-      const bgColor = index % 2 === 0 ? lightGray : white;
-      pdf.setFillColor(bgColor[0], bgColor[1], bgColor[2]);
-      pdf.rect(margins, yPosition - 3, contentWidth, 6, 'F');
-      
-      // Bold text for result values
-      pdf.setFont('helvetica', 'bold');
-      pdf.setFontSize(8);
-      pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-      pdf.text(escapeText(line), margins + 2, yPosition, { maxWidth: contentWidth - 4 });
-      yPosition += 6;
-    });
-
-    yPosition += 6;
-
-    // --- FOOTER ---
+    // Thank-you message
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(9);
     pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    
-    // Thank you message
-    const footerY = pageHeight - 30;
-    pdf.text('Thank you for using Metric Finance', pageWidth / 2, footerY, { align: 'center' });
-    
+    pdf.text('Thank you for using Metric Finance', footerCenterX, footerY, { align: 'center', maxWidth: maxFooterWidth });
+
+    // Tagline
     pdf.setFont('helvetica', 'italic');
     pdf.setFontSize(8);
     pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
-    pdf.text('"Plan smarter, decide better."', pageWidth / 2, footerY + 5, { align: 'center' });
+    pdf.text('"Plan smarter, decide better."', footerCenterX, footerY + 5, { align: 'center', maxWidth: maxFooterWidth });
+
+    // Legal disclaimer - centered, never clipped
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(6.5);
+    pdf.setTextColor(150, 150, 150);
+    const disclaimer = 'Disclaimer: All calculations are estimates for informational purposes only and do not constitute financial advice. Please consult a qualified financial advisor for personalized guidance.';
+    pdf.text(disclaimer, footerCenterX, footerY + 11, {
+      align: 'center',
+      maxWidth: maxFooterWidth,
+    });
 
     // Copyright
-    pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(7);
-    pdf.setTextColor(150, 150, 150);
-    pdf.text('© 2024 Metric Finance. All rights reserved. | metricfinance.com', pageWidth / 2, footerY + 12, { align: 'center' });
+    pdf.setFontSize(6);
+    pdf.text(
+      `\u00A9 ${new Date().getFullYear()} Metric Finance. All rights reserved. | metricfinance.com`,
+      footerCenterX,
+      footerY + 19,
+      { align: 'center', maxWidth: maxFooterWidth }
+    );
 
-    // Generate filename
-    const filename = `Metric-Finance-Report.pdf`;
-
-    console.log('[v0] Saving PDF...');
-    // Download the PDF
-    pdf.save(filename);
-    console.log('[v0] PDF saved successfully');
+    // Save
+    pdf.save('Metric-Finance-Report.pdf');
   } catch (error) {
     console.error('[v0] PDF generation error:', error);
     throw new Error('Failed to generate PDF. Please try again.');

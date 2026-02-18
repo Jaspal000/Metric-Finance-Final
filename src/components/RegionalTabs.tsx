@@ -55,58 +55,50 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
 
   return (
     <div className="w-full">
-      {/* Mobile: 5-Column Centered Grid (No Clipping) */}
+      {/* Mobile: 5-Column Grid - Full Width, Zero Scroll */}
       <div 
-        className="md:hidden w-full px-2 overflow-x-auto"
+        className="md:hidden w-full px-3"
         role="tablist"
         aria-label="Select region"
       >
-        <div className="flex justify-center w-full min-w-max">
-          <div className="grid grid-cols-5 gap-3 justify-items-center w-fit px-4">
-            {regions.map((region) => {
-              const isActive = activeRegion === region.id;
-              const Flag = region.Flag;
+        <div className="grid grid-cols-5 gap-1 w-full">
+          {regions.map((region) => {
+            const isActive = activeRegion === region.id;
+            const Flag = region.Flag;
 
-              return (
-                <button
-                  key={region.id}
-                  onClick={() => handleRegionClick(region.id)}
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-controls={`region-panel-${region.id}`}
+            return (
+              <button
+                key={region.id}
+                onClick={() => handleRegionClick(region.id)}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`region-panel-${region.id}`}
+                className={`
+                  flex flex-col items-center justify-center gap-1.5 py-2.5 px-1 relative transition-all duration-200 rounded-lg
+                  ${isActive ? 'bg-blue-50 border-2 border-blue-600' : 'border-2 border-transparent'}
+                `}
+              >
+                {/* Flag Icon - 20% larger than base (48x32 -> 58x38) */}
+                <div className="flex items-center justify-center flex-shrink-0">
+                  <Flag 
+                    width={58} 
+                    height={38} 
+                    className="block"
+                  />
+                </div>
+
+                {/* Country Label */}
+                <span 
                   className={`
-                    flex flex-col items-center justify-center gap-1 py-2 px-1 relative transition-all duration-200 rounded-lg
-                    overflow-visible
-                    ${isActive ? 'z-10' : 'z-0'}
+                    text-[10px] font-bold transition-colors duration-200 whitespace-nowrap text-center
+                    ${isActive ? 'text-blue-600' : 'text-slate-600'}
                   `}
                 >
-                  {/* Full-Frame Selection Border - encompasses icon and label */}
-                  {isActive && (
-                    <div className="absolute inset-0 rounded-lg border-2 border-blue-600 pointer-events-none" />
-                  )}
-
-                  {/* Flag Icon - Scaled to 52x34 (20% larger) */}
-                  <div className="flex items-center justify-center flex-shrink-0 relative z-10">
-                    <Flag 
-                      width={52} 
-                      height={34} 
-                      className="block"
-                    />
-                  </div>
-
-                  {/* Country Label - Centered, no wrapping */}
-                  <span 
-                    className={`
-                      text-[10px] font-bold transition-colors duration-200 whitespace-nowrap text-center relative z-10
-                      ${isActive ? 'text-blue-600' : 'text-slate-600'}
-                    `}
-                  >
-                    {region.name}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  {region.name}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -140,8 +132,8 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
                 `}
               >
                 <Flag 
-                  width={52} 
-                  height={34} 
+                  width={58} 
+                  height={38} 
                   className="block"
                 />
               </div>
