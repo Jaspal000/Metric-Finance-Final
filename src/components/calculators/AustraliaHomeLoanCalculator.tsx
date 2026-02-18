@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Home, Percent, Calendar, Info, Wallet } from 'lucide-react';
 import type { AustraliaHomeLoanInput, AustraliaHomeLoanResult } from '@/types';
 import { calculateAustraliaHomeLoan } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const AustraliaHomeLoanCalculator: React.FC = () => {

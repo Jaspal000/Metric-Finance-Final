@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Activity, Weight, Info } from 'lucide-react';
 import type { BMIInput, BMIResult } from '@/types';
 import { calculateBMI } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const BMICalculator: React.FC = () => {
@@ -212,19 +212,18 @@ const BMICalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="BMI Calculator"
-        resultsData={result ? [
-          `Height: ${input.heightFt}ft ${input.heightIn}in`,
-          `Weight: ${input.weight} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
-          `---`,
-          `BMI: ${result.bmi}`,
-          `Category: ${result.category}`,
-          `Healthy Range: ${result.healthyWeightLow} - ${result.healthyWeightHigh} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
-        ].join('\n') : undefined}
-      />
+      {result && (
+        <PDFCapture
+          calculatorName="BMI Calculator"
+          results={{
+            'Height': `${input.heightFt}ft ${input.heightIn}in`,
+            'Weight': `${input.weight} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
+            'BMI': result.bmi,
+            'Category': result.category,
+            'Healthy Weight Range': `${result.healthyWeightLow} - ${result.healthyWeightHigh} ${unit === 'imperial' ? 'lbs' : 'kg'}`,
+          }}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );

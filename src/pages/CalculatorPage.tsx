@@ -152,7 +152,7 @@ const CalculatorPage: React.FC = () => {
         </div>
 
         {/* Hero */}
-        <section className="bg-white py-6 md:py-8">
+        <section className="bg-white py-4 md:py-6">
           <div className="metric-container">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full mb-3">
@@ -172,7 +172,7 @@ const CalculatorPage: React.FC = () => {
         </section>
 
         {/* Calculator */}
-        <section className="py-6 md:py-10 bg-slate-50">
+        <section className="py-3 md:py-5 bg-slate-50">
           <div className="metric-container">
             {CalculatorComponent && <CalculatorComponent />}
           </div>

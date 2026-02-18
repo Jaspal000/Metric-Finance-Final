@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { PiggyBank, DollarSign, Percent, TrendingUp, Calendar, Info } from 'lucide-react';
 import type { FourOhOneKInput, FourOhOneKResult } from '@/types';
 import { calculate401k, formatCurrency } from '@/utils/calculations';
-import { EmailCapture } from '@/components/EmailCapture';
+import { PDFCapture } from '@/components/PDFCapture';
 import { AffiliateCTA } from '@/components/AffiliateCTA';
 
 const FourOhOneKCalculator: React.FC = () => {
