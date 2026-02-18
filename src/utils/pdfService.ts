@@ -54,17 +54,31 @@ export async function generatePDF(data: PDFData): Promise<void> {
     const white = [255, 255, 255] as const; // White
 
     // --- HEADER WITH LOGO AND DIVIDER ---
+    // Left side: Metric Finance branding
     pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(28);
+    pdf.setFontSize(24);
     pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     pdf.text('Metric Finance', margins, yPosition);
-    yPosition += 10;
+    
+    // Right side: "OFFICIAL CALCULATION REPORT"
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(8);
+    pdf.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
+    pdf.text('OFFICIAL CALCULATION REPORT', pageWidth - margins - 50, yPosition, { align: 'right', maxWidth: 50 });
+    
+    yPosition += 8;
+
+    // 1.5pt electric blue divider
+    pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
+    pdf.setLineWidth(1.5);
+    pdf.line(margins, yPosition, pageWidth - margins, yPosition);
+    yPosition += 8;
 
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(14);
+    pdf.setFontSize(12);
     pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
     pdf.text(data.calculatorName, margins, yPosition);
-    yPosition += 8;
+    yPosition += 6;
 
     // Timestamp
     const now = new Date();
@@ -78,15 +92,9 @@ export async function generatePDF(data: PDFData): Promise<void> {
       minute: '2-digit',
     });
 
-    pdf.setFontSize(9);
+    pdf.setFontSize(8);
     pdf.setTextColor(150, 150, 150);
-    pdf.text(`Generated on ${dateStr} at ${timeStr}`, margins, yPosition);
-    yPosition += 6;
-
-    // Blue divider line
-    pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
-    pdf.setLineWidth(0.5);
-    pdf.line(margins, yPosition + 2, pageWidth - margins, yPosition + 2);
+    pdf.text(`Report generated: ${dateStr} at ${timeStr}`, margins, yPosition);
     yPosition += 10;
 
     // --- PARSE RESULTS DATA ---
@@ -163,25 +171,33 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
     yPosition += 6;
 
-    // --- FOOTER ---
+    // --- FOOTER WITH DISCLAIMER ---
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(9);
     pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
     
     // Thank you message
-    const footerY = pageHeight - 30;
+    const footerY = pageHeight - 35;
     pdf.text('Thank you for using Metric Finance', pageWidth / 2, footerY, { align: 'center' });
     
+    // Tagline
     pdf.setFont('helvetica', 'italic');
     pdf.setFontSize(8);
     pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
-    pdf.text('"Plan smarter, decide better."', pageWidth / 2, footerY + 5, { align: 'center' });
+    pdf.text('Precision tools for smarter financial decisions', pageWidth / 2, footerY + 5, { align: 'center' });
+
+    // Legal disclaimer
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(6);
+    pdf.setTextColor(150, 150, 150);
+    const disclaimerText = 'This report is provided for informational purposes only. Metric Finance makes no representations or warranties regarding accuracy. Always consult a qualified financial professional before making decisions.';
+    pdf.text(disclaimerText, margins, footerY + 12, { maxWidth: contentWidth, align: 'center' });
 
     // Copyright
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(7);
-    pdf.setTextColor(150, 150, 150);
-    pdf.text('© 2024 Metric Finance. All rights reserved. | metricfinance.com', pageWidth / 2, footerY + 12, { align: 'center' });
+    pdf.setTextColor(170, 170, 170);
+    pdf.text('© 2024 Metric Finance. All rights reserved. | metricfinance.com', pageWidth / 2, pageHeight - 5, { align: 'center' });
 
     // Generate filename
     const filename = `Metric-Finance-Report.pdf`;

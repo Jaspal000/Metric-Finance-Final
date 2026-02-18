@@ -4,7 +4,7 @@ import FeaturedCalculators from '@/sections/FeaturedCalculators';
 import BlogPreview from '@/sections/BlogPreview';
 import { SEO } from '@/components/SEO';
 import { generateOrganizationSchema, defaultSEO } from '@/utils/seo';
-import { Globe, Shield, Zap, Clock, Lock } from 'lucide-react';
+import { Globe, Shield, Zap, Clock, Lock, FileText } from 'lucide-react';
 
 const Home: React.FC = () => {
   const seo = {
@@ -66,12 +66,12 @@ const Home: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-7 h-7 text-amber-600" />
+                <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <FileText className="w-7 h-7 text-red-600" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2">Always Available</h3>
+                <h3 className="font-bold text-slate-900 mb-2">Professional PDF Reports</h3>
                 <p className="text-sm text-slate-600">
-                  Access our calculators anytime, anywhere, on any device.
+                  Generate institutional-quality PDF reports of your calculations instantly.
                 </p>
               </div>
             </div>
