@@ -41,7 +41,7 @@ const FeaturedCalculators: React.FC = () => {
       }.`;
 
   return (
-    <section className="metric-section bg-[#f8fafc]">
+    <section id="all-calculators" className="metric-section bg-[#f8fafc]">
       <div className="metric-container">
         {/* Section Header */}
         <div className="text-center mb-8">
