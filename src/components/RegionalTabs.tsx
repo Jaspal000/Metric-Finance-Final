@@ -55,13 +55,13 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
 
   return (
     <div className="w-full">
-      {/* Mobile: 5-Column Grid - Full Width, Zero Scroll */}
+      {/* Mobile: Fixed 5-Column Grid - Full Width, Zero Horizontal Scroll */}
       <div 
-        className="md:hidden w-full px-3"
+        className="md:hidden w-full px-1 overflow-visible"
         role="tablist"
         aria-label="Select region"
       >
-        <div className="grid grid-cols-5 gap-1 w-full">
+        <div className="grid grid-cols-5 w-full justify-items-center gap-0">
           {regions.map((region) => {
             const isActive = activeRegion === region.id;
             const Flag = region.Flag;
@@ -74,23 +74,24 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
                 aria-selected={isActive}
                 aria-controls={`region-panel-${region.id}`}
                 className={`
-                  flex flex-col items-center justify-center gap-1.5 py-2.5 px-1 relative transition-all duration-200 rounded-lg
+                  flex flex-col items-center justify-center gap-1.5 py-2.5 w-full
+                  overflow-visible rounded-lg transition-all duration-200
                   ${isActive ? 'bg-blue-50 border-2 border-blue-600' : 'border-2 border-transparent'}
                 `}
               >
-                {/* Flag Icon - 20% larger than base (48x32 -> 58x38) */}
-                <div className="flex items-center justify-center flex-shrink-0">
+                {/* Flag Icon - 20% larger than base */}
+                <div className="flex items-center justify-center flex-shrink-0 overflow-visible">
                   <Flag 
-                    width={58} 
-                    height={38} 
+                    width={54} 
+                    height={36} 
                     className="block"
                   />
                 </div>
 
-                {/* Country Label */}
+                {/* Country Label - Centered beneath flag */}
                 <span 
                   className={`
-                    text-[10px] font-bold transition-colors duration-200 whitespace-nowrap text-center
+                    text-xs font-semibold transition-colors duration-200 whitespace-nowrap text-center
                     ${isActive ? 'text-blue-600' : 'text-slate-600'}
                   `}
                 >
