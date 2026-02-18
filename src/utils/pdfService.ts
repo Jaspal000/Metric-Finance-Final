@@ -42,12 +42,12 @@ export async function generatePDF(data: PDFData): Promise<void> {
     const contentWidth = pageWidth - margins * 2;
     let yPosition = margins;
 
-    // Colors
-    const primaryBlue = [37, 99, 235]; // #2563EB
-    const darkGray = [31, 41, 55]; // #1f2937
-    const mediumGray = [107, 114, 128]; // #6b7280
-    const lightGray = [248, 250, 252]; // #f8fafc
-    const borderGray = [229, 231, 235]; // #e5e7eb
+    // Colors (using 'as const' for proper tuple type inference)
+    const primaryBlue = [37, 99, 235] as const; // #2563EB
+    const darkGray = [31, 41, 55] as const; // #1f2937
+    const mediumGray = [107, 114, 128] as const; // #6b7280
+    const lightGray = [248, 250, 252] as const; // #f8fafc
+    const borderGray = [229, 231, 235] as const; // #e5e7eb
 
     // --- HEADER WITH LOGO AND DIVIDER ---
     pdf.setFont('helvetica', 'bold');
