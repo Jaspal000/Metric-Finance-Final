@@ -163,7 +163,9 @@ export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 44,
 );
 
 // Earth Globe - Vibrant Green-and-Blue Planet with natural continents
-export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => (
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, height = 28 }) => {
+  const uniqueId = Math.random().toString(36).substr(2, 9);
+  return (
   <svg
     width={width}
     height={height}
@@ -174,45 +176,45 @@ export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, he
   >
     <defs>
       {/* Radial gradient for ocean depth */}
-      <radialGradient id="oceanGradient" cx="35%" cy="35%">
+      <radialGradient id={`oceanGradient-${uniqueId}`} cx="35%" cy="35%">
         <stop offset="0%" stopColor="#4BA3FF" />
         <stop offset="100%" stopColor="#0066CC" />
       </radialGradient>
 
       {/* Radial gradient for land mass */}
-      <radialGradient id="landGradient" cx="40%" cy="40%">
+      <radialGradient id={`landGradient-${uniqueId}`} cx="40%" cy="40%">
         <stop offset="0%" stopColor="#22C55E" />
         <stop offset="100%" stopColor="#15803D" />
       </radialGradient>
 
       {/* Shadow mask */}
-      <radialGradient id="shadowGradient" cx="35%" cy="35%">
+      <radialGradient id={`shadowGradient-${uniqueId}`} cx="35%" cy="35%">
         <stop offset="0%" stopColor="rgba(0,0,0,0)" />
         <stop offset="100%" stopColor="rgba(0,0,0,0.2)" />
       </radialGradient>
     </defs>
 
     {/* Ocean base */}
-    <circle cx="50" cy="50" r="45" fill="url(#oceanGradient)" />
+    <circle cx="50" cy="50" r="45" fill={`url(#oceanGradient-${uniqueId})`} />
 
     {/* Land masses - Stylized continents */}
     {/* North America */}
-    <ellipse cx="25" cy="35" rx="12" ry="14" fill="url(#landGradient)" opacity="0.95" />
+    <ellipse cx="25" cy="35" rx="12" ry="14" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
     
     {/* South America */}
-    <ellipse cx="30" cy="60" rx="8" ry="12" fill="url(#landGradient)" opacity="0.95" />
+    <ellipse cx="30" cy="60" rx="8" ry="12" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
     
     {/* Eurasia */}
-    <ellipse cx="60" cy="30" rx="18" ry="12" fill="url(#landGradient)" opacity="0.95" />
+    <ellipse cx="60" cy="30" rx="18" ry="12" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
     
     {/* Africa */}
-    <ellipse cx="62" cy="55" rx="10" ry="14" fill="url(#landGradient)" opacity="0.95" />
+    <ellipse cx="62" cy="55" rx="10" ry="14" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
     
     {/* Australia */}
-    <ellipse cx="75" cy="65" rx="6" ry="7" fill="url(#landGradient)" opacity="0.95" />
+    <ellipse cx="75" cy="65" rx="6" ry="7" fill={`url(#landGradient-${uniqueId})`} opacity="0.95" />
 
     {/* Atmospheric glow */}
-    <circle cx="50" cy="50" r="45" fill="url(#shadowGradient)" />
+    <circle cx="50" cy="50" r="45" fill={`url(#shadowGradient-${uniqueId})`} />
 
     {/* Highlight for glossy effect */}
     <ellipse cx="40" cy="40" rx="18" ry="20" fill="rgba(255,255,255,0.15)" />
@@ -226,6 +228,7 @@ export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 44, he
     {/* Planet outline */}
     <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="0.8" />
   </svg>
-);
+  );
+};
 
 export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe };
