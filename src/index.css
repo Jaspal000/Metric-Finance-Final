@@ -207,4 +207,75 @@ body {
   .no-print {
     display: none !important;
   }
+  
+  /* Hide navigation and main UI elements */
+  nav,
+  header,
+  footer,
+  .navigation,
+  .mobile-drawer,
+  .mobile-drawer-backdrop {
+    display: none !important;
+  }
+  
+  /* Hide buttons and interactive elements */
+  button,
+  .metric-btn-primary,
+  .metric-btn-secondary,
+  .metric-btn-accent,
+  [role="button"] {
+    display: none !important;
+  }
+  
+  /* Hide subscribe boxes and forms */
+  .newsletter,
+  .subscribe,
+  [aria-label*="subscribe"],
+  [aria-label*="Subscribe"],
+  [class*="newsletter"],
+  [class*="subscribe"] {
+    display: none !important;
+  }
+  
+  /* Hide footer links and metadata */
+  .footer,
+  .footer-links,
+  .social-links,
+  [role="contentinfo"] {
+    display: none !important;
+  }
+  
+  /* A4 page setup */
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 20mm;
+    background: white;
+    overflow: visible;
+  }
+  
+  /* Ensure content is printable */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* Preserve text colors for PDF */
+  body {
+    color: #1f2937;
+    background: white;
+  }
+  
+  /* Links should be black in PDF */
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  /* Prevent page breaks inside elements */
+  .no-break {
+    page-break-inside: avoid;
+  }
 }
