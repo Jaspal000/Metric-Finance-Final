@@ -37,7 +37,7 @@ const CanadaMortgageCalculator: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-4">
         <div className="metric-card p-6">
           <h2 className="text-xl font-semibold text-slate-900 mb-6 flex items-center gap-2">
             <Home className="w-5 h-5 text-blue-600" />
