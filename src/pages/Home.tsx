@@ -4,7 +4,7 @@ import FeaturedCalculators from '@/sections/FeaturedCalculators';
 import BlogPreview from '@/sections/BlogPreview';
 import { SEO } from '@/components/SEO';
 import { generateOrganizationSchema, defaultSEO } from '@/utils/seo';
-import { Globe, Shield, Zap, Clock } from 'lucide-react';
+import { Globe, Shield, Zap, Clock, Lock } from 'lucide-react';
 
 const Home: React.FC = () => {
   const seo = {
@@ -80,28 +80,83 @@ const Home: React.FC = () => {
         
         <FeaturedCalculators />
         
-        {/* CTA Section */}
-        <section className="metric-section bg-slate-900">
-          <div className="metric-container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        {/* Premium CTA Section with Geometric Background */}
+        <section className="relative py-24 md:py-32 overflow-hidden">
+          {/* Subtle Geometric SVG Pattern Background */}
+          <div className="absolute inset-0 bg-white">
+            <svg
+              className="absolute inset-0 w-full h-full opacity-3"
+              viewBox="0 0 1200 600"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <defs>
+                <pattern id="geo-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                  <circle cx="50" cy="50" r="1" fill="#2563eb" opacity="0.3" />
+                  <line x1="0" y1="50" x2="100" y2="50" stroke="#2563eb" strokeWidth="0.5" opacity="0.15" />
+                  <line x1="50" y1="0" x2="50" y2="100" stroke="#2563eb" strokeWidth="0.5" opacity="0.15" />
+                  <path d="M0,0 L100,100 M100,0 L0,100" stroke="#2563eb" strokeWidth="0.5" opacity="0.1" />
+                </pattern>
+              </defs>
+              <rect width="1200" height="600" fill="url(#geo-pattern)" />
+            </svg>
+          </div>
+
+          {/* Radial Gradient Overlay for Legibility */}
+          <div className="absolute inset-0 bg-gradient-radial from-white/80 via-white/85 to-white/90"></div>
+
+          {/* Content */}
+          <div className="relative z-10 metric-container text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
               Ready to Make Smarter Financial Decisions?
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
               Start exploring our free calculators and take control of your financial future today.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
               <Link
                 to="/us"
-                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
               >
                 Explore US Calculators
               </Link>
               <Link
                 to="/blog"
-                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-white/10 text-white font-bold hover:bg-white/20 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg border-2 border-slate-300 text-slate-900 font-bold hover:border-slate-400 hover:bg-slate-50 transition-colors"
               >
                 Read Financial Guides
               </Link>
+            </div>
+
+            {/* Professional Divider */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-slate-200 opacity-60"></div>
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Trust & Accuracy</span>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-slate-200 opacity-60"></div>
+            </div>
+
+            {/* Trust & Accuracy Endorsement Bar */}
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-3xl mx-auto">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
+                  <Shield className="w-6 h-6" />
+                </div>
+                <span className="text-xs text-slate-600 font-medium">Bank-Grade Accuracy</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
+                  <Lock className="w-6 h-6" />
+                </div>
+                <span className="text-xs text-slate-600 font-medium">No Data Tracking</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
+                  <Globe className="w-6 h-6" />
+                </div>
+                <span className="text-xs text-slate-600 font-medium">10+ Regional Tools</span>
+              </div>
             </div>
           </div>
         </section>
