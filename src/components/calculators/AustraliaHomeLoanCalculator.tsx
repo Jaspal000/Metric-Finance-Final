@@ -248,23 +248,22 @@ const AustraliaHomeLoanCalculator: React.FC = () => {
         </div>
       </div>
 
-      <EmailCapture
-        variant="inline"
-        context="calculator"
-        calculatorName="Australia Home Loan Calculator"
-        resultsData={result ? [
-          `Loan Amount: A$${input.loanAmount.toLocaleString()}`,
-          `Interest Rate: ${input.interestRate}% p.a.`,
-          `Loan Term: ${input.loanTerm} years`,
-          `Repayment: ${frequencyLabels[input.repaymentFrequency]}`,
-          input.hasOffset ? `Offset Balance: A$${input.offsetBalance.toLocaleString()}` : null,
-          `---`,
-          `Repayment: A$${result.repayment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
-          `Total Interest: A$${result.totalInterest.toLocaleString()}`,
-          `Total Cost: A$${result.totalCost.toLocaleString()}`,
-          result.interestSaved > 0 ? `Interest Saved (Offset): A$${result.interestSaved.toLocaleString()}` : null,
-        ].filter(Boolean).join('\n') : undefined}
-      />
+      {result && (
+        <PDFCapture
+          calculatorName="Australia Home Loan Calculator"
+          results={{
+            'Loan Amount': `A$${input.loanAmount.toLocaleString()}`,
+            'Interest Rate': `${input.interestRate}% p.a.`,
+            'Loan Term': `${input.loanTerm} years`,
+            'Repayment Frequency': frequencyLabels[input.repaymentFrequency],
+            ...(input.hasOffset && { 'Offset Balance': `A$${input.offsetBalance.toLocaleString()}` }),
+            'Repayment Amount': `A$${result.repayment.toLocaleString(undefined, { minimumFractionDigits: 2 })}`,
+            'Total Interest': `A$${result.totalInterest.toLocaleString()}`,
+            'Total Cost': `A$${result.totalCost.toLocaleString()}`,
+            ...(result.interestSaved > 0 && { 'Interest Saved (Offset)': `A$${result.interestSaved.toLocaleString()}` }),
+          }}
+        />
+      )}
       <AffiliateCTA calculatorType="general" />
     </div>
   );

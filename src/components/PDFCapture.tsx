@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, Download, Loader2, Check, AlertCircle } from 'lucide-react';
+import { FileText, Loader2, Check, AlertCircle } from 'lucide-react';
 import { generatePDF } from '@/utils/pdfGenerator';
 
 interface PDFCaptureProps {
