@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from './Logo';
-import { Mail, Check, Shield, Loader2, Globe, Lock, Zap } from 'lucide-react';
+import { Mail, Check, Shield, Loader2 } from 'lucide-react';
 import { sendEmail } from '@/utils/emailService';
-import { Flags } from './Flags';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -31,31 +30,32 @@ const Footer: React.FC = () => {
     }
   };
 
-  const regionLinks = [
-    { name: 'Global', href: '#', flag: 'globe' as const },
-    { name: 'USA', href: '#usa-calculators', flag: 'us' as const },
-    { name: 'UK', href: '#uk-calculators', flag: 'uk' as const },
-    { name: 'Canada', href: '#canada-calculators', flag: 'ca' as const },
-    { name: 'Australia', href: '#australia-calculators', flag: 'au' as const },
-  ];
-
-  const resourceLinks = [
-    { name: 'Financial Guides', href: '/guides' },
-    { name: 'Calculators Directory', href: '/#all-calculators' },
-    { name: 'Most Popular Tools', href: '/#popular' },
-  ];
-
-  const legalLinks = [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Disclaimer', href: '/disclaimer' },
-  ];
-
-  const trustItems = [
-    { icon: Zap, label: 'Bank-Grade Accuracy' },
-    { icon: Lock, label: 'No Data Tracking' },
-    { icon: Globe, label: '10+ Regional Tools' },
-  ];
+  const footerLinks = {
+    'US Calculators': [
+      { name: 'Mortgage Calculator', href: '/us/mortgage-calculator' },
+      { name: '401(k) Calculator', href: '/us/401k-calculator' },
+      { name: 'Tax Calculator', href: '/us/federal-tax-calculator' },
+      { name: 'Salary Calculator', href: '/us/salary-calculator' },
+      { name: 'BMI Calculator', href: '/us/bmi-calculator' },
+      { name: 'Compound Interest', href: '/us/compound-interest-calculator' },
+      { name: 'Car Loan', href: '/us/car-loan-calculator' },
+    ],
+    'International': [
+      { name: 'UK Stamp Duty', href: '/uk/stamp-duty-calculator' },
+      { name: 'Canada Mortgage', href: '/ca/mortgage-calculator' },
+      { name: 'Australia Home Loan', href: '/au/home-loan-calculator' },
+    ],
+    'Company': [
+      { name: 'About Us', href: '/about' },
+      { name: 'Contact', href: '/contact' },
+      { name: 'Blog', href: '/blog' },
+    ],
+    'Legal': [
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Use', href: '/terms' },
+      { name: 'Financial Disclaimer', href: '/disclaimer' },
+    ],
+  };
 
   return (
     <footer className="bg-white border-t border-slate-200">
@@ -124,105 +124,54 @@ const Footer: React.FC = () => {
 
       {/* Main Footer */}
       <div className="metric-container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-12">
-          {/* Column 1: Brand & Regions */}
-          <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+          {/* Brand Column */}
+          <div className="col-span-2">
             <span className="md:hidden">
-              <Logo variant="full" size="md" className="mb-6" />
+              <Logo variant="full" size="md" className="mb-4" />
             </span>
             <span className="hidden md:block">
-              <Logo variant="full" size="xl" className="mb-6" />
+              <Logo variant="full" size="lg" className="mb-4" />
             </span>
-            <p className="text-slate-600 text-sm mb-8">
+            <p className="text-slate-600 text-sm mb-4 max-w-xs">
               Precision-driven financial decision tools. Plan mortgages, taxes, 
               retirement, and investments with accurate, instant calculators.
             </p>
-            
-            {/* Regional Links with Flags */}
-            <h4 className="font-bold text-slate-900 mb-4 text-sm">Regions</h4>
-            <ul className="space-y-3">
-              {regionLinks.map((region) => (
-                <li key={region.name}>
-                  <a
-                    href={region.href}
-                    className="flex items-center gap-2 text-sm text-slate-600 hover:text-[#2563eb] transition-colors"
-                  >
-                    {region.flag === 'globe' ? (
-                      <Globe className="w-4 h-4 flex-shrink-0" />
-                    ) : (
-                      <span className="w-4 h-4 flex-shrink-0">
-                        <Flags flag={region.flag} size={16} />
-                      </span>
-                    )}
-                    <span>{region.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs text-slate-500">
+              © {new Date().getFullYear()} Metric Finance. All rights reserved.
+            </p>
           </div>
 
-          {/* Column 2: Resources */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-4 text-sm">Resources</h4>
-            <ul className="space-y-3">
-              {resourceLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-slate-600 hover:text-[#2563eb] transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Legal & Support */}
-          <div>
-            <h4 className="font-bold text-slate-900 mb-4 text-sm">Legal & Support</h4>
-            <ul className="space-y-3">
-              {legalLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-slate-600 hover:text-[#2563eb] transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Link Columns */}
+          {Object.entries(footerLinks).map(([category, links]) => (
+            <div key={category}>
+              <h4 className="font-bold text-slate-900 mb-4 text-sm">
+                {category}
+              </h4>
+              <ul className="space-y-2">
+                {links.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-sm text-slate-600 hover:text-[#2563eb] transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Trust Bar */}
-      <div className="border-t border-slate-200 bg-slate-50">
-        <div className="metric-container py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {trustItems.map((item, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-[#2563eb]" />
-                </div>
-                <span className="text-xs font-medium text-slate-700">{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Disclaimer & Copyright */}
-      <div className="bg-slate-50 border-t border-slate-200">
-        <div className="metric-container py-6 space-y-4">
+      {/* Disclaimer */}
+      <div className="bg-slate-50">
+        <div className="metric-container py-6">
           <p className="text-xs text-slate-500 text-center">
             <strong>Disclaimer:</strong> All calculations are estimates for informational purposes only 
             and do not constitute financial advice. Please consult a qualified financial advisor 
             for personalized guidance.
-          </p>
-          <p className="text-xs text-slate-500 text-center">
-            © {new Date().getFullYear()} Metric Finance. All rights reserved.
           </p>
         </div>
       </div>
