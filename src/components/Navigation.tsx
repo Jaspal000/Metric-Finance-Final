@@ -12,6 +12,17 @@ interface NavCategory {
   calculators: { name: string; href: string; category: string }[];
 }
 
+// Helper function to convert region code to anchor slug
+const getAnchorFromRegion = (region: Region): string => {
+  const anchorMap: Record<Region, string> = {
+    us: 'usa',
+    uk: 'uk',
+    ca: 'canada',
+    au: 'australia',
+  };
+  return anchorMap[region] || region;
+};
+
 const Navigation: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -120,7 +131,7 @@ const Navigation: React.FC = () => {
   return (
     <>
       {/* Main Header */}
-      <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200">
+      <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 border-b border-slate-200">
         <div className="metric-container">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
@@ -129,7 +140,7 @@ const Navigation: React.FC = () => {
                 <Logo variant="full" size="md" />
               </span>
               <span className="hidden md:block">
-                <Logo variant="full" size="lg" />
+                <Logo variant="full" size="xl" />
               </span>
             </Link>
 
@@ -191,13 +202,14 @@ const Navigation: React.FC = () => {
                           </Link>
                         ))}
                         <div className="border-t border-slate-100 mt-1 pt-1">
-                          <Link
-                            to={category.href}
+                          <a
+                            href={`#${getAnchorFromRegion(category.region)}-calculators`}
+                            onClick={() => setActiveDropdown(null)}
                             className="flex items-center gap-2 px-4 py-2 min-h-[40px] text-sm font-semibold text-[#2563eb] hover:bg-blue-50 transition-colors"
                           >
-                            View All
+                            View All {category.name}
                             <ChevronRight className="w-4 h-4" />
-                          </Link>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -223,7 +235,7 @@ const Navigation: React.FC = () => {
                 href="/#all-calculators"
                 className="inline-flex items-center justify-center px-6 py-3 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors"
               >
-                Get Started
+                Explore Calculators
               </a>
             </div>
 
@@ -310,13 +322,14 @@ const Navigation: React.FC = () => {
                           <span className="text-xs text-slate-400">{calc.category}</span>
                         </Link>
                       ))}
-                      <Link
-                        to={category.href}
+                      <a
+                        href={`#${getAnchorFromRegion(category.region)}-calculators`}
+                        onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center gap-2 px-4 py-3 min-h-[44px] text-sm font-semibold text-[#2563eb] hover:bg-blue-50 rounded-lg transition-colors"
                       >
                         View All {category.name}
                         <ChevronRight className="w-4 h-4" />
-                      </Link>
+                      </a>
                     </div>
                   )}
                 </div>
@@ -341,7 +354,7 @@ const Navigation: React.FC = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-center w-full px-6 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors"
                 >
-                  Get Started
+                  Explore Calculators
                 </a>
               </div>
             </div>
