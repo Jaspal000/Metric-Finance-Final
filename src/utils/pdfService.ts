@@ -90,10 +90,10 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
     // Colors - Pixel-Perfect Brand Specification
     const slateNine50 = [15, 23, 42] as const;          // #0f172a - Logo, "Metric", primary text
-    const slate600 = [71, 85, 105] as const;            // #475569 - "FINANCE" text
+    const profesionalGray = [100, 116, 139] as const;   // #64748b - "FINANCE" text (per spec)
     const slateGray = [148, 163, 184] as const;         // #94a3b8 - "OFFICIAL CALCULATION REPORT"
     const electricBlue = [37, 99, 235] as const;        // #2563eb - Divider line
-    const lightGray = [248, 250, 252] as const;         // Light background for tables
+    const lightGray = [248, 250, 252] as const;         // #f8fafc - Light background for tables
     const white = [255, 255, 255] as const;
 
     // --- HEADER: 40px Grid-M Logo + Branding ---
@@ -116,7 +116,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
     // "FINANCE" - All-caps, light weight, increased letter-spacing
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(6.5);
-    pdf.setTextColor(slate600[0], slate600[1], slate600[2]);
+    pdf.setTextColor(profesionalGray[0], profesionalGray[1], profesionalGray[2]);
     // Manually spacing letters for increased tracking effect
     const financeLetters = 'F I N A N C E'.split(' ');
     let financeX = brandingX;
@@ -205,7 +205,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
           // Label (left column)
           pdf.setFont('helvetica', 'normal');
           pdf.setFontSize(8.5);
-          pdf.setTextColor(slate600[0], slate600[1], slate600[2]);
+          pdf.setTextColor(profesionalGray[0], profesionalGray[1], profesionalGray[2]);
           pdf.text(escapeText(label), margins + 3, y);
 
           // Value (right column)
@@ -249,7 +249,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
     // Tagline
     pdf.setFont('helvetica', 'italic');
     pdf.setFontSize(8);
-    pdf.setTextColor(slate600[0], slate600[1], slate600[2]);
+    pdf.setTextColor(profesionalGray[0], profesionalGray[1], profesionalGray[2]);
     pdf.text('"Plan smarter, decide better."', footerCenterX, footerY + 5, { align: 'center', maxWidth: maxFooterWidth });
 
     // Legal disclaimer - centered, never clipped
@@ -265,7 +265,7 @@ export async function generatePDF(data: PDFData): Promise<void> {
     // Copyright
     pdf.setFontSize(6);
     pdf.text(
-      `\u00A9 ${new Date().getFullYear()} Metric Finance. All rights reserved. | metricfinance.com`,
+      `\u00A9 ${new Date().getFullYear()} Metric Finance. All rights reserved. | metric-finance.vercel.app`,
       footerCenterX,
       footerY + 19,
       { align: 'center', maxWidth: maxFooterWidth }
