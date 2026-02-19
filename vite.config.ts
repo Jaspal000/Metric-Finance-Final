@@ -6,7 +6,6 @@ import { defineConfig } from "vite"
 export default defineConfig({
   base: '/',
   plugins: [react()],
-  plugins: [react({ jsxRuntime: 'automatic' })],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
