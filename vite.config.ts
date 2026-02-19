@@ -5,7 +5,7 @@ import { defineConfig } from "vite"
 // https://vite.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [react()],
+  plugins: [react({ jsxRuntime: 'automatic' })],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -15,4 +15,11 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis'
+      }
+    }
+  }
 });
