@@ -55,49 +55,50 @@ const RegionalTabs: React.FC<RegionalTabsProps> = ({
 
   return (
     <div className="w-full">
-      {/* Mobile: Fixed 5-Column Grid - Full Bleed Edge-to-Edge */}
+      {/* Mobile: Fixed 5-Column Grid - Full Bleed Edge-to-Edge, No Overlap */}
       <div 
         className="md:hidden w-auto -mx-4 sm:-mx-6 px-0 overflow-visible"
         role="tablist"
         aria-label="Select region"
       >
-        <div className="grid grid-cols-5 w-full justify-items-center gap-0 overflow-visible">
+        <div className="grid grid-cols-5 w-full overflow-visible">
           {regions.map((region) => {
             const isActive = activeRegion === region.id;
             const Flag = region.Flag;
 
             return (
-              <button
-                key={region.id}
-                onClick={() => handleRegionClick(region.id)}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`region-panel-${region.id}`}
-                className={`
-                  flex flex-col items-center justify-center gap-1.5 py-2.5 w-full
-                  overflow-visible rounded-lg transition-all duration-200
-                  ${isActive ? 'bg-blue-50 border-2 border-blue-600' : 'border-2 border-transparent'}
-                `}
-              >
-                {/* Flag Icon - 20% larger */}
-                <div className="flex items-center justify-center flex-shrink-0 overflow-visible">
-                  <Flag 
-                    width={65} 
-                    height={43} 
-                    className="block"
-                  />
-                </div>
-
-                {/* Country Label - Centered beneath flag */}
-                <span 
+              <div key={region.id} className="flex justify-center px-0.5 overflow-visible">
+                <button
+                  onClick={() => handleRegionClick(region.id)}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`region-panel-${region.id}`}
                   className={`
-                    text-xs font-semibold transition-colors duration-200 whitespace-nowrap text-center
-                    ${isActive ? 'text-blue-600' : 'text-slate-600'}
+                    flex flex-col items-center justify-center gap-1 py-2 w-full
+                    overflow-visible rounded-lg transition-all duration-200
+                    ${isActive ? 'bg-blue-50 border-2 border-blue-600' : 'border-2 border-transparent'}
                   `}
                 >
-                  {region.name}
-                </span>
-              </button>
+                  {/* Flag Icon - sized to fit within 1/5 column */}
+                  <div className="flex items-center justify-center flex-shrink-0 overflow-visible">
+                    <Flag 
+                      width={52} 
+                      height={34} 
+                      className="block"
+                    />
+                  </div>
+
+                  {/* Country Label - Centered beneath flag */}
+                  <span 
+                    className={`
+                      text-xs font-semibold transition-colors duration-200 whitespace-nowrap text-center
+                      ${isActive ? 'text-blue-600' : 'text-slate-600'}
+                    `}
+                  >
+                    {region.shortName}
+                  </span>
+                </button>
+              </div>
             );
           })}
         </div>
