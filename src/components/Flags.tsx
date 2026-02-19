@@ -254,4 +254,30 @@ export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 62, he
   );
 };
 
-export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe };
+// Wrapper component for dynamic flag selection
+interface FlagsProps extends FlagProps {
+  flag: 'us' | 'uk' | 'ca' | 'au' | 'globe';
+  size?: number;
+}
+
+export const Flags: React.FC<FlagsProps> = ({ flag, className = '', width, height, size }) => {
+  const displayWidth = size || width || 62;
+  const displayHeight = size || height || 41;
+  
+  switch (flag) {
+    case 'us':
+      return <USFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'uk':
+      return <UKFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'ca':
+      return <CanadaFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'au':
+      return <AustraliaFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'globe':
+      return <EarthGlobe className={className} width={displayWidth} height={displayHeight} />;
+    default:
+      return <EarthGlobe className={className} width={displayWidth} height={displayHeight} />;
+  }
+};
+
+export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe, Flags };
