@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
               retirement, and investments with accurate, instant calculators.
             </p>
             <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} Metric Finance. All rights reserved.
+              &copy; {new Date().getFullYear()} Metric Finance. All rights reserved.
             </p>
           </div>
 
