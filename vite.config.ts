@@ -15,11 +15,4 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      define: {
-        global: 'globalThis'
-      }
-    }
-  }
 });

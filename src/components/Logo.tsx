@@ -1,7 +1,7 @@
 interface LogoProps {
   variant?: 'full' | 'icon' | 'minimal';
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const Logo: React.FC<LogoProps> = ({ 
@@ -13,8 +13,6 @@ export const Logo: React.FC<LogoProps> = ({
     sm: { icon: 30, text: 'text-xl' },
     md: { icon: 40, text: 'text-2xl' },
     lg: { icon: 50, text: 'text-3xl' },
-    xl: { icon: 60, text: 'text-4xl' },
-    xxl: { icon: 75, text: 'text-5xl' },
   };
 
   const { icon: iconSize, text: textSize } = sizeMap[size];
