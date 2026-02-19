@@ -90,7 +90,6 @@ export async function generatePDF(data: PDFData): Promise<void> {
 
     // Colors - Pixel-Perfect Brand Specification
     const slateNine50 = [15, 23, 42] as const;          // #0f172a - Logo, "Metric", primary text
-    const slateThree00 = [203, 213, 225] as const;      // #cbd5e1 - Grid background
     const slate600 = [71, 85, 105] as const;            // #475569 - "FINANCE" text
     const slateGray = [148, 163, 184] as const;         // #94a3b8 - "OFFICIAL CALCULATION REPORT"
     const electricBlue = [37, 99, 235] as const;        // #2563eb - Divider line
