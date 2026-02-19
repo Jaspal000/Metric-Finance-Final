@@ -232,7 +232,6 @@ export async function generatePDF(data: PDFData): Promise<void> {
     // --- NO-CLIP FOOTER: centered with max-width: 85% and margin: 0 auto ---
     const footerY = pageHeight - 28;
     const footerMaxWidth = pageWidth * 0.85; // 85% of page width
-    const footerLeftMargin = (pageWidth - footerMaxWidth) / 2; // Auto centering
     const footerCenterX = pageWidth / 2;
 
     // Thank-you message (centered, never clips)
