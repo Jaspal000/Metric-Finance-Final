@@ -6,170 +6,104 @@ interface FlagProps {
   height?: number;
 }
 
-// United States Flag - Official 10:19 ratio with accurate canton, stripes, and star grid
-export const USFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
+// United States Flag - Clean rectangular design (3:2 ratio)
+export const USFlag: React.FC<FlagProps> = ({ className = '', width = 64, height = 42 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 1235 650"
+    viewBox="0 0 960 630"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* White background for white stripes */}
-    <rect width="1235" height="650" fill="#FFF" />
-    {/* 13 stripes alternating red/white, 7 red 6 white */}
-    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) =>
-      i % 2 === 0 ? (
-        <rect key={i} y={i * 50} width="1235" height="50" fill="#B22234" />
-      ) : null
-    )}
-    {/* Blue canton */}
-    <rect width="494" height="350" fill="#3C3B6E" />
-    {/* 50 stars - 5 rows of 6 and 4 rows of 5 */}
+    <rect width="960" height="630" fill="#B22234" />
     <g fill="#FFF">
-      {/* Row 1: 6 stars */}
-      {[0,1,2,3,4,5].map(c => <circle key={`r1-${c}`} cx={41 + c * 82} cy={35} r={13} />)}
-      {/* Row 2: 5 stars */}
-      {[0,1,2,3,4].map(c => <circle key={`r2-${c}`} cx={82 + c * 82} cy={70} r={13} />)}
-      {/* Row 3: 6 stars */}
-      {[0,1,2,3,4,5].map(c => <circle key={`r3-${c}`} cx={41 + c * 82} cy={105} r={13} />)}
-      {/* Row 4: 5 stars */}
-      {[0,1,2,3,4].map(c => <circle key={`r4-${c}`} cx={82 + c * 82} cy={140} r={13} />)}
-      {/* Row 5: 6 stars */}
-      {[0,1,2,3,4,5].map(c => <circle key={`r5-${c}`} cx={41 + c * 82} cy={175} r={13} />)}
-      {/* Row 6: 5 stars */}
-      {[0,1,2,3,4].map(c => <circle key={`r6-${c}`} cx={82 + c * 82} cy={210} r={13} />)}
-      {/* Row 7: 6 stars */}
-      {[0,1,2,3,4,5].map(c => <circle key={`r7-${c}`} cx={41 + c * 82} cy={245} r={13} />)}
-      {/* Row 8: 5 stars */}
-      {[0,1,2,3,4].map(c => <circle key={`r8-${c}`} cx={82 + c * 82} cy={280} r={13} />)}
-      {/* Row 9: 6 stars */}
-      {[0,1,2,3,4,5].map(c => <circle key={`r9-${c}`} cx={41 + c * 82} cy={315} r={13} />)}
+      <rect y="48" width="960" height="48" />
+      <rect y="144" width="960" height="48" />
+      <rect y="240" width="960" height="48" />
+      <rect y="336" width="960" height="48" />
+      <rect y="432" width="960" height="48" />
+      <rect y="528" width="960" height="48" />
+    </g>
+    <rect width="384" height="336" fill="#3C3B6E" />
+    <g fill="#FFF">
+      {[...Array(9)].map((_, row) => 
+        [...Array(row % 2 === 0 ? 6 : 5)].map((_, col) => (
+          <circle key={`${row}-${col}`} cx={32 + (row % 2 === 0 ? col * 63 : (col + 0.5) * 63)} cy={26 + row * 37.5} r="11" />
+        ))
+      )}
     </g>
   </svg>
 );
 
-// United Kingdom Flag - Accurate Union Jack with proper diagonal offsets (1:2 ratio)
-export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
+// United Kingdom Flag - Clean rectangular design (2:1 ratio)
+export const UKFlag: React.FC<FlagProps> = ({ className = '', width = 64, height = 32 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 1200 600"
+    viewBox="0 0 960 480"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* Blue background */}
-    <rect width="1200" height="600" fill="#012169" />
-    {/* White saltire (diagonal cross) */}
-    <path d="M0,0 L1200,600 M1200,0 L0,600" stroke="#FFF" strokeWidth="120" strokeLinecap="round" strokeLinejoin="round" />
-    {/* Red saltire with proper offset (counterchanged) */}
-    <clipPath id="uk-tl">
-      <path d="M600,300 L0,0 L0,300 Z" />
-    </clipPath>
-    <clipPath id="uk-tr">
-      <path d="M600,300 L1200,0 L1200,300 Z" />
-    </clipPath>
-    <clipPath id="uk-bl">
-      <path d="M600,300 L0,600 L0,300 Z" />
-    </clipPath>
-    <clipPath id="uk-br">
-      <path d="M600,300 L1200,600 L1200,300 Z" />
-    </clipPath>
-    <path d="M0,0 L1200,600" stroke="#C8102E" strokeWidth="40" clipPath="url(#uk-tl)" />
-    <path d="M1200,0 L0,600" stroke="#C8102E" strokeWidth="40" clipPath="url(#uk-tr)" />
-    <path d="M0,600 L1200,0" stroke="#C8102E" strokeWidth="40" clipPath="url(#uk-bl)" />
-    <path d="M1200,600 L0,0" stroke="#C8102E" strokeWidth="40" clipPath="url(#uk-br)" />
-    {/* White cross (St George fimbriation) */}
-    <path d="M600,0 V600 M0,300 H1200" stroke="#FFF" strokeWidth="200" />
-    {/* Red cross (St George) */}
-    <path d="M600,0 V600 M0,300 H1200" stroke="#C8102E" strokeWidth="120" />
+    <rect width="960" height="480" fill="#012169" />
+    <path d="M0,0 L960,480 M960,0 L0,480" stroke="#FFF" strokeWidth="96" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M0,0 L960,480 M960,0 L0,480" stroke="#C8102E" strokeWidth="64" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M480,0 V480 M0,240 H960" stroke="#FFF" strokeWidth="160" />
+    <path d="M480,0 V480 M0,240 H960" stroke="#C8102E" strokeWidth="96" />
   </svg>
 );
 
-// Canada Flag - Official 1:2 ratio with Government of Canada maple leaf
-export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
+// Canada Flag - Clean rectangular design (1:2 ratio)
+export const CanadaFlag: React.FC<FlagProps> = ({ className = '', width = 32, height = 64 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 1200 600"
+    viewBox="0 0 300 600"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* White centre band */}
-    <rect width="1200" height="600" fill="#FFF" />
-    {/* Red side bars (each 1/4 of the flag width) */}
     <rect width="300" height="600" fill="#FF0000" />
-    <rect x="900" width="300" height="600" fill="#FF0000" />
-    {/* Official 11-point maple leaf */}
-    <g transform="translate(600, 300) scale(1.8)">
-      <path
-        d="M0,-75 L4,-67 L30,-73 L18,-47 L30,-38 L18,-27 L30,-5 L14,-6 L15,8 L0,2 L-15,8 L-14,-6 L-30,-5 L-18,-27 L-30,-38 L-18,-47 L-30,-73 L-4,-67 Z"
-        fill="#FF0000"
-      />
-      {/* Stem */}
-      <rect x="-4" y="2" width="8" height="20" fill="#FF0000" />
-    </g>
+    <rect x="75" width="150" height="600" fill="#FFF" />
+    <path d="M150,150 L165,180 L195,180 L172,202 L187,232 L150,210 L113,232 L128,202 L105,180 L135,180 Z" fill="#FF0000" />
+    <path d="M150,330 L165,360 L195,360 L172,382 L187,412 L150,390 L113,412 L128,382 L105,360 L135,360 Z" fill="#FF0000" />
   </svg>
 );
 
-// Australia Flag - Official 1:2 ratio with Union Jack canton, Commonwealth Star, and Southern Cross
-export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => (
+// Australia Flag - Clean rectangular design (1:2 ratio)
+export const AustraliaFlag: React.FC<FlagProps> = ({ className = '', width = 64, height = 32 }) => (
   <svg
     width={width}
     height={height}
-    viewBox="0 0 1200 600"
+    viewBox="0 0 960 480"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* Blue background */}
-    <rect width="1200" height="600" fill="#00008B" />
-    {/* Union Jack canton */}
-    <g>
-      <rect width="600" height="300" fill="#012169" />
-      <path d="M0,0 L600,300 M600,0 L0,300" stroke="#FFF" strokeWidth="60" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M0,0 L600,300" stroke="#C8102E" strokeWidth="20" />
-      <path d="M600,0 L0,300" stroke="#C8102E" strokeWidth="20" />
-      <path d="M300,0 V300 M0,150 H600" stroke="#FFF" strokeWidth="100" />
-      <path d="M300,0 V300 M0,150 H600" stroke="#C8102E" strokeWidth="60" />
-    </g>
-    {/* Commonwealth Star (7-pointed, below Union Jack) */}
-    <g transform="translate(300,450)">
-      {[0,1,2,3,4,5,6].map(i => {
-        const angle = (i * 360/7 - 90) * Math.PI / 180;
-        const outerX = Math.cos(angle) * 45;
-        const outerY = Math.sin(angle) * 45;
-        const midAngle = ((i * 360/7 + 360/14) - 90) * Math.PI / 180;
-        const innerX = Math.cos(midAngle) * 20;
-        const innerY = Math.sin(midAngle) * 20;
-        return <React.Fragment key={i}>
-          <line x1={0} y1={0} x2={outerX} y2={outerY} stroke="#FFF" strokeWidth="8" />
-          <line x1={0} y1={0} x2={innerX} y2={innerY} stroke="#FFF" strokeWidth="4" />
-        </React.Fragment>;
-      })}
-      <circle cx={0} cy={0} r={12} fill="#FFF" />
-    </g>
-    {/* Southern Cross - 5 stars */}
-    {/* Alpha Crucis (bottom) */}
-    <circle cx="900" cy="480" r="14" fill="#FFF" />
-    {/* Beta Crucis (left) */}
-    <circle cx="780" cy="330" r="14" fill="#FFF" />
-    {/* Gamma Crucis (top) */}
-    <circle cx="900" cy="180" r="14" fill="#FFF" />
-    {/* Delta Crucis (right) */}
-    <circle cx="1020" cy="330" r="14" fill="#FFF" />
-    {/* Epsilon Crucis (small, center-left) */}
-    <circle cx="870" cy="360" r="8" fill="#FFF" />
+    <rect width="960" height="480" fill="#00008B" />
+    <rect width="384" height="240" fill="#012169" />
+    <path d="M0,0 L384,240 M384,0 L0,240" stroke="#FFF" strokeWidth="48" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M0,0 L384,240 M384,0 L0,240" stroke="#C8102E" strokeWidth="32" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M192,0 V240 M0,120 H384" stroke="#FFF" strokeWidth="80" />
+    <path d="M192,0 V240 M0,120 H384" stroke="#C8102E" strokeWidth="48" />
+    <circle cx="192" cy="340" r="35" fill="#FFF" />
+    {[...Array(7)].map((_, i) => {
+      const angle = (i * 360 / 7 - 90) * Math.PI / 180;
+      const x = 192 + Math.cos(angle) * 30;
+      const y = 340 + Math.sin(angle) * 30;
+      return <line key={i} x1="192" y1="340" x2={x} y2={y} stroke="#FFF" strokeWidth="4" />;
+    })}
+    <circle cx="840" cy="120" r="15" fill="#FFF" />
+    <circle cx="720" cy="200" r="15" fill="#FFF" />
+    <circle cx="840" cy="280" r="15" fill="#FFF" />
+    <circle cx="960" cy="200" r="15" fill="#FFF" />
+    <circle cx="900" cy="240" r="10" fill="#FFF" />
   </svg>
 );
 
-// Earth Globe - Vibrant Green-and-Blue Planet with natural continents
-export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 62, height = 41 }) => {
-  const uniqueId = Math.random().toString(36).substr(2, 9);
-  return (
+// Earth Globe - Clean rectangular representation for footer
+export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 64, height = 42 }) => (
   <svg
     width={width}
     height={height}
@@ -179,79 +113,45 @@ export const EarthGlobe: React.FC<FlagProps> = ({ className = '', width = 62, he
     preserveAspectRatio="xMidYMid meet"
   >
     <defs>
-      {/* Enhanced radial gradient for ocean depth with multiple stops */}
-      <radialGradient id={`oceanGradient-${uniqueId}`} cx="30%" cy="30%">
-        <stop offset="0%" stopColor="#5DADE2" />
-        <stop offset="50%" stopColor="#2980B9" />
-        <stop offset="100%" stopColor="#1F618D" />
-      </radialGradient>
-
-      {/* Enhanced radial gradient for land mass with depth */}
-      <radialGradient id={`landGradient-${uniqueId}`} cx="40%" cy="40%">
-        <stop offset="0%" stopColor="#27AE60" />
-        <stop offset="60%" stopColor="#1E8449" />
-        <stop offset="100%" stopColor="#0E6251" />
-      </radialGradient>
-
-      {/* Enhanced shadow and atmospheric glow */}
-      <radialGradient id={`atmosphereGradient-${uniqueId}`} cx="35%" cy="35%">
-        <stop offset="0%" stopColor="rgba(93, 173, 226, 0.4)" />
-        <stop offset="100%" stopColor="rgba(0, 0, 0, 0.3)" />
-      </radialGradient>
-
-      {/* Glossy highlight gradient */}
-      <radialGradient id={`glossGradient-${uniqueId}`} cx="30%" cy="30%">
-        <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
-        <stop offset="50%" stopColor="rgba(255,255,255,0.1)" />
-        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+      <radialGradient id="earthGrad" cx="35%" cy="35%">
+        <stop offset="0%" stopColor="#87CEEB" />
+        <stop offset="70%" stopColor="#1E90FF" />
+        <stop offset="100%" stopColor="#004E89" />
       </radialGradient>
     </defs>
-
-    {/* Ocean base with multiple layers for depth */}
-    <circle cx="50" cy="50" r="45" fill={`url(#oceanGradient-${uniqueId})`} />
-
-    {/* Land masses - Enhanced continents with better detail */}
-    {/* North America */}
-    <path d="M 22 28 Q 20 30 21 35 Q 22 38 25 40 Q 28 38 28 35 Q 27 30 25 28 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
-    
-    {/* South America */}
-    <path d="M 28 52 Q 26 55 27 62 Q 30 65 33 62 Q 32 58 30 55 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
-    
-    {/* Greenland */}
-    <circle cx="35" cy="25" r="3.5" fill={`url(#landGradient-${uniqueId})`} opacity="0.85" />
-    
-    {/* Europe */}
-    <path d="M 48 30 Q 50 28 55 30 Q 56 32 54 34 Q 52 35 50 34 Q 48 33 48 30 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
-    
-    {/* Africa */}
-    <path d="M 55 42 Q 58 40 62 42 Q 65 48 63 58 Q 60 62 58 60 Q 56 54 55 48 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
-    
-    {/* Asia */}
-    <path d="M 60 25 Q 65 23 72 26 Q 75 30 73 35 Q 70 38 65 36 Q 62 33 60 28 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.9" />
-    
-    {/* Australia */}
-    <path d="M 72 60 Q 74 58 77 60 Q 78 64 76 67 Q 73 66 72 63 Z" fill={`url(#landGradient-${uniqueId})`} opacity="0.85" />
-    
-    {/* New Zealand hint */}
-    <circle cx="82" cy="68" r="2" fill={`url(#landGradient-${uniqueId})`} opacity="0.8" />
-
-    {/* Atmospheric glow for depth */}
-    <circle cx="50" cy="50" r="45" fill={`url(#atmosphereGradient-${uniqueId})`} />
-
-    {/* Glossy highlight for three-dimensionality */}
-    <ellipse cx="38" cy="38" rx="20" ry="22" fill={`url(#glossGradient-${uniqueId})`} />
-
-    {/* Subtle polar ice caps */}
-    <ellipse cx="50" cy="10" rx="8" ry="6" fill="rgba(255,255,255,0.15)" />
-    <ellipse cx="50" cy="90" rx="8" ry="6" fill="rgba(255,255,255,0.12)" />
-
-    {/* Atmospheric layer edge */}
-    <circle cx="50" cy="50" r="45.5" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" opacity="0.6" />
-
-    {/* Planet outline for definition */}
-    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="1" />
+    <circle cx="50" cy="50" r="45" fill="url(#earthGrad)" />
+    <path d="M 25 35 Q 30 33 35 35 Q 33 40 28 42 Z" fill="#228B22" />
+    <path d="M 45 25 Q 52 23 58 26 Q 60 32 55 35 Q 50 33 45 32 Z" fill="#228B22" />
+    <path d="M 60 45 Q 68 43 72 50 Q 70 58 65 60 Q 62 55 60 50 Z" fill="#228B22" />
+    <path d="M 30 60 Q 35 58 40 62 Q 38 68 32 70 Z" fill="#228B22" />
+    <ellipse cx="50" cy="50" rx="45" ry="45" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2" />
   </svg>
-  );
+);
+
+// Wrapper component for dynamic flag selection
+interface FlagsProps extends FlagProps {
+  flag: 'us' | 'uk' | 'ca' | 'au' | 'globe';
+  size?: number;
+}
+
+export const Flags: React.FC<FlagsProps> = ({ flag, className = '', width, height, size }) => {
+  const displayWidth = size || width || 62;
+  const displayHeight = size || height || 41;
+  
+  switch (flag) {
+    case 'us':
+      return <USFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'uk':
+      return <UKFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'ca':
+      return <CanadaFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'au':
+      return <AustraliaFlag className={className} width={displayWidth} height={displayHeight} />;
+    case 'globe':
+      return <EarthGlobe className={className} width={displayWidth} height={displayHeight} />;
+    default:
+      return <EarthGlobe className={className} width={displayWidth} height={displayHeight} />;
+  }
 };
 
-export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe };
+export default { USFlag, UKFlag, CanadaFlag, AustraliaFlag, EarthGlobe, Flags };

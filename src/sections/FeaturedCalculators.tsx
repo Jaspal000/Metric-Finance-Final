@@ -41,8 +41,15 @@ const FeaturedCalculators: React.FC = () => {
       }.`;
 
   return (
-    <section id="all-calculators" className="metric-section bg-[#f8fafc]">
-      <div className="metric-container">
+    <section 
+      id="all-calculators" 
+      className="metric-section bg-[#f8fafc]"
+      data-region={activeRegion}
+    >
+      <div 
+        id={activeRegion === 'all' ? undefined : `${activeRegion === 'us' ? 'usa' : activeRegion}-calculators`}
+        className="metric-container"
+      >
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
