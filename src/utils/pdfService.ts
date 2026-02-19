@@ -92,51 +92,46 @@ export async function generatePDF(data: PDFData): Promise<void> {
     const lightGray = [248, 250, 252] as const;
     const white = [255, 255, 255] as const;
 
-    // --- HEADER: SVG Logo (left) + Title (right) ---
-    const logoSize = 14;
-    drawLogoSVG(pdf, margins, yPosition - 2, logoSize);
+    // --- HEADER: SVG Logo (left) + Brand Text (left) + Title (right) ---
+    const logoSize = 12;
+    const logoX = margins;
+    const logoY = yPosition - 1;
+    
+    // Draw the SVG logo
+    drawLogoSVG(pdf, logoX, logoY, logoSize);
 
-    // "Metric" text next to logo
+    // "Metric Finance" branding text - vertically centered with logo
+    const brandTextX = logoX + logoSize + 4;
+    const brandTextBaseY = logoY + logoSize / 2 + 2.5; // Center vertically with logo
+    
+    // "Metric" - Bold, premium sans-serif
     pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(18);
+    pdf.setFontSize(16);
     pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    pdf.text('Metric', margins + logoSize + 3, yPosition + 5);
+    pdf.text('Metric', brandTextX, brandTextBaseY);
 
-    // "FINANCE" subtitle
+    // "FINANCE" - Smaller, uppercase, track-wider equivalent
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(7);
+    pdf.setFontSize(6);
     pdf.setTextColor(mediumGray[0], mediumGray[1], mediumGray[2]);
-    pdf.text('FINANCE', margins + logoSize + 3, yPosition + 9);
+    pdf.text('FINANCE', brandTextX, brandTextBaseY + 3.5);
 
-    // Right-aligned title: "OFFICIAL CALCULATION REPORT"
-    pdf.setFont('helvetica', 'bold');
-    pdf.setFontSize(10);
-    pdf.setTextColor(darkGray[0], darkGray[1], darkGray[2]);
-    pdf.text('OFFICIAL CALCULATION REPORT', pageWidth - margins, yPosition + 5, { align: 'right' });
-
-    // Timestamp below right-aligned title
-    const now = data.timestamp || new Date();
-    const dateStr = now.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-    const timeStr = now.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+    // Right-aligned title: "OFFICIAL CALCULATION REPORT" in Slate Gray (#64748b)
+    const slateGray = [100, 116, 139] as const;
     pdf.setFont('helvetica', 'normal');
-    pdf.setFontSize(8);
-    pdf.setTextColor(150, 150, 150);
-    pdf.text(`${dateStr} at ${timeStr}`, pageWidth - margins, yPosition + 10, { align: 'right' });
+    pdf.setFontSize(9);
+    pdf.setTextColor(slateGray[0], slateGray[1], slateGray[2]);
+    pdf.text('OFFICIAL CALCULATION REPORT', pageWidth - margins, brandTextBaseY - 0.5, { align: 'right' });
 
-    yPosition += logoSize + 4;
+    yPosition = logoY + logoSize + 4;
 
     // --- 1.5pt Electric Blue horizontal divider ---
     pdf.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2]);
     pdf.setLineWidth(1.5 * 0.3528); // 1.5pt in mm
     pdf.line(margins, yPosition, pageWidth - margins, yPosition);
-    yPosition += 8;
+    
+    // 20px clearance below divider (5.67mm ≈ 20px)
+    yPosition += 5.67;
 
     // --- Calculator name ---
     pdf.setFont('helvetica', 'bold');
