@@ -3,7 +3,7 @@ import { ArrowRight, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white w-full m-0 p-0">
+    <section className="relative overflow-hidden bg-white w-full m-0 p-0" style={{ backgroundColor: 'white' }}>
       {/* Mathematical 3x3 Grid Watermark - Premium Institutional Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
@@ -47,8 +47,8 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula - Right of Badge (Desktop) */}
-          <g opacity="0.25" pointerEvents="none">
+          {/* Compound Interest Formula - Desktop Version (Right of Badge) */}
+          <g opacity="0.2" pointerEvents="none" className="hidden md:block">
             {/* Formula: A = P(1 + r/n)^(nt) - Positioned to right of badge */}
             {/* Desktop: x="680" y="30" for right side of badge */}
             <text x="680" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
@@ -70,6 +70,29 @@ const Hero: React.FC = () => {
               nt
             </text>
           </g>
+
+          {/* Mobile Formula - Centered and Larger */}
+          <g opacity="0.15" pointerEvents="none" className="md:hidden">
+            {/* Mobile version centered in middle-top area */}
+            <text x="600" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300" textAnchor="middle">
+              A = P(1 +
+            </text>
+            <text x="800" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              r
+            </text>
+            <line x1="790" y1="140" x2="830" y2="140" stroke="#64748b" strokeWidth="1.5" />
+            <text x="810" y="165" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              n
+            </text>
+            <text x="850" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              )
+            </text>
+            
+            {/* Superscript nt */}
+            <text x="875" y="95" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              nt
+            </text>
+          </g>
         </svg>
       </div>
 
@@ -86,7 +109,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Main Headline - Serif with Mixed Colors */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 font-serif">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2] mb-6 font-serif overflow-visible">
               <span className="text-slate-950">Financial Clarity,</span>
               <br className="hidden md:block" />
               <span className="text-[#2563eb] italic">Precisely Calculated</span>

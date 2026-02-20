@@ -120,8 +120,8 @@ const Navigation: React.FC = () => {
   return (
     <>
       {/* Main Header - White Theme for Seamless Integration */}
-      <header className="sticky top-0 z-50 w-full bg-white border-0 m-0 p-0">
-        <div className="flex items-center justify-center m-0 p-0">
+      <header className="sticky top-0 z-50 w-full bg-white border-0 m-0 p-0" style={{ backgroundColor: 'white' }}>
+        <div className="flex items-center justify-center m-0 p-0 w-full">
           <nav className="flex items-center justify-between h-16 md:h-20 w-full max-w-7xl px-4 sm:px-6 lg:px-8 m-0 p-0">
             {/* Logo - Dark for white background */}
             <Link to="/" className="flex-shrink-0">
