@@ -22,9 +22,9 @@ function App() {
   return (
     <Router>
         <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-[#f8fafc] overflow-x-hidden">
+        <div className="min-h-screen flex flex-col overflow-x-hidden m-0 p-0">
           <Navigation />
-          <div className="flex-1">
+          <div className="flex-1 w-full">
             <Routes>
               {/* Home */}
               <Route path="/" element={<Home />} />
