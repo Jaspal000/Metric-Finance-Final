@@ -58,9 +58,9 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 border-0 w-screen -ml-[calc((100vw-100%)/2)]">
+    <footer className="bg-slate-900 border-0 w-full m-0 p-0 relative">
       {/* Geometric Grid Pattern Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true" style={{ position: 'relative' }}>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 800 600"

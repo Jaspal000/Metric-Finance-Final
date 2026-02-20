@@ -3,7 +3,7 @@ import { ArrowRight, Check, Hexagon } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-slate-900 w-screen -ml-[calc((100vw-100%)/2)] -mt-1 md:-mt-2 lg:-mt-3">
+    <section className="relative overflow-hidden bg-slate-900 w-full m-0 p-0 -mt-0">
       {/* Subtle Geometric Grid Pattern Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
