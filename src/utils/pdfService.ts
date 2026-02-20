@@ -269,7 +269,6 @@ export async function generatePDF(data: PDFData): Promise<void> {
     pdf.save('Metric-Finance-Report.pdf');
   } catch (error) {
     console.error('[v0] PDF generation error:', error);
-    const errorMsg = error instanceof Error ? error.message : String(error);
-    throw new Error(`Failed to generate PDF: ${errorMsg}`);
+    throw new Error('Failed to generate PDF. Please try again.');
   }
 }

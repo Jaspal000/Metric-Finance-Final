@@ -119,17 +119,17 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      {/* Main Header - Seamless Integration with Hero */}
-      <header className="sticky top-0 z-50 w-full bg-slate-900 border-0 m-0 p-0">
-        <div className="flex items-center justify-center m-0 p-0">
-          <nav className="flex items-center justify-between h-16 md:h-20 w-full max-w-7xl px-4 sm:px-6 lg:px-8 m-0 p-0">
-            {/* Logo - White for maximum contrast */}
+      {/* Main Header */}
+      <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200">
+        <div className="metric-container">
+          <nav className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
             <Link to="/" className="flex-shrink-0">
               <span className="md:hidden">
-                <Logo variant="full" size="md" className="brightness-0 invert" />
+                <Logo variant="full" size="md" />
               </span>
               <span className="hidden md:block">
-                <Logo variant="full" size="lg" className="brightness-0 invert" />
+                <Logo variant="full" size="lg" />
               </span>
             </Link>
 
@@ -139,8 +139,8 @@ const Navigation: React.FC = () => {
                 to="/"
                 className={`flex items-center px-4 py-2 min-h-[48px] rounded-lg text-sm font-semibold transition-colors ${
                   isActive('/') && location.pathname === '/'
-                    ? 'text-white bg-white/10'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-slate-900 bg-slate-100'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 Home
@@ -157,8 +157,8 @@ const Navigation: React.FC = () => {
                     to={category.href}
                     className={`flex items-center gap-1 px-4 py-2 min-h-[48px] rounded-lg text-sm font-semibold transition-colors ${
                       isActive(category.href)
-                        ? 'text-white bg-white/10'
-                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                        ? 'text-slate-900 bg-slate-100'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                     }`}
                   >
                     {category.name}
@@ -209,8 +209,8 @@ const Navigation: React.FC = () => {
                 to="/blog"
                 className={`flex items-center px-4 py-2 min-h-[48px] rounded-lg text-sm font-semibold transition-colors ${
                   isActive('/blog')
-                    ? 'text-white bg-white/10'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-slate-900 bg-slate-100'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 Blog
@@ -230,7 +230,7 @@ const Navigation: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden flex items-center justify-center p-2 min-h-[48px] min-w-[48px] rounded-lg text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#2563eb]"
+              className="lg:hidden flex items-center justify-center p-2 min-h-[48px] min-w-[48px] rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#2563eb]"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
