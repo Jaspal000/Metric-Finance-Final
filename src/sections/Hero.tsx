@@ -4,7 +4,7 @@ import { ArrowRight, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react
 const Hero: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-white w-full m-0 p-0">
-      {/* Mathematical 3x3 Grid Watermark - Light Gray (#f1f5f9) */}
+      {/* Mathematical 3x3 Grid Watermark - Premium Institutional Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute inset-0 w-full h-full"
@@ -13,49 +13,83 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* 3x3 Mathematical Grid - Ultra-Thin Strokes (0.5px) for Premium Aesthetic */}
-          <g stroke="#cbd5e1" strokeWidth="0.5" opacity="0.05">
-            {/* Vertical lines */}
+          {/* Dense Mathematical Grid - Premium Institutional Pattern */}
+          <g stroke="#64748b" strokeWidth="1.2" opacity="0.18">
+            {/* Vertical lines - Dense 100px spacing */}
+            <line x1="100" y1="0" x2="100" y2="800" />
             <line x1="200" y1="0" x2="200" y2="800" />
+            <line x1="300" y1="0" x2="300" y2="800" />
             <line x1="400" y1="0" x2="400" y2="800" />
+            <line x1="500" y1="0" x2="500" y2="800" />
             <line x1="600" y1="0" x2="600" y2="800" />
+            <line x1="700" y1="0" x2="700" y2="800" />
             <line x1="800" y1="0" x2="800" y2="800" />
+            <line x1="900" y1="0" x2="900" y2="800" />
             <line x1="1000" y1="0" x2="1000" y2="800" />
+            <line x1="1100" y1="0" x2="1100" y2="800" />
             
-            {/* Horizontal lines */}
+            {/* Horizontal lines - Dense 100px spacing */}
+            <line x1="0" y1="100" x2="1200" y2="100" />
             <line x1="0" y1="200" x2="1200" y2="200" />
+            <line x1="0" y1="300" x2="1200" y2="300" />
             <line x1="0" y1="400" x2="1200" y2="400" />
+            <line x1="0" y1="500" x2="1200" y2="500" />
             <line x1="0" y1="600" x2="1200" y2="600" />
+            <line x1="0" y1="700" x2="1200" y2="700" />
           </g>
           
-          {/* Grid intersection points - subtle circles */}
-          <g fill="#cbd5e1" opacity="0.05">
-            {[200, 400, 600, 800, 1000].map(x =>
-              [200, 400, 600].map(y =>
-                <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />
+          {/* Grid intersection points - visible circles */}
+          <g fill="#64748b" opacity="0.14">
+            {[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100].map(x =>
+              [100, 200, 300, 400, 500, 600, 700].map(y =>
+                <circle key={`${x}-${y}`} cx={x} cy={y} r="2.5" />
               )
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula Watermark - "Equation of Precision" */}
-          <g opacity="0.08" pointerEvents="none">
-            {/* Formula: A = P(1 + r/n)^(nt) positioned for desktop prominence */}
-            <text x="60" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="2" fontWeight="300">
+          {/* Compound Interest Formula Watermark - Top Right Placement */}
+          {/* Desktop Formula - Top Right */}
+          <g opacity="0.25" pointerEvents="none" className="hidden md:block">
+            {/* Formula: A = P(1 + r/n)^(nt) - Desktop positioning */}
+            <text x="850" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="1" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="340" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <text x="1070" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               r
             </text>
-            <line x1="335" y1="720" x2="380" y2="720" stroke="#2563eb" strokeWidth="1" />
-            <text x="350" y="755" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <line x1="1065" y1="105" x2="1105" y2="105" stroke="#64748b" strokeWidth="1.5" />
+            <text x="1080" y="128" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               n
             </text>
-            <text x="395" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <text x="1115" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               )
             </text>
             
-            {/* Superscript nt - Positioned for visual balance */}
-            <text x="410" y="670" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            {/* Superscript nt - Desktop */}
+            <text x="1128" y="70" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              nt
+            </text>
+          </g>
+
+          {/* Mobile Formula - Adjusted for smaller screens */}
+          <g opacity="0.25" pointerEvents="none" className="md:hidden">
+            {/* Formula: A = P(1 + r/n)^(nt) - Mobile positioning */}
+            <text x="750" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
+              A = P(1 +
+            </text>
+            <text x="960" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              r
+            </text>
+            <line x1="955" y1="122" x2="985" y2="122" stroke="#64748b" strokeWidth="1" />
+            <text x="970" y="142" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              n
+            </text>
+            <text x="995" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+              )
+            </text>
+            
+            {/* Superscript nt - Mobile */}
+            <text x="1008" y="92" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               nt
             </text>
           </g>
