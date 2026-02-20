@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Calculator, TrendingUp, Shield, Clock } from 'lucide-react';
+import { ArrowRight, Check, Calculator, TrendingUp, Shield, Clock, Hexagon } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-white -mt-1 md:-mt-2 lg:-mt-3">
-      {/* Mathematical SVG Background */}
+    <section className="relative overflow-hidden bg-slate-900 -mt-1 md:-mt-2 lg:-mt-3">
+      {/* Subtle Geometric Grid Pattern Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute right-0 top-0 w-full h-full"
@@ -13,15 +13,8 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          <defs>
-            <linearGradient id="mathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.08" />
-              <stop offset="100%" stopColor="#1E40AF" stopOpacity="0.04" />
-            </linearGradient>
-          </defs>
-          
-          {/* Grid Lines */}
-          <g stroke="#2563EB" strokeWidth="0.5" opacity="0.12">
+          {/* Grid Lines - Subtle Blue Tint */}
+          <g stroke="#2563EB" strokeWidth="0.5" opacity="0.1">
             {Array.from({ length: 20 }).map((_, i) => (
               <line key={`v-${i}`} x1={100 + i * 40} y1="0" x2={100 + i * 40} y2="600" />
             ))}
@@ -30,154 +23,75 @@ const Hero: React.FC = () => {
             ))}
           </g>
           
-          {/* Formula Fragments */}
-          <g fill="#2563EB" opacity="0.15" fontFamily="system-ui" fontSize="14">
-            <text x="550" y="120">P = L[c(1 + c)ⁿ]</text>
-            <text x="620" y="160">A = P(1 + r/n)ⁿᵗ</text>
-            <text x="500" y="200">FV = PV × (1 + r)ⁿ</text>
-          </g>
-          
-          {/* Mathematical Symbols */}
-          <g fill="#2563EB" opacity="0.12">
-            <text x="680" y="280" fontSize="48" fontFamily="system-ui" fontWeight="300">%</text>
-            <text x="520" y="320" fontSize="36" fontFamily="system-ui" fontWeight="300">+</text>
-            <text x="580" y="360" fontSize="36" fontFamily="system-ui" fontWeight="300">−</text>
-            <text x="640" y="400" fontSize="32" fontFamily="system-ui" fontWeight="300">×</text>
-            <text x="720" y="440" fontSize="32" fontFamily="system-ui" fontWeight="300">÷</text>
-            <text x="560" y="480" fontSize="32" fontFamily="system-ui" fontWeight="300">=</text>
-          </g>
-          
-          {/* Subtle Graph Lines */}
-          <g stroke="#2563EB" strokeWidth="1" fill="none" opacity="0.1">
-            <path d="M 500 500 Q 600 450 650 400 T 750 300" />
-            <path d="M 480 520 Q 580 480 630 420 T 720 320" strokeDasharray="4 4" />
-          </g>
-          
-          {/* Geometric Shapes */}
-          <g stroke="#2563EB" strokeWidth="1" fill="none" opacity="0.08">
+          {/* Geometric Shapes - Very Subtle */}
+          <g stroke="#2563EB" strokeWidth="1" fill="none" opacity="0.05">
             <circle cx="700" cy="150" r="40" />
             <rect x="480" y="380" width="60" height="60" transform="rotate(15 510 410)" />
             <polygon points="600,520 630,480 660,520" />
-          </g>
-          
-          {/* Dotted Pattern */}
-          <g fill="#2563EB" opacity="0.06">
-            {Array.from({ length: 8 }).map((_, i) => 
-              Array.from({ length: 8 }).map((_, j) => (
-                <circle 
-                  key={`${i}-${j}`}
-                  cx={450 + i * 45} 
-                  cy={250 + j * 45} 
-                  r="2" 
-                />
-              ))
-            )}
           </g>
         </svg>
       </div>
 
       {/* Content */}
       <div className="metric-container relative z-10">
-        <div className="py-3 md:py-4 lg:py-5">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Column - Content */}
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
-                <Calculator className="w-4 h-4 text-[#2563eb]" />
-                <span className="text-sm font-bold text-[#2563eb]">
-                  Free Financial Tools
-                </span>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-4">
-                Free Financial Calculators for{' '}
-                <span className="text-[#2563eb]">Smarter Decisions</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-slate-600 mb-6 leading-relaxed">
-                Plan mortgages, taxes, retirement, and investments with accurate, 
-                instant tools. Professional-grade calculations for everyone.
-              </p>
-              
-              {/* Trust Row - 4 Benefits */}
-              <div className="flex flex-wrap gap-x-6 gap-y-3 mb-6 justify-center lg:justify-start">
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  100% Free
-                </div>
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  No Signup Required
-                </div>
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  Accurate & Instant
-                </div>
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  Pro PDF Reports
-                </div>
-              </div>
-              
-              {/* CTAs */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <Link
-                  to="/us"
-                  className="metric-btn-accent"
-                >
-                  Explore US Calculators
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-                <Link
-                  to="/blog"
-                  className="metric-btn-secondary"
-                >
-                  Read Financial Guides
-                </Link>
-              </div>
+        <div className="py-12 md:py-16 lg:py-20">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* "Institutional Grade" Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-[#2563eb] rounded-full mb-8">
+              <Hexagon className="w-3.5 h-3.5 text-[#2563eb]" />
+              <span className="text-xs font-bold text-[#2563eb] uppercase tracking-wider">
+                Institutional Grade Calculators
+              </span>
             </div>
             
-            {/* Right Column - Feature Cards */}
-            <div className="hidden lg:grid grid-cols-2 gap-4">
-              <div className="space-y-4 mt-8">
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-slate-100">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                    <TrendingUp className="w-5 h-5 text-[#2563eb]" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-1">Mortgage Calculator</h3>
-                  <p className="text-sm text-slate-600">Calculate PITI payments accurately</p>
+            {/* Main Headline - Serif with Mixed Colors */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 font-serif">
+              <span className="text-white">Financial Clarity,</span>
+              <br className="hidden md:block" />
+              <span className="text-[#2563eb] italic">Precisely Calculated</span>
+            </h1>
+            
+            {/* Sub-Headline */}
+            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+              Professional-grade financial tools trusted by analysts and investors. Model your wealth with the precision of a private banking desk.
+            </p>
+            
+            {/* CTAs */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              <Link
+                to="/us"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Explore All Tools
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg border-2 border-white text-white font-bold hover:bg-white hover:text-slate-900 transition-all duration-200"
+              >
+                Read Financial Guides
+              </Link>
+            </div>
+
+            {/* Trust & Accuracy Endorsement Bar */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 pt-6 border-t border-slate-700 border-opacity-40">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 text-[#2563eb]">
+                  <Check className="w-5 h-5" />
                 </div>
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-slate-100">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                    <Shield className="w-5 h-5 text-green-600" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-1">401(k) Planner</h3>
-                  <p className="text-sm text-slate-600">Plan your retirement savings</p>
-                </div>
+                <span className="text-sm font-medium text-slate-300">Bank-Grade Accuracy</span>
               </div>
-              <div className="space-y-4">
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-slate-100">
-                  <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center mb-3">
-                    <Calculator className="w-5 h-5 text-violet-600" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-1">Tax Estimator</h3>
-                  <p className="text-sm text-slate-600">Estimate federal & state taxes</p>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 text-[#2563eb]">
+                  <Check className="w-5 h-5" />
                 </div>
-                <div className="bg-white rounded-xl p-5 shadow-lg border border-slate-100">
-                  <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mb-3">
-                    <Clock className="w-5 h-5 text-amber-600" />
-                  </div>
-                  <h3 className="font-bold text-slate-900 mb-1">Compound Interest</h3>
-                  <p className="text-sm text-slate-600">See your money grow over time</p>
+                <span className="text-sm font-medium text-slate-300">No Data Tracking</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 text-[#2563eb]">
+                  <Check className="w-5 h-5" />
                 </div>
+                <span className="text-sm font-medium text-slate-300">Instant PDF Reports</span>
               </div>
             </div>
           </div>
