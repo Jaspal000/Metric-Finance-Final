@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react';
+import { ArrowRight, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
