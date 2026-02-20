@@ -47,49 +47,49 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula - Bottom Right Empty Space (Desktop) */}
-          <g opacity="0.18" pointerEvents="none" className="hidden md:block">
-            {/* Formula: A = P(1 + r/n)^(nt) - Positioned bottom-right away from headline */}
-            {/* Desktop: placed in lower right area of hero section */}
-            <text x="950" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
+          {/* Compound Interest Formula - Beside "Precisely Calculated" (Desktop) */}
+          <g opacity="0.35" pointerEvents="none" className="hidden md:block">
+            {/* Formula: A = P(1 + r/n)^(nt) - Positioned to right of headline text */}
+            {/* Desktop: placed beside "Precisely Calculated" in top-right area */}
+            <text x="920" y="230" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="0.5" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="1100" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1080" y="230" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               r
             </text>
-            <line x1="1095" y1="662" x2="1125" y2="662" stroke="#64748b" strokeWidth="1" />
-            <text x="1110" y="678" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <line x1="1075" y1="242" x2="1105" y2="242" stroke="#2563eb" strokeWidth="1" />
+            <text x="1090" y="258" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               n
             </text>
-            <text x="1140" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1120" y="230" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="1153" y="636" fontSize="12" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1133" y="216" fontSize="13" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               nt
             </text>
           </g>
 
-          {/* Mobile Formula - Bottom Right Corner */}
-          <g opacity="0.15" pointerEvents="none" className="md:hidden">
-            {/* Mobile version in bottom-right corner away from content */}
-            <text x="750" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.4" fontWeight="300">
+          {/* Mobile Formula - Below "Institutional Grade Calculators" Badge */}
+          <g opacity="0.40" pointerEvents="none" className="md:hidden">
+            {/* Mobile version below badge, centered and visible */}
+            <text x="280" y="180" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="0.4" fontWeight="300" textAnchor="middle">
               A = P(1 +
             </text>
-            <text x="870" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="420" y="180" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               r
             </text>
-            <line x1="865" y1="730" x2="895" y2="730" stroke="#64748b" strokeWidth="1.2" />
-            <text x="880" y="743" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <line x1="415" y1="190" x2="445" y2="190" stroke="#2563eb" strokeWidth="1.2" />
+            <text x="430" y="203" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               n
             </text>
-            <text x="910" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="460" y="180" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="923" y="709" fontSize="10" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="473" y="169" fontSize="12" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               nt
             </text>
           </g>
