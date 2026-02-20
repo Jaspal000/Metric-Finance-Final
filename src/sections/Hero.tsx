@@ -47,49 +47,26 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula Watermark - Top Right Placement */}
-          {/* Desktop Formula - Top Right */}
-          <g opacity="0.25" pointerEvents="none" className="hidden md:block">
-            {/* Formula: A = P(1 + r/n)^(nt) - Desktop positioning */}
-            <text x="850" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="1" fontWeight="300">
+          {/* Compound Interest Formula - Right of Badge (Desktop) */}
+          <g opacity="0.25" pointerEvents="none">
+            {/* Formula: A = P(1 + r/n)^(nt) - Positioned to right of badge */}
+            {/* Desktop: x="680" y="30" for right side of badge */}
+            <text x="680" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="1070" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="850" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               r
             </text>
-            <line x1="1065" y1="105" x2="1105" y2="105" stroke="#64748b" strokeWidth="1.5" />
-            <text x="1080" y="128" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <line x1="845" y1="44" x2="875" y2="44" stroke="#64748b" strokeWidth="1" />
+            <text x="860" y="60" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               n
             </text>
-            <text x="1115" y="90" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="890" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               )
             </text>
             
-            {/* Superscript nt - Desktop */}
-            <text x="1128" y="70" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              nt
-            </text>
-          </g>
-
-          {/* Mobile Formula - Adjusted for smaller screens */}
-          <g opacity="0.25" pointerEvents="none" className="md:hidden">
-            {/* Formula: A = P(1 + r/n)^(nt) - Mobile positioning */}
-            <text x="750" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
-              A = P(1 +
-            </text>
-            <text x="960" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              r
-            </text>
-            <line x1="955" y1="122" x2="985" y2="122" stroke="#64748b" strokeWidth="1" />
-            <text x="970" y="142" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              n
-            </text>
-            <text x="995" y="110" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              )
-            </text>
-            
-            {/* Superscript nt - Mobile */}
-            <text x="1008" y="92" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            {/* Superscript nt */}
+            <text x="903" y="18" fontSize="13" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               nt
             </text>
           </g>
@@ -98,7 +75,7 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="metric-container relative z-10">
-        <div className="py-12 md:py-16 lg:py-20">
+        <div className="py-6 md:py-8 lg:py-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* "Institutional Grade" Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#2563eb] rounded-full mb-8">
