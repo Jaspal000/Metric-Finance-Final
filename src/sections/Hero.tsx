@@ -13,8 +13,8 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* 3x3 Mathematical Grid - Light Gray Watermark (5-10% opacity) */}
-          <g stroke="#cbd5e1" strokeWidth="1" opacity="0.08">
+          {/* 3x3 Mathematical Grid - Ultra-Thin Strokes (0.5px) for Premium Aesthetic */}
+          <g stroke="#cbd5e1" strokeWidth="0.5" opacity="0.05">
             {/* Vertical lines */}
             <line x1="200" y1="0" x2="200" y2="800" />
             <line x1="400" y1="0" x2="400" y2="800" />
@@ -37,25 +37,25 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula Watermark - Mathematical Precision */}
+          {/* Compound Interest Formula Watermark - "Equation of Precision" */}
           <g opacity="0.08" pointerEvents="none">
-            {/* Formula: A = P(1 + r/n)^(nt) - "Equation of Precision" */}
-            <text x="50" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="1">
+            {/* Formula: A = P(1 + r/n)^(nt) positioned for desktop prominence */}
+            <text x="60" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="2" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="320" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+            <text x="340" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               r
             </text>
-            <line x1="320" y1="735" x2="360" y2="735" stroke="#2563eb" strokeWidth="1.5" />
-            <text x="328" y="765" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+            <line x1="335" y1="720" x2="380" y2="720" stroke="#2563eb" strokeWidth="1" />
+            <text x="350" y="755" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               n
             </text>
-            <text x="370" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+            <text x="395" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               )
             </text>
             
-            {/* Superscript nt */}
-            <text x="385" y="695" fontSize="22" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+            {/* Superscript nt - Positioned for visual balance */}
+            <text x="410" y="670" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
               nt
             </text>
           </g>
