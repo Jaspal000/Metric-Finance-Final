@@ -58,51 +58,44 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 border-0 w-full m-0 p-0 relative">
-      {/* Geometric Grid Pattern Background */}
+    <footer className="bg-white border-t border-slate-200 w-full m-0 p-0 relative">
+      {/* Light Gray Grid Watermark - Subtle Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute inset-0 w-full h-full"
-          viewBox="0 0 800 600"
+          viewBox="0 0 1200 400"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* Grid Lines - Subtle Blue Tint */}
-          <g stroke="#2563EB" strokeWidth="0.5" opacity="0.08">
+          {/* Light Gray Grid Lines */}
+          <g stroke="#f1f5f9" strokeWidth="1" opacity="0.4">
             {Array.from({ length: 20 }).map((_, i) => (
-              <line key={`v-${i}`} x1={100 + i * 40} y1="0" x2={100 + i * 40} y2="600" />
+              <line key={`v-${i}`} x1={50 + i * 60} y1="0" x2={50 + i * 60} y2="400" />
             ))}
-            {Array.from({ length: 15 }).map((_, i) => (
-              <line key={`h-${i}`} x1="0" y1={50 + i * 40} x2="800" y2={50 + i * 40} />
+            {Array.from({ length: 8 }).map((_, i) => (
+              <line key={`h-${i}`} x1="0" y1={50 + i * 50} x2="1200" y2={50 + i * 50} />
             ))}
-          </g>
-          
-          {/* Geometric Shapes - Very Subtle */}
-          <g stroke="#2563EB" strokeWidth="1" fill="none" opacity="0.04">
-            <circle cx="700" cy="150" r="40" />
-            <rect x="480" y="380" width="60" height="60" transform="rotate(15 510 410)" />
-            <polygon points="600,520 630,480 660,520" />
           </g>
         </svg>
       </div>
 
       {/* Email Subscription */}
-      <div className="metric-container py-12 border-b border-slate-700 relative z-10">
+      <div className="metric-container py-12 border-b border-slate-200 relative z-10">
         <div className="max-w-xl mx-auto text-center">
-          <h3 className="text-xl font-bold text-white mb-2">
+          <h3 className="text-xl font-bold text-slate-950 mb-2">
             Get Financial Tips & Updates
           </h3>
-          <p className="text-slate-300 mb-6">
+          <p className="text-slate-600 mb-6">
             Subscribe to receive our free Financial Planning Checklist and weekly insights.
           </p>
 
           {subscribed ? (
-            <div className="bg-blue-500/10 border border-[#2563eb] rounded-lg p-5 flex items-center justify-center gap-3">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 flex items-center justify-center gap-3">
               <div className="w-9 h-9 bg-[#2563eb] rounded-full flex items-center justify-center flex-shrink-0">
                 <Check className="w-5 h-5 text-white" />
               </div>
-              <p className="text-sm font-medium text-blue-300">{successMessage}</p>
+              <p className="text-sm font-medium text-blue-600">{successMessage}</p>
             </div>
           ) : (
             <>
@@ -114,7 +107,7 @@ const Footer: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full pl-10 pr-4 py-3 min-h-[48px] rounded-lg border border-slate-600 bg-slate-800/50 backdrop-blur text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
+                    className="w-full pl-10 pr-4 py-3 min-h-[48px] rounded-lg border border-slate-300 bg-white text-slate-950 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
                     required
                     disabled={isSubmitting}
                   />
@@ -139,9 +132,9 @@ const Footer: React.FC = () => {
                 </button>
               </form>
               {error && (
-                <p className="text-xs text-red-400 mt-2 text-center">{error}</p>
+                <p className="text-xs text-red-600 mt-2 text-center">{error}</p>
               )}
-              <p className="text-xs text-slate-400 mt-3 flex items-center justify-center gap-1">
+              <p className="text-xs text-slate-500 mt-3 flex items-center justify-center gap-1">
                 <Shield size={12} />
                 We respect your privacy. Unsubscribe anytime.
               </p>
@@ -156,15 +149,15 @@ const Footer: React.FC = () => {
           {/* Brand Column - Upscaled Logo (25% larger) */}
           <div className="col-span-2 flex flex-col gap-y-4">
             <span className="md:hidden block scale-110 origin-top-left">
-              <Logo variant="full" size="md" className="brightness-0 invert" />
+              <Logo variant="full" size="md" />
             </span>
             <span className="hidden md:block scale-125 origin-top-left">
-              <Logo variant="full" size="lg" className="brightness-0 invert" />
+              <Logo variant="full" size="lg" />
             </span>
-            <p className="text-slate-300 text-sm max-w-md leading-relaxed">
+            <p className="text-slate-600 text-sm max-w-md leading-relaxed">
               Professional-grade financial tools trusted by analysts and investors. Model your wealth with the precision of a private banking desk.
             </p>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               © {new Date().getFullYear()} Metric Finance. All rights reserved.
             </p>
           </div>
@@ -172,7 +165,7 @@ const Footer: React.FC = () => {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-bold text-white mb-4 text-sm">
+              <h4 className="font-bold text-slate-950 mb-4 text-sm">
                 {category}
               </h4>
               <ul className="space-y-2">
@@ -180,7 +173,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-sm text-slate-400 hover:text-[#2563eb] transition-colors"
+                      className="text-sm text-slate-600 hover:text-[#2563eb] transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -193,9 +186,9 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-slate-950/50 backdrop-blur border-t border-slate-700 relative z-10">
+      <div className="bg-slate-50 border-t border-slate-200 relative z-10">
         <div className="metric-container py-6">
-          <p className="text-xs text-slate-400 text-center">
+          <p className="text-xs text-slate-500 text-center">
             <strong>Disclaimer:</strong> All calculations are estimates for informational purposes only 
             and do not constitute financial advice. Please consult a qualified financial advisor 
             for personalized guidance.
