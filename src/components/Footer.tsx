@@ -154,14 +154,14 @@ const Footer: React.FC = () => {
       <div className="metric-container py-12 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           {/* Brand Column - Upscaled Logo (25% larger) */}
-          <div className="col-span-2 flex flex-col">
-            <span className="md:hidden block scale-110 origin-top-left mb-4">
+          <div className="col-span-2 flex flex-col gap-y-4">
+            <span className="md:hidden block scale-110 origin-top-left">
               <Logo variant="full" size="md" className="brightness-0 invert" />
             </span>
-            <span className="hidden md:block scale-125 origin-top-left mb-4">
+            <span className="hidden md:block scale-125 origin-top-left">
               <Logo variant="full" size="lg" className="brightness-0 invert" />
             </span>
-            <p className="text-slate-300 text-sm mb-4 max-w-md leading-relaxed">
+            <p className="text-slate-300 text-sm max-w-md leading-relaxed">
               Professional-grade financial tools trusted by analysts and investors. Model your wealth with the precision of a private banking desk.
             </p>
             <p className="text-xs text-slate-400">

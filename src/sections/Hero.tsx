@@ -80,7 +80,7 @@ const Hero: React.FC = () => {
             </p>
             
             {/* CTAs */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Link
                 to="/us"
                 className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
@@ -96,22 +96,22 @@ const Hero: React.FC = () => {
               </Link>
             </div>
 
-            {/* Trust & Accuracy Endorsement Bar */}
-            <div className="flex flex-wrap justify-center gap-6 md:gap-10 pt-6 border-t border-slate-700 border-opacity-40">
+            {/* Trust & Accuracy Endorsement Bar - Lifted Above-the-Fold */}
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 md:gap-10 mt-8">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 text-[#2563eb]">
+                <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
                   <Check className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">Bank-Grade Accuracy</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 text-[#2563eb]">
+                <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
                   <Check className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">No Data Tracking</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 text-[#2563eb]">
+                <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
                   <Check className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">Instant PDF Reports</span>
