@@ -29,6 +29,29 @@ const Hero: React.FC = () => {
             <rect x="480" y="380" width="60" height="60" transform="rotate(15 510 410)" />
             <polygon points="600,520 630,480 660,520" />
           </g>
+
+          {/* Compound Interest Formula Watermark - "Equation of Precision" */}
+          <g opacity="0.08" pointerEvents="none">
+            {/* Formula: A = P(1 + r/n)^(nt) */}
+            <text x="80" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563EB" letterSpacing="2">
+              A = P(1 +
+            </text>
+            <text x="320" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563EB">
+              r
+            </text>
+            <line x1="320" y1="135" x2="350" y2="135" stroke="#2563EB" strokeWidth="1" />
+            <text x="325" y="160" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563EB">
+              n
+            </text>
+            <text x="360" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563EB">
+              )
+            </text>
+            
+            {/* Superscript nt */}
+            <text x="375" y="100" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563EB">
+              nt
+            </text>
+          </g>
         </svg>
       </div>
 
