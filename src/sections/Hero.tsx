@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
           preserveAspectRatio="xMidYMid slice"
         >
           {/* 3x3 Mathematical Grid - Ultra-Thin Strokes (0.5px) for Premium Aesthetic */}
-          <g stroke="#cbd5e1" strokeWidth="0.5" opacity="0.05">
+          <g stroke="#cbd5e1" strokeWidth="0.5" opacity="0.15">
             {/* Vertical lines */}
             <line x1="200" y1="0" x2="200" y2="800" />
             <line x1="400" y1="0" x2="400" y2="800" />
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           </g>
           
           {/* Grid intersection points - subtle circles */}
-          <g fill="#cbd5e1" opacity="0.05">
+          <g fill="#cbd5e1" opacity="0.12">
             {[200, 400, 600, 800, 1000].map(x =>
               [200, 400, 600].map(y =>
                 <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
           </g>
 
           {/* Compound Interest Formula Watermark - "Equation of Precision" */}
-          <g opacity="0.08" pointerEvents="none">
+          <g opacity="0.15" pointerEvents="none">
             {/* Formula: A = P(1 + r/n)^(nt) positioned for desktop prominence */}
             <text x="60" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="2" fontWeight="300">
               A = P(1 +
