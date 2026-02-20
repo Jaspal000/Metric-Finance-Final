@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Calculator, Hexagon } from 'lucide-react';
+import { ArrowRight, Check, Hexagon } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
