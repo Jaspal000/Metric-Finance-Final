@@ -56,16 +56,16 @@ const Region: React.FC = () => {
       
       <main>
         {/* Hero */}
-        <section className="bg-slate-900 py-16 md:py-24">
+        <section className="bg-slate-900 py-12 md:py-16">
           <div className="metric-container">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-4">
                 <Globe className="w-4 h-4 text-blue-400" />
                 <span className="text-sm font-medium text-blue-200">
                   {regionConfig.flag} {regionConfig.name}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 {content.title}
               </h1>
               <p className="text-xl text-slate-300 leading-relaxed">
@@ -78,7 +78,7 @@ const Region: React.FC = () => {
         {/* Calculators Grid */}
         <section className="metric-section bg-white">
           <div className="metric-container">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-slate-900">
                 Available Calculators
               </h2>
@@ -102,7 +102,7 @@ const Region: React.FC = () => {
         {/* Related Resources */}
         <section className="metric-section bg-slate-50">
           <div className="metric-container">
-            <h2 className="text-2xl font-bold text-slate-900 mb-8">
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">
               Related Resources
             </h2>
             
