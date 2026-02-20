@@ -120,9 +120,9 @@ const Navigation: React.FC = () => {
   return (
     <>
       {/* Main Header - Seamless Integration with Hero */}
-      <header className="sticky top-0 z-50 w-full bg-slate-950/40 backdrop-blur-lg border-0">
-        <div className="metric-container">
-          <nav className="flex items-center justify-between h-16 md:h-20">
+      <header className="sticky top-0 z-50 w-screen bg-slate-900 border-0 left-0 right-0">
+        <div className="flex items-center justify-center">
+          <nav className="flex items-center justify-between h-16 md:h-20 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
             {/* Logo - White for maximum contrast */}
             <Link to="/" className="flex-shrink-0">
               <span className="md:hidden">
