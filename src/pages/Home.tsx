@@ -107,53 +107,42 @@ const Home: React.FC = () => {
 
           {/* Content */}
           <div className="relative z-10 metric-container text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
               Ready to Make Smarter Financial Decisions?
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10">
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 font-medium">
               Start exploring our free calculators and take control of your financial future today.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Link
                 to="/us"
-                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Explore US Calculators
               </Link>
               <Link
                 to="/blog"
-                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg border-2 border-slate-300 text-slate-900 font-bold hover:border-slate-400 hover:bg-slate-50 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg border-2 border-slate-300 text-slate-900 font-bold hover:border-slate-400 hover:bg-slate-50 transition-all duration-200"
               >
                 Read Financial Guides
               </Link>
             </div>
 
-            {/* 1px Separator Line */}
-            <div className="w-full max-w-md mx-auto mb-8">
-              <div className="h-px bg-slate-200"></div>
-            </div>
-
             {/* Trust & Accuracy Endorsement Bar */}
-            <div className="flex flex-wrap justify-center gap-8 md:gap-12 max-w-3xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 pt-8 border-t border-slate-300 border-opacity-10">
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
-                  <Shield className="w-6 h-6" />
-                </div>
-                <span className="text-xs text-slate-600 font-medium">Bank-Grade Accuracy</span>
+                <Shield className="w-5 h-5 text-[#2563eb] flex-shrink-0" />
+                <span className="text-xs font-medium text-slate-400">Bank-Grade Accuracy</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
-                  <Lock className="w-6 h-6" />
-                </div>
-                <span className="text-xs text-slate-600 font-medium">No Data Tracking</span>
+                <Lock className="w-5 h-5 text-[#2563eb] flex-shrink-0" />
+                <span className="text-xs font-medium text-slate-400">No Data Tracking</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 text-[#2563eb] flex-shrink-0">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <span className="text-xs text-slate-600 font-medium">10+ Regional Tools</span>
+                <Globe className="w-5 h-5 text-[#2563eb] flex-shrink-0" />
+                <span className="text-xs font-medium text-slate-400">10+ Regional Tools</span>
               </div>
             </div>
           </div>
