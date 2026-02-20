@@ -4,7 +4,7 @@ import { ArrowRight, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react
 const Hero: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-white w-full m-0 p-0">
-      {/* Mathematical 3x3 Grid Watermark - Light Gray (#f1f5f9) */}
+      {/* Mathematical 3x3 Grid Watermark - Premium Institutional Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <svg
           className="absolute inset-0 w-full h-full"
@@ -13,8 +13,8 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* 3x3 Mathematical Grid - Ultra-Thin Strokes (0.5px) for Premium Aesthetic */}
-          <g stroke="#cbd5e1" strokeWidth="0.5" opacity="0.15">
+          {/* 3x3 Mathematical Grid - Slate-300 for Visibility */}
+          <g stroke="#94a3b8" strokeWidth="1" opacity="0.12">
             {/* Vertical lines */}
             <line x1="200" y1="0" x2="200" y2="800" />
             <line x1="400" y1="0" x2="400" y2="800" />
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           </g>
           
           {/* Grid intersection points - subtle circles */}
-          <g fill="#cbd5e1" opacity="0.12">
+          <g fill="#94a3b8" opacity="0.10">
             {[200, 400, 600, 800, 1000].map(x =>
               [200, 400, 600].map(y =>
                 <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />
@@ -38,24 +38,24 @@ const Hero: React.FC = () => {
           </g>
 
           {/* Compound Interest Formula Watermark - "Equation of Precision" */}
-          <g opacity="0.15" pointerEvents="none">
+          <g opacity="0.20" pointerEvents="none">
             {/* Formula: A = P(1 + r/n)^(nt) positioned for desktop prominence */}
-            <text x="60" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="2" fontWeight="300">
+            <text x="60" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="2" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="340" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <text x="340" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               r
             </text>
-            <line x1="335" y1="720" x2="380" y2="720" stroke="#2563eb" strokeWidth="1" />
-            <text x="350" y="755" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <line x1="335" y1="720" x2="380" y2="720" stroke="#64748b" strokeWidth="1.5" />
+            <text x="350" y="755" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               n
             </text>
-            <text x="395" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <text x="395" y="700" fontSize="40" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt - Positioned for visual balance */}
-            <text x="410" y="670" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" fontWeight="300">
+            <text x="410" y="670" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               nt
             </text>
           </g>
