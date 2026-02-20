@@ -47,49 +47,49 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula - Desktop Version (Right of Badge) */}
-          <g opacity="0.2" pointerEvents="none" className="hidden md:block">
-            {/* Formula: A = P(1 + r/n)^(nt) - Positioned to right of badge */}
-            {/* Desktop: x="680" y="30" for right side of badge */}
-            <text x="680" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
+          {/* Compound Interest Formula - Bottom Right Empty Space (Desktop) */}
+          <g opacity="0.18" pointerEvents="none" className="hidden md:block">
+            {/* Formula: A = P(1 + r/n)^(nt) - Positioned bottom-right away from headline */}
+            {/* Desktop: placed in lower right area of hero section */}
+            <text x="950" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="850" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1100" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               r
             </text>
-            <line x1="845" y1="44" x2="875" y2="44" stroke="#64748b" strokeWidth="1" />
-            <text x="860" y="60" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <line x1="1095" y1="662" x2="1125" y2="662" stroke="#64748b" strokeWidth="1" />
+            <text x="1110" y="678" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               n
             </text>
-            <text x="890" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1140" y="650" fontSize="16" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="903" y="18" fontSize="13" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="1153" y="636" fontSize="12" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               nt
             </text>
           </g>
 
-          {/* Mobile Formula - Centered and Larger */}
+          {/* Mobile Formula - Bottom Right Corner */}
           <g opacity="0.15" pointerEvents="none" className="md:hidden">
-            {/* Mobile version centered in middle-top area */}
-            <text x="600" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300" textAnchor="middle">
+            {/* Mobile version in bottom-right corner away from content */}
+            <text x="750" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.4" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="800" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="870" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               r
             </text>
-            <line x1="790" y1="140" x2="830" y2="140" stroke="#64748b" strokeWidth="1.5" />
-            <text x="810" y="165" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <line x1="865" y1="730" x2="895" y2="730" stroke="#64748b" strokeWidth="1.2" />
+            <text x="880" y="743" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               n
             </text>
-            <text x="850" y="120" fontSize="28" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="910" y="720" fontSize="14" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="875" y="95" fontSize="20" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
+            <text x="923" y="709" fontSize="10" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
               nt
             </text>
           </g>
@@ -109,7 +109,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Main Headline - Serif with Mixed Colors */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.2] mb-6 font-serif overflow-visible">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.3] mb-6 font-serif overflow-visible">
               <span className="text-slate-950">Financial Clarity,</span>
               <br className="hidden md:block" />
               <span className="text-[#2563eb] italic">Precisely Calculated</span>
