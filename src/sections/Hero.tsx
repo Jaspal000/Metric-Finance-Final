@@ -13,8 +13,8 @@ const Hero: React.FC = () => {
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* 3x3 Mathematical Grid - Light Gray */}
-          <g stroke="#f1f5f9" strokeWidth="1" opacity="0.6">
+          {/* 3x3 Mathematical Grid - Light Gray Watermark (5-10% opacity) */}
+          <g stroke="#cbd5e1" strokeWidth="1" opacity="0.08">
             {/* Vertical lines */}
             <line x1="200" y1="0" x2="200" y2="800" />
             <line x1="400" y1="0" x2="400" y2="800" />
@@ -29,12 +29,35 @@ const Hero: React.FC = () => {
           </g>
           
           {/* Grid intersection points - subtle circles */}
-          <g fill="#cbd5e1" opacity="0.3">
+          <g fill="#cbd5e1" opacity="0.05">
             {[200, 400, 600, 800, 1000].map(x =>
               [200, 400, 600].map(y =>
                 <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />
               )
             ).flat()}
+          </g>
+
+          {/* Compound Interest Formula Watermark - Mathematical Precision */}
+          <g opacity="0.08" pointerEvents="none">
+            {/* Formula: A = P(1 + r/n)^(nt) - "Equation of Precision" */}
+            <text x="50" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb" letterSpacing="1">
+              A = P(1 +
+            </text>
+            <text x="320" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+              r
+            </text>
+            <line x1="320" y1="735" x2="360" y2="735" stroke="#2563eb" strokeWidth="1.5" />
+            <text x="328" y="765" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+              n
+            </text>
+            <text x="370" y="720" fontSize="32" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+              )
+            </text>
+            
+            {/* Superscript nt */}
+            <text x="385" y="695" fontSize="22" fontFamily="Georgia, serif" fontStyle="italic" fill="#2563eb">
+              nt
+            </text>
           </g>
         </svg>
       </div>
