@@ -26,14 +26,16 @@ export const GeneratePDF: React.FC<GeneratePDFProps> = ({
     setError('');
 
     try {
+      console.log('[v0] Starting PDF generation with data:', { calculatorName, resultsDataLength: resultsData.length });
       await generatePDF({
         calculatorName,
         resultsData,
       });
+      console.log('[v0] PDF generation successful');
       setGenerated(true);
       setIsGenerating(false);
     } catch (err) {
-      console.error('[v0] GeneratePDF error:', err);
+      console.error('[v0] GeneratePDF component error:', err);
       setError(err instanceof Error ? err.message : 'Failed to generate PDF');
       setIsGenerating(false);
     }
