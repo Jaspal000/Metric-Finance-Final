@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Hexagon } from 'lucide-react';
+import { ArrowRight, Hexagon, ShieldCheck, EyeOff, FileText } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -97,22 +97,22 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Trust & Accuracy Endorsement Bar - Lifted Above-the-Fold */}
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 md:gap-10 mt-8">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 md:gap-10 mt-8 px-4">
+              <div className="flex items-center gap-2 whitespace-nowrap">
                 <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
-                  <Check className="w-5 h-5" />
+                  <ShieldCheck className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">Bank-Grade Accuracy</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 whitespace-nowrap">
                 <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
-                  <Check className="w-5 h-5" />
+                  <EyeOff className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">No Data Tracking</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 whitespace-nowrap">
                 <div className="w-5 h-5 text-[#2563eb] flex-shrink-0">
-                  <Check className="w-5 h-5" />
+                  <FileText className="w-5 h-5" />
                 </div>
                 <span className="text-sm font-medium text-slate-300">Instant PDF Reports</span>
               </div>
