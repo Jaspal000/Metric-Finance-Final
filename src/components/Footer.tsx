@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 border-0">
+    <footer className="bg-slate-900 border-0 w-screen -ml-[calc((100vw-100%)/2)]">
       {/* Geometric Grid Pattern Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true" style={{ position: 'relative' }}>
         <svg
@@ -154,16 +154,15 @@ const Footer: React.FC = () => {
       <div className="metric-container py-12 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           {/* Brand Column - Upscaled Logo (25% larger) */}
-          <div className="col-span-2">
-            <span className="md:hidden block scale-110 origin-top-left mb-2">
+          <div className="col-span-2 flex flex-col">
+            <span className="md:hidden block scale-110 origin-top-left mb-4">
               <Logo variant="full" size="md" className="brightness-0 invert" />
             </span>
-            <span className="hidden md:block scale-125 origin-top-left mb-2">
+            <span className="hidden md:block scale-125 origin-top-left mb-4">
               <Logo variant="full" size="lg" className="brightness-0 invert" />
             </span>
-            <p className="text-slate-300 text-sm mb-4 max-w-xs">
-              Precision-driven financial decision tools. Plan mortgages, taxes, 
-              retirement, and investments with accurate, instant calculators.
+            <p className="text-slate-300 text-sm mb-4 max-w-md leading-relaxed">
+              Professional-grade financial tools trusted by analysts and investors. Model your wealth with the precision of a private banking desk.
             </p>
             <p className="text-xs text-slate-400">
               © {new Date().getFullYear()} Metric Finance. All rights reserved.
