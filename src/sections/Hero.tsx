@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="metric-container relative z-10">
-        <div className="py-3 md:py-4 lg:py-6">
+        <div className="py-3 md:py-4 lg:py-5">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Column - Content */}
             <div className="max-w-2xl">
@@ -89,18 +89,18 @@ const Hero: React.FC = () => {
                 </span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-4">
                 Free Financial Calculators for{' '}
                 <span className="text-[#2563eb]">Smarter Decisions</span>
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-slate-600 mb-6 leading-relaxed">
                 Plan mortgages, taxes, retirement, and investments with accurate, 
                 instant tools. Professional-grade calculations for everyone.
               </p>
               
               {/* Trust Row - 4 Benefits */}
-              <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8 justify-center lg:justify-start">
+              <div className="flex flex-wrap gap-x-6 gap-y-3 mb-6 justify-center lg:justify-start">
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                   <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <Check className="w-3 h-3 text-green-600" />

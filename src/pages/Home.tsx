@@ -25,8 +25,8 @@ const Home: React.FC = () => {
         {/* Features Section */}
         <section className="metric-section bg-white border-t border-slate-200">
           <div className="metric-container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
                 Why Choose Metric Finance?
               </h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
         <FeaturedCalculators />
         
         {/* Premium CTA Section with Geometric Background */}
-        <section className="relative py-24 md:py-32 overflow-hidden">
+        <section className="relative py-16 md:py-20 overflow-hidden">
           {/* Subtle Geometric SVG Pattern Background */}
           <div className="absolute inset-0 bg-white">
             <svg
@@ -107,15 +107,15 @@ const Home: React.FC = () => {
 
           {/* Content */}
           <div className="relative z-10 metric-container text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
               Ready to Make Smarter Financial Decisions?
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 font-medium">
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-8 font-medium">
               Start exploring our free calculators and take control of your financial future today.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
               <Link
                 to="/us"
                 className="inline-flex items-center gap-2 px-8 py-4 min-h-[48px] rounded-lg bg-[#2563eb] text-white font-bold hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Trust & Accuracy Endorsement Bar */}
-            <div className="flex flex-wrap justify-center gap-8 md:gap-12 pt-8 border-t border-slate-300 border-opacity-10">
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 pt-6 border-t border-slate-300 border-opacity-10">
               <div className="flex items-center gap-3">
                 <Shield className="w-5 h-5 text-[#2563eb] flex-shrink-0" />
                 <span className="text-xs font-medium text-slate-400">Bank-Grade Accuracy</span>

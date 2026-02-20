@@ -44,17 +44,17 @@ const FeaturedCalculators: React.FC = () => {
     <section id="all-calculators" className="metric-section bg-[#f8fafc]">
       <div className="metric-container">
         {/* Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
             {regionTitle}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
             {regionDescription}
           </p>
         </div>
 
         {/* Regional Tabs */}
-        <div className="mb-10">
+        <div className="mb-8">
           <RegionalTabs 
             onRegionChange={handleRegionChange}
             activeRegion={activeRegion}
