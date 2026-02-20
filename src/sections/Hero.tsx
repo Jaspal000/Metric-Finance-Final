@@ -47,29 +47,7 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula - Right of Badge (Desktop) */}
-          <g opacity="0.25" pointerEvents="none">
-            {/* Formula: A = P(1 + r/n)^(nt) - Positioned to right of badge */}
-            {/* Desktop: x="680" y="30" for right side of badge */}
-            <text x="680" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" letterSpacing="0.5" fontWeight="300">
-              A = P(1 +
-            </text>
-            <text x="850" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              r
-            </text>
-            <line x1="845" y1="44" x2="875" y2="44" stroke="#64748b" strokeWidth="1" />
-            <text x="860" y="60" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              n
-            </text>
-            <text x="890" y="32" fontSize="18" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              )
-            </text>
-            
-            {/* Superscript nt */}
-            <text x="903" y="18" fontSize="13" fontFamily="Georgia, serif" fontStyle="italic" fill="#64748b" fontWeight="300">
-              nt
-            </text>
-          </g>
+
         </svg>
       </div>
 
@@ -77,12 +55,28 @@ const Hero: React.FC = () => {
       <div className="metric-container relative z-10">
         <div className="py-6 md:py-8 lg:py-10">
           <div className="max-w-4xl mx-auto text-center">
-            {/* "Institutional Grade" Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#2563eb] rounded-full mb-8">
-              <Hexagon className="w-3.5 h-3.5 text-[#2563eb]" />
-              <span className="text-xs font-bold text-[#2563eb] uppercase tracking-wider">
-                Institutional Grade Calculators
-              </span>
+            {/* "Institutional Grade" Badge with Formula */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[#2563eb] rounded-full">
+                <Hexagon className="w-3.5 h-3.5 text-[#2563eb]" />
+                <span className="text-xs font-bold text-[#2563eb] uppercase tracking-wider">
+                  Institutional Grade Calculators
+                </span>
+              </div>
+              
+              {/* Mathematical Formula - Right of Badge */}
+              <div className="text-xs text-slate-500 font-serif italic flex items-center gap-1">
+                <span>A = P(1 +</span>
+                <span className="relative flex flex-col items-center">
+                  <span>r</span>
+                  <span className="h-px w-4 bg-slate-500 absolute top-3"></span>
+                  <span className="relative top-2">n</span>
+                </span>
+                <span className="relative">
+                  <span>)</span>
+                  <sup className="text-xs ml-0.5">nt</sup>
+                </span>
+              </div>
             </div>
             
             {/* Main Headline - Serif with Mixed Colors */}
