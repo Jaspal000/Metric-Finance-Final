@@ -47,48 +47,48 @@ const Hero: React.FC = () => {
             ).flat()}
           </g>
 
-          {/* Compound Interest Formula - Large Watermark (Desktop Only) */}
-          <g opacity="0.08" pointerEvents="none" className="hidden lg:block">
-            {/* Large formula watermark for desktop - centered horizontally */}
-            <text x="400" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" letterSpacing="2" fontWeight="300">
+          {/* Compound Interest Formula - Prominent Watermark (Desktop Only) */}
+          <g opacity="0.22" pointerEvents="none" className="hidden lg:block">
+            {/* Large formula watermark for desktop - centered horizontally, more visible */}
+            <text x="350" y="300" fontSize="88" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" letterSpacing="3" fontWeight="400">
               A = P(1 +
             </text>
-            <text x="770" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="780" y="300" fontSize="88" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               r
             </text>
-            <line x1="755" y1="310" x2="825" y2="310" stroke="#94a3b8" strokeWidth="3" />
-            <text x="790" y="370" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <line x1="760" y1="335" x2="850" y2="335" stroke="#cbd5e1" strokeWidth="4" />
+            <text x="805" y="410" fontSize="88" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               n
             </text>
-            <text x="870" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="900" y="300" fontSize="88" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="910" y="200" fontSize="54" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="950" y="190" fontSize="66" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               nt
             </text>
           </g>
 
-          {/* Mobile Formula Watermark - Below Badge Area */}
-          <g opacity="0.10" pointerEvents="none" className="lg:hidden">
-            {/* Mobile version as subtle background watermark */}
-            <text x="200" y="280" fontSize="48" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" letterSpacing="1" fontWeight="300">
+          {/* Mobile Formula Watermark - Prominent Background */}
+          <g opacity="0.25" pointerEvents="none" className="lg:hidden">
+            {/* Mobile version as visible background watermark */}
+            <text x="150" y="300" fontSize="56" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" letterSpacing="2" fontWeight="400">
               A = P(1 +
             </text>
-            <text x="500" y="280" fontSize="48" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="300">
+            <text x="500" y="300" fontSize="56" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               r
             </text>
-            <line x1="490" y1="305" x2="550" y2="305" stroke="#cbd5e1" strokeWidth="2" />
-            <text x="520" y="350" fontSize="48" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="300">
+            <line x1="485" y1="330" x2="555" y2="330" stroke="#cbd5e1" strokeWidth="3" />
+            <text x="520" y="395" fontSize="56" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               n
             </text>
-            <text x="580" y="280" fontSize="48" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="300">
+            <text x="580" y="300" fontSize="56" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="620" y="220" fontSize="36" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="300">
+            <text x="635" y="210" fontSize="42" fontFamily="Georgia, serif" fontStyle="italic" fill="#cbd5e1" fontWeight="400">
               nt
             </text>
           </g>
