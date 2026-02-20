@@ -49,23 +49,23 @@ const Hero: React.FC = () => {
 
           {/* Compound Interest Formula - Large Watermark (Desktop Only) */}
           <g opacity="0.08" pointerEvents="none" className="hidden lg:block">
-            {/* Large formula watermark for desktop - centered right side */}
-            <text x="950" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" letterSpacing="2" fontWeight="300">
+            {/* Large formula watermark for desktop - centered horizontally */}
+            <text x="400" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" letterSpacing="2" fontWeight="300">
               A = P(1 +
             </text>
-            <text x="1320" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="770" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
               r
             </text>
-            <line x1="1305" y1="310" x2="1375" y2="310" stroke="#94a3b8" strokeWidth="3" />
-            <text x="1340" y="370" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <line x1="755" y1="310" x2="825" y2="310" stroke="#94a3b8" strokeWidth="3" />
+            <text x="790" y="370" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
               n
             </text>
-            <text x="1420" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="870" y="280" fontSize="72" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
               )
             </text>
             
             {/* Superscript nt */}
-            <text x="1460" y="200" fontSize="54" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
+            <text x="910" y="200" fontSize="54" fontFamily="Georgia, serif" fontStyle="italic" fill="#94a3b8" fontWeight="300">
               nt
             </text>
           </g>
